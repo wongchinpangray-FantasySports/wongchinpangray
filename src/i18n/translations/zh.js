@@ -33,6 +33,7 @@ export const zh = {
     wechat: '微信',
     wechatHint: 'wongchinpangray',
     mailSubject: '来自 {name} 的作品集咨询',
+    profileAlt: 'Ray Wong 职业形象照',
   },
 
   footer: {

@@ -240,6 +240,16 @@ export default function Home() {
           <div className="hero-fade pointer-events-none absolute inset-x-0 bottom-0 z-10 h-56 sm:h-72" />
 
           <div className="relative mx-auto flex min-h-[88vh] max-w-6xl flex-col items-center justify-center px-5 pb-24 pt-28 text-center sm:px-8 sm:pb-28 sm:pt-32 lg:px-12">
+            <div className="mb-8 overflow-hidden rounded-full border-2 border-accent/40 p-1 shadow-[0_0_40px_rgba(255,69,32,0.15)]">
+              <img
+                src="/ray-profile.jpg"
+                alt={t.common.profileAlt}
+                className="h-28 w-28 rounded-full object-cover object-top sm:h-32 sm:w-32"
+                width={128}
+                height={128}
+              />
+            </div>
+
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-on-dark/20 bg-on-dark/10 px-4 py-1.5 backdrop-blur-sm">
               <MapPin size={14} className="text-accent" />
               <span className="text-xs font-medium text-on-dark-muted">

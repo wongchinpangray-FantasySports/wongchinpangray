@@ -75,15 +75,29 @@ export default function About() {
               {a.backHome}
             </Link>
 
-            <div className="max-w-3xl">
-              <SectionLabel>{a.hero.label}</SectionLabel>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
-                {a.hero.titleBefore}
-                <span className="text-gradient">{a.hero.titleHighlight}</span>
-              </h1>
-              <p className="font-subhead mt-8 text-lg leading-relaxed text-text-secondary sm:text-xl">
-                {a.hero.lead}
-              </p>
+            <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-16">
+              <div className="shrink-0">
+                <div className="overflow-hidden rounded-3xl border border-border bg-surface-raised p-1.5 card-shadow">
+                  <img
+                    src="/ray-profile.jpg"
+                    alt={t.common.profileAlt}
+                    className="h-48 w-48 rounded-[1.25rem] object-cover object-top sm:h-56 sm:w-56"
+                    width={224}
+                    height={224}
+                  />
+                </div>
+              </div>
+
+              <div className="max-w-3xl">
+                <SectionLabel>{a.hero.label}</SectionLabel>
+                <h1 className="font-display text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
+                  {a.hero.titleBefore}
+                  <span className="text-gradient">{a.hero.titleHighlight}</span>
+                </h1>
+                <p className="font-subhead mt-8 text-lg leading-relaxed text-text-secondary sm:text-xl">
+                  {a.hero.lead}
+                </p>
+              </div>
             </div>
           </div>
         </section>

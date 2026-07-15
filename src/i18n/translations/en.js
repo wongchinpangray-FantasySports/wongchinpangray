@@ -33,6 +33,7 @@ export const en = {
     wechat: 'WeChat',
     wechatHint: 'wongchinpangray',
     mailSubject: 'Portfolio inquiry from {name}',
+    profileAlt: 'Ray Wong — professional headshot',
   },
 
   footer: {
