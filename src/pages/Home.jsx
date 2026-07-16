@@ -10,6 +10,7 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  Palette,
   Radio,
   Sparkles,
   Target,
@@ -52,7 +53,7 @@ const CONTENT_META = [
 ]
 
 const PILLAR_ICONS = [Users, Zap, Sparkles]
-const SKILL_ICONS = [Code2, Briefcase, Globe]
+const SKILL_ICONS = [Code2, Palette, Briefcase, Globe]
 
 function scrollTo(href) {
   const el = document.querySelector(href)
@@ -470,7 +471,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {t.home.skills.groups.map((group, index) => {
                 const Icon = SKILL_ICONS[index]
                 return (

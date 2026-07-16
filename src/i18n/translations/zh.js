@@ -210,6 +210,10 @@ export const zh = {
           ],
         },
         {
+          title: '设计',
+          skills: ['Photoshop', 'Adobe Illustrator'],
+        },
+        {
           title: '商业与战略',
           skills: [
             '战略采购',

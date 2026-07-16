@@ -204,6 +204,10 @@ export const en = {
           skills: ['Cursor', 'Gemini', 'Lovart', 'Kling', 'Full-Stack Prototyping'],
         },
         {
+          title: 'Design',
+          skills: ['Photoshop', 'Adobe Illustrator'],
+        },
+        {
           title: 'Business & Strategy',
           skills: [
             'Strategic Sourcing',
