@@ -97,6 +97,12 @@ export const en = {
             'A mobile-first app featuring tactical boards, squad rosters, and matchday coordination.',
           tags: ['Mobile-First', 'Tactics', 'Matchday Ops'],
         },
+        {
+          title: 'Sternespieler 3D Mascot',
+          description:
+            'A football-inspired character mascot modeled, textured, and rendered in Blender — from portrait studies to jersey-ready art-toy design.',
+          tags: ['Blender', '3D Modeling', 'Character Design'],
+        },
       ],
     },
 
@@ -749,6 +755,98 @@ export const en = {
 
     cta: {
       title: 'Built for real matchdays',
+    },
+  },
+
+  sternespieler: {
+    hero: {
+      label: 'Case Study · 3D Design',
+      titleBefore: 'Sternespieler ',
+      titleHighlight: '3D Mascot',
+      description:
+        'A football-inspired character mascot built in Blender — from stylized portrait studies to a jersey-ready figure with art-toy appeal. Published on Behance as part of my 3D modeling practice.',
+      tags: ['Blender', '3D Modeling', 'Character Design', 'Art Toy'],
+      visitBehance: 'View on Behance',
+    },
+
+    metrics: {
+      items: [
+        { value: 'Blender', label: 'Primary tool' },
+        { value: '3', label: 'Published studies' },
+        { value: '#29', label: 'Jersey identity' },
+        { value: 'Art Toy', label: 'Design direction' },
+      ],
+    },
+
+    overview: {
+      label: 'Overview',
+      titleBefore: 'A mascot with ',
+      titleHighlight: 'football energy',
+      body:
+        'Sternespieler is a personal 3D character project exploring cartoon proportions, expressive facial design, and football-inspired branding. The work moves from clean portrait renders to a full-body figure in kit — shaped for potential use as a community mascot, designer toy, or sports-media avatar.',
+    },
+
+    screenshots: {
+      label: 'Render Gallery',
+      titleBefore: 'Mascot ',
+      titleHighlight: 'Renders',
+      subtitle:
+        'Selected renders from the Behance project — front portrait, three-quarter angle, and back-of-kit detail.',
+      chrome: 'behance.net/chinpangraywong',
+      items: [
+        {
+          alt: 'Sternespieler mascot front portrait render in Blender',
+          title: 'Front Portrait',
+          caption:
+            'Stylized head study with bold green eyes, sculpted hair, and a clean football-badge motif on the torso.',
+        },
+        {
+          alt: 'Sternespieler mascot three-quarter angle Blender render',
+          title: 'Three-Quarter Angle',
+          caption:
+            'Secondary portrait angle showing ear detail, hair volume, and the character’s graphic silhouette.',
+        },
+        {
+          alt: 'Sternespieler mascot back view with number 29 jersey',
+          title: 'Kit Back Detail',
+          caption:
+            'Back-of-jersey render with the #29 identity — pushing the design from portrait study toward a matchday-ready mascot.',
+        },
+      ],
+    },
+
+    process: {
+      label: 'Process',
+      title: 'From blockout to render',
+      items: [
+        {
+          title: 'Character Blockout',
+          description:
+            'Built the base head and torso forms in Blender, focusing on readable cartoon proportions and a strong front-facing silhouette.',
+        },
+        {
+          title: 'Facial Design',
+          description:
+            'Sculpted expressive eyes, brows, and hair volume to give the mascot personality without losing a clean, toy-like finish.',
+        },
+        {
+          title: 'Kit & Branding',
+          description:
+            'Added jersey details, collar trim, and the #29 back number to connect the character to football culture and community identity.',
+        },
+        {
+          title: 'Lighting & Render',
+          description:
+            'Used studio lighting and neutral backgrounds to showcase form, material separation, and portfolio-ready presentation.',
+        },
+      ],
+    },
+
+    cta: {
+      title: 'See the full Behance series',
+      body:
+        'Explore the Sternespieler project and my other 3D work on Behance — including additional mascot studies and football-inspired character design.',
+      button: 'Open Behance Profile',
     },
   },
 }

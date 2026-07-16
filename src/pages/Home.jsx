@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import {
   ArrowUpRight,
+  Box,
   Briefcase,
   ChevronRight,
   Code2,
@@ -29,6 +30,12 @@ import SiteNav from '../components/SiteNav'
 const PROJECT_META = [
   { icon: Trophy, accent: 'accent', slug: '/projects/fpl-engagement-platform' },
   { icon: Target, accent: 'tech', slug: '/projects/amateur-football-club-management' },
+  {
+    icon: Box,
+    accent: 'warm',
+    slug: '/projects/sternespieler-3d-mascot',
+    thumb: '/projects/sternespieler/mascot-front.jpg',
+  },
 ]
 
 const CONTENT_META = [
@@ -358,7 +365,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((project) => (
                 <ProjectCard
                   key={project.slug}

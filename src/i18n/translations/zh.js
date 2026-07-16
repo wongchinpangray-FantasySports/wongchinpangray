@@ -97,6 +97,12 @@ export const zh = {
             '移动优先应用，集成战术板、球员名册与比赛日协调功能。',
           tags: ['移动优先', '战术规划', '比赛日运营'],
         },
+        {
+          title: 'Sternespieler 3D 吉祥物',
+          description:
+            '使用 Blender 建模、材质与渲染的足球主题角色吉祥物——从肖像研究到球衣造型与潮玩设计。',
+          tags: ['Blender', '3D 建模', '角色设计'],
+        },
       ],
     },
 
@@ -791,6 +797,98 @@ export const zh = {
 
     cta: {
       title: '为真实比赛日而打造',
+    },
+  },
+
+  sternespieler: {
+    hero: {
+      label: '案例研究 · 3D 设计',
+      titleBefore: 'Sternespieler ',
+      titleHighlight: '3D 吉祥物',
+      description:
+        '使用 Blender 打造的足球主题角色吉祥物——从风格化肖像研究到具备球衣细节的潮玩形象。该系列已发布于 Behance，是我 3D 建模练习的一部分。',
+      tags: ['Blender', '3D 建模', '角色设计', '潮玩设计'],
+      visitBehance: '在 Behance 查看',
+    },
+
+    metrics: {
+      items: [
+        { value: 'Blender', label: '主要工具' },
+        { value: '3', label: '已发布研究' },
+        { value: '#29', label: '球衣标识' },
+        { value: '潮玩', label: '设计方向' },
+      ],
+    },
+
+    overview: {
+      label: '项目概览',
+      titleBefore: '充满',
+      titleHighlight: '足球能量的吉祥物',
+      body:
+        'Sternespieler 是一项个人 3D 角色项目，探索卡通比例、表情设计与足球主题品牌感。作品从干净的肖像渲染延伸到身着球衣的全身形象——可用于社区吉祥物、设计师玩具或体育媒体形象。',
+    },
+
+    screenshots: {
+      label: '渲染图集',
+      titleBefore: '吉祥物',
+      titleHighlight: '渲染作品',
+      subtitle:
+        '来自 Behance 项目的精选渲染——正面肖像、四分之三角度与球衣背面细节。',
+      chrome: 'behance.net/chinpangraywong',
+      items: [
+        {
+          alt: 'Sternespieler 吉祥物正面肖像 Blender 渲染',
+          title: '正面肖像',
+          caption:
+            '风格化头部研究，突出绿色眼睛、雕塑感发型与躯干上的足球徽章元素。',
+        },
+        {
+          alt: 'Sternespieler 吉祥物四分之三角度 Blender 渲染',
+          title: '四分之三角度',
+          caption:
+            '第二视角肖像，展示耳部细节、发量层次与角色的图形化轮廓。',
+        },
+        {
+          alt: 'Sternespieler 吉祥物背面 29 号球衣渲染',
+          title: '球衣背面细节',
+          caption:
+            '背面球衣渲染，呈现 #29 标识——将设计从肖像研究推进到更具比赛日感的吉祥物形象。',
+        },
+      ],
+    },
+
+    process: {
+      label: '创作流程',
+      title: '从体块到渲染',
+      items: [
+        {
+          title: '角色体块',
+          description:
+            '在 Blender 中搭建头部与躯干基础形态，聚焦易读的卡通比例与正面轮廓。',
+        },
+        {
+          title: '面部设计',
+          description:
+            '雕刻富有表现力的眼睛、眉毛与发量，让吉祥物有个性，同时保持干净的潮玩质感。',
+        },
+        {
+          title: '球衣与品牌',
+          description:
+            '加入球衣细节、领口饰边与背面 #29 号码，将角色与足球文化与社区身份连接起来。',
+        },
+        {
+          title: '灯光与渲染',
+          description:
+            '使用影棚灯光与中性背景，突出形体、材质层次与作品集级呈现效果。',
+        },
+      ],
+    },
+
+    cta: {
+      title: '查看完整 Behance 系列',
+      body:
+        '在 Behance 探索 Sternespieler 项目及我的其他 3D 作品——包括更多吉祥物研究与足球主题角色设计。',
+      button: '打开 Behance 主页',
     },
   },
 }
