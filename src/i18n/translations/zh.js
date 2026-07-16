@@ -134,7 +134,7 @@ export const zh = {
       title: '企业级',
       titleHighlight: '工作经历',
       subtitle:
-        '14 年以上全球营销执行、账户领导力与战略采购经验——从奢华客户体验到规模化生产。',
+        '8 年以上全球营销执行、账户领导力与战略采购经验——从奢华客户体验到规模化生产。',
       highlightCard: {
         title: '全球营销与战略采购',
         companies: 'Link · Animated Storyboards · Tag · Albatross CX',

@@ -134,7 +134,7 @@ export const en = {
       title: 'Enterprise ',
       titleHighlight: 'experience',
       subtitle:
-        '14+ years across global marketing execution, account leadership, and strategic sourcing — from luxury CX to production at scale.',
+        '8+ years across global marketing execution, account leadership, and strategic sourcing — from luxury CX to production at scale.',
       highlightCard: {
         title: 'Global Marketing & Sourcing',
         companies: 'Link · Animated Storyboards · Tag · Albatross CX',
