@@ -28,8 +28,18 @@ import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
 
 const PROJECT_META = [
-  { icon: Trophy, accent: 'accent', slug: '/projects/fpl-engagement-platform' },
-  { icon: Target, accent: 'tech', slug: '/projects/amateur-football-club-management' },
+  {
+    icon: Trophy,
+    accent: 'accent',
+    slug: '/projects/fpl-engagement-platform',
+    thumb: '/projects/faleague/world-cup-hub.png',
+  },
+  {
+    icon: Target,
+    accent: 'tech',
+    slug: '/projects/amateur-football-club-management',
+    thumb: '/projects/fpl-united/dashboard-thumb.svg',
+  },
   {
     icon: Box,
     accent: 'warm',

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" fill="none">
+  <defs>
+    <radialGradient id="bgGlow" cx="65%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#e6a8c7" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0a0608" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="phoneShell" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#17121a"/>
+      <stop offset="100%" stop-color="#100d13"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="480" fill="#0a0608"/>
+  <rect width="800" height="480" fill="url(#bgGlow)"/>
+
+  <rect x="250" y="36" width="300" height="408" rx="36" fill="url(#phoneShell)" stroke="rgba(255,255,255,0.13)" stroke-width="2"/>
+  <rect x="266" y="52" width="268" height="376" rx="28" fill="#100d13"/>
+
+  <text x="400" y="78" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="12">9:41</text>
+
+  <circle cx="292" cy="108" r="16" fill="#e6a8c7"/>
+  <text x="292" y="112" text-anchor="middle" fill="#100d13" font-family="system-ui, sans-serif" font-size="9" font-weight="700">FPL</text>
+  <text x="318" y="104" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">FPL UNITED</text>
+  <text x="318" y="120" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="10">Dashboard</text>
+
+  <rect x="282" y="136" width="236" height="92" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="298" y="158" fill="#e6a8c7" font-family="system-ui, sans-serif" font-size="9" letter-spacing="1.2">NEXT MATCH</text>
+  <text x="298" y="178" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="600">vs. Eastside FC</text>
+  <text x="298" y="196" fill="rgba(255,255,255,0.4)" font-family="system-ui, sans-serif" font-size="10">Sat - 3:00 PM - Home</text>
+  <rect x="298" y="206" width="52" height="16" rx="8" fill="rgba(16,185,129,0.2)"/>
+  <text x="324" y="217" text-anchor="middle" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="8">12 going</text>
+  <rect x="356" y="206" width="48" height="16" rx="8" fill="rgba(245,158,11,0.2)"/>
+  <text x="380" y="217" text-anchor="middle" fill="#fcd34d" font-family="system-ui, sans-serif" font-size="8">3 maybe</text>
+  <rect x="410" y="206" width="40" height="16" rx="8" fill="rgba(244,63,94,0.2)"/>
+  <text x="430" y="217" text-anchor="middle" fill="#fda4af" font-family="system-ui, sans-serif" font-size="8">2 out</text>
+
+  <rect x="282" y="240" width="112" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="404" y="240" width="112" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="282" y="304" width="112" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
+  <rect x="404" y="304" width="112" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
+  <text x="338" y="272" text-anchor="middle" fill="rgba(255,255,255,0.53)" font-family="system-ui, sans-serif" font-size="10">Lineup</text>
+  <text x="460" y="272" text-anchor="middle" fill="rgba(255,255,255,0.53)" font-family="system-ui, sans-serif" font-size="10">Tactics</text>
+  <text x="338" y="336" text-anchor="middle" fill="rgba(255,255,255,0.53)" font-family="system-ui, sans-serif" font-size="10">Squad</text>
+  <text x="460" y="336" text-anchor="middle" fill="rgba(255,255,255,0.53)" font-family="system-ui, sans-serif" font-size="10">Stats</text>
+
+  <rect x="282" y="372" width="236" height="40" rx="20" fill="#e6a8c7"/>
+  <text x="400" y="397" text-anchor="middle" fill="#100d13" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Manage matchday</text>
+</svg>
