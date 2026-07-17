@@ -354,7 +354,7 @@ export default function FplEngagementDetail() {
         <section className="section-padding bg-surface-overlay">
           <div className="container-wide grid items-start gap-12 lg:grid-cols-2">
             <ProductScreenshotFrame
-              screenshot={screenshots[2]}
+              screenshot={screenshots[3]}
               chrome={f.screenshots.chrome}
             />
 
@@ -386,11 +386,6 @@ export default function FplEngagementDetail() {
                   {f.community.languages}
                 </div>
               </div>
-
-              <ProductScreenshotFrame
-                screenshot={screenshots[3]}
-                chrome={f.screenshots.chrome}
-              />
             </div>
           </div>
         </section>

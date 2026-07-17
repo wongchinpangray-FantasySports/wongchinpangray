@@ -6,7 +6,7 @@ export default function ProductScreenshotFrame({
 }) {
   return (
     <figure
-      className={`flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-[#111318] card-shadow ${
+      className={`flex h-auto flex-col self-start overflow-hidden rounded-3xl border border-border bg-[#111318] card-shadow ${
         featured ? 'lg:sticky lg:top-28' : ''
       } ${className}`.trim()}
     >
