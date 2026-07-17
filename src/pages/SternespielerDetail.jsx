@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowUpRight, Box, Layers, Palette, Sparkles } from 'lucide-react'
 import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
+import ProductScreenshotFrame from '../components/ProductScreenshotFrame'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
 
@@ -15,39 +16,6 @@ const SCREENSHOT_SRC = [
 ]
 
 const PROCESS_ICONS = [Box, Palette, Layers, Sparkles]
-
-function ScreenshotFrame({ screenshot, chrome }) {
-  return (
-    <figure className="overflow-hidden rounded-3xl border border-border bg-[#111318] card-shadow">
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-        </div>
-        <div className="mx-auto rounded-full bg-white/5 px-4 py-1 text-[10px] text-white/50">
-          {chrome}
-        </div>
-      </div>
-
-      <img
-        src={screenshot.src}
-        alt={screenshot.alt}
-        className="block w-full"
-        loading="lazy"
-      />
-
-      <figcaption className="border-t border-border bg-surface-raised px-4 py-3 sm:px-5 sm:py-4">
-        <p className="font-display text-sm font-semibold text-text-primary">
-          {screenshot.title}
-        </p>
-        <p className="mt-1 text-xs leading-relaxed text-text-muted">
-          {screenshot.caption}
-        </p>
-      </figcaption>
-    </figure>
-  )
-}
 
 export default function SternespielerDetail() {
   const { t } = useI18n()
@@ -114,7 +82,11 @@ export default function SternespielerDetail() {
                 </a>
               </div>
 
-              <ScreenshotFrame screenshot={screenshots[0]} chrome={s.screenshots.chrome} />
+              <ProductScreenshotFrame
+                screenshot={screenshots[0]}
+                chrome={s.screenshots.chrome}
+                featured
+              />
             </div>
           </div>
         </section>
@@ -161,9 +133,9 @@ export default function SternespielerDetail() {
               {s.screenshots.subtitle}
             </p>
 
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="mt-10 grid items-stretch gap-6 lg:grid-cols-2">
               {screenshots.map((screenshot) => (
-                <ScreenshotFrame
+                <ProductScreenshotFrame
                   key={screenshot.title}
                   screenshot={screenshot}
                   chrome={s.screenshots.chrome}

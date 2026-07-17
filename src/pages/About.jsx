@@ -2,49 +2,12 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowUpRight, Briefcase, Code2, Sparkles } from 'lucide-react'
 import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
+import ProductScreenshotFrame from '../components/ProductScreenshotFrame'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
-
-const SCREENSHOT_SRC = [
-  '/projects/faleague/world-cup-hub.png',
-  '/projects/faleague/my-fpl.png',
-  '/projects/faleague/ai-chat.png',
-]
+import { aboutScreenshotSrc } from '../lib/faleagueImages'
 
 const VALUE_ICONS = [Briefcase, Code2, Sparkles]
-
-function ScreenshotFrame({ screenshot, chrome }) {
-  return (
-    <figure className="overflow-hidden rounded-3xl border border-border bg-[#111318] card-shadow">
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-        </div>
-        <div className="mx-auto rounded-full bg-white/5 px-4 py-1 text-[10px] text-white/50">
-          {chrome}
-        </div>
-      </div>
-
-      <img
-        src={screenshot.src}
-        alt={screenshot.alt}
-        className="block w-full"
-        loading="lazy"
-      />
-
-      <figcaption className="border-t border-border bg-surface-raised px-4 py-3 sm:px-5 sm:py-4">
-        <p className="font-display text-sm font-semibold text-text-primary">
-          {screenshot.title}
-        </p>
-        <p className="mt-1 text-xs leading-relaxed text-text-muted">
-          {screenshot.caption}
-        </p>
-      </figcaption>
-    </figure>
-  )
-}
 
 export default function About() {
   const { t } = useI18n()
@@ -52,7 +15,7 @@ export default function About() {
 
   const screenshots = a.screenshots.items.map((item, i) => ({
     ...item,
-    src: SCREENSHOT_SRC[i],
+    src: aboutScreenshotSrc[i],
   }))
 
   const values = a.values.items.map((item, i) => ({
@@ -154,9 +117,9 @@ export default function About() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
               {screenshots.map((screenshot) => (
-                <ScreenshotFrame
+                <ProductScreenshotFrame
                   key={screenshot.title}
                   screenshot={screenshot}
                   chrome={a.screenshots.chrome}

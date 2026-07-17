@@ -26,13 +26,14 @@ import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
+import { faleagueImages } from '../lib/faleagueImages'
 
 const PROJECT_META = [
   {
     icon: Trophy,
     accent: 'accent',
     slug: '/projects/fpl-engagement-platform',
-    thumb: '/projects/faleague/world-cup-hub.png',
+    thumb: faleagueImages.worldCupHub,
   },
   {
     icon: Target,
@@ -90,8 +91,9 @@ function ProjectCard({ project, viewDetailsLabel }) {
           <img
             src={project.thumb}
             alt={project.title}
-            className="h-44 w-full object-cover object-top sm:h-48"
+            className="aspect-[4/3] w-full object-cover object-top"
             loading="lazy"
+            decoding="async"
           />
         </div>
       ) : (
@@ -375,7 +377,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid items-stretch gap-6 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((project) => (
                 <ProjectCard
                   key={project.slug}
@@ -402,7 +404,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid items-stretch gap-6 md:grid-cols-3">
               {contentItems.map((item) => (
                 <ProjectCard
                   key={item.slug}

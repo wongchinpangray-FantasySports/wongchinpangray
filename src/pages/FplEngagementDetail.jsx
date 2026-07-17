@@ -16,60 +16,17 @@ import {
 } from 'lucide-react'
 import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
+import ProductScreenshotFrame from '../components/ProductScreenshotFrame'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
+import { faleagueImages, fplEngagementScreenshotSrc } from '../lib/faleagueImages'
 
 const LIVE_URL = 'https://www.faleague-ai.com/'
 const AI_CHAT_URL = 'https://www.faleague-ai.com/chat'
 
-const SCREENSHOT_SRC = [
-  '/projects/faleague/world-cup-hub.png',
-  '/projects/faleague/my-fpl.png',
-  '/projects/faleague/ai-chat.png',
-  '/projects/faleague/news-feed.png',
-  '/projects/faleague/mini-games.png',
-]
-
 const MODULE_ICONS = [Trophy, LayoutDashboard, Bot, Calendar, Newspaper, Sparkles]
 
 const MY_FPL_FEATURE_ICONS = [LayoutDashboard, Calendar, Users, Radio, Zap]
-
-function ScreenshotFrame({ screenshot, chrome, featured = false }) {
-  return (
-    <figure
-      className={`overflow-hidden rounded-3xl border border-border bg-[#111318] card-shadow ${
-        featured ? 'lg:sticky lg:top-28' : ''
-      }`}
-    >
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-        </div>
-        <div className="mx-auto rounded-full bg-white/5 px-4 py-1 text-[10px] text-white/50">
-          {chrome}
-        </div>
-      </div>
-
-      <img
-        src={screenshot.src}
-        alt={screenshot.alt}
-        className="block w-full"
-        loading={featured ? 'eager' : 'lazy'}
-      />
-
-      <figcaption className="border-t border-border bg-surface-raised px-4 py-3 sm:px-5 sm:py-4">
-        <p className="font-display text-sm font-semibold text-text-primary">
-          {screenshot.title}
-        </p>
-        <p className="mt-1 text-xs leading-relaxed text-text-muted">
-          {screenshot.caption}
-        </p>
-      </figcaption>
-    </figure>
-  )
-}
 
 export default function FplEngagementDetail() {
   const { t } = useI18n()
@@ -77,7 +34,7 @@ export default function FplEngagementDetail() {
 
   const screenshots = f.screenshots.items.map((item, i) => ({
     ...item,
-    src: SCREENSHOT_SRC[i],
+    src: fplEngagementScreenshotSrc[i],
   }))
 
   const modules = f.modules.items.map((item, i) => ({
@@ -91,7 +48,7 @@ export default function FplEngagementDetail() {
   }))
 
   const aiChatScreenshot = {
-    src: '/projects/faleague/ai-chat.png',
+    src: faleagueImages.aiChat,
     alt: f.screenshots.items[2].alt,
     title: f.aiChat.screenshotTitle,
     caption: f.aiChat.screenshotCaption,
@@ -157,7 +114,7 @@ export default function FplEngagementDetail() {
                 </div>
               </div>
 
-              <ScreenshotFrame
+              <ProductScreenshotFrame
                 screenshot={screenshots[0]}
                 chrome={f.screenshots.chrome}
                 featured
@@ -235,9 +192,9 @@ export default function FplEngagementDetail() {
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid items-stretch gap-8 md:grid-cols-2 xl:grid-cols-3">
               {screenshots.map((screenshot) => (
-                <ScreenshotFrame
+                <ProductScreenshotFrame
                   key={screenshot.title}
                   screenshot={screenshot}
                   chrome={f.screenshots.chrome}
@@ -286,7 +243,7 @@ export default function FplEngagementDetail() {
         <section className="section-padding bg-surface">
           <div className="container-wide">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <ScreenshotFrame
+              <ProductScreenshotFrame
                 screenshot={aiChatScreenshot}
                 chrome={f.screenshots.chrome}
               />
@@ -385,7 +342,7 @@ export default function FplEngagementDetail() {
                 </div>
               </div>
 
-              <ScreenshotFrame
+              <ProductScreenshotFrame
                 screenshot={screenshots[1]}
                 chrome={f.screenshots.chrome}
               />
@@ -396,7 +353,7 @@ export default function FplEngagementDetail() {
         {/* News & Community */}
         <section className="section-padding bg-surface-overlay">
           <div className="container-wide grid items-start gap-12 lg:grid-cols-2">
-            <ScreenshotFrame
+            <ProductScreenshotFrame
               screenshot={screenshots[2]}
               chrome={f.screenshots.chrome}
             />
@@ -430,7 +387,7 @@ export default function FplEngagementDetail() {
                 </div>
               </div>
 
-              <ScreenshotFrame
+              <ProductScreenshotFrame
                 screenshot={screenshots[3]}
                 chrome={f.screenshots.chrome}
               />
