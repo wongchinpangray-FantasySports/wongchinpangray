@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import About from './pages/About'
 import ClubManagementDetail from './pages/ClubManagementDetail'
 import FplContentDetail from './pages/FplContentDetail'
@@ -9,6 +10,7 @@ import SternespielerDetail from './pages/SternespielerDetail'
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
