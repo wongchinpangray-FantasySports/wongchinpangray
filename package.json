@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-pdfs.mjs && vite build",
     "preview": "vite preview",
+    "generate-pdfs": "node scripts/generate-pdfs.mjs",
     "deploy": "npm run build && wrangler pages deploy dist --project-name=ray-wong-portfolio"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.8",
     "@vitejs/plugin-react": "^4.5.2",
+    "pdfkit": "^0.17.2",
     "tailwindcss": "^4.1.8",
     "vite": "^6.3.5",
     "wrangler": "^4.110.0"

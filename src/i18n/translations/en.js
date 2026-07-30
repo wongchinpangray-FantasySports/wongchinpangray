@@ -11,6 +11,7 @@ export const en = {
     content: 'Content',
     experience: 'Experience',
     skills: 'Skills',
+    downloads: 'Downloads',
     contact: 'Contact',
     letsConnect: "Let's Connect",
     toggleLabel: 'Switch language',
@@ -34,6 +35,41 @@ export const en = {
     wechatHint: 'wongchinpangray',
     mailSubject: 'Portfolio inquiry from {name}',
     profileAlt: 'Ray Wong — professional headshot',
+  },
+
+  downloads: {
+    modalLabel: 'Download',
+    close: 'Close download dialog',
+    emailLabel: 'Work email',
+    companyLabel: 'Company name',
+    companyPlaceholder: 'Your company or organization',
+    privacyNote:
+      'Your email and company name are saved so Ray can follow up. The PDF downloads immediately after you submit.',
+    submitting: 'Preparing download…',
+    error: 'Unable to process your download request. Please try again.',
+    section: {
+      label: 'Downloads',
+      title: 'Take the ',
+      titleHighlight: 'PDFs',
+      subtitle:
+        'Download a resume or a portfolio case-study PDF. A work email and company name are requested before download.',
+    },
+    resume: {
+      link: 'Resume PDF',
+      cardTitle: 'Resume',
+      cardDescription: 'One-page career summary with experience, skills, and selected projects.',
+      title: 'Download Resume',
+      description: 'Enter your work email and company name to download Ray Wong’s resume PDF.',
+      button: 'Download Resume PDF',
+    },
+    portfolio: {
+      link: 'Portfolio PDF',
+      cardTitle: 'Portfolio Case Studies',
+      cardDescription: 'Project deep-dives, product modules, content work, and enterprise background.',
+      title: 'Download Portfolio',
+      description: 'Enter your work email and company name to download the portfolio case-study PDF.',
+      button: 'Download Portfolio PDF',
+    },
   },
 
   footer: {

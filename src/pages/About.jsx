@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowUpRight, Briefcase, Code2, Sparkles } from 'lucide-react'
 import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
+import DownloadCards from '../components/DownloadCards'
 import ProductScreenshotFrame from '../components/ProductScreenshotFrame'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
@@ -149,6 +150,22 @@ export default function About() {
                 />
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section className="section-padding bg-surface-overlay">
+          <div className="container-wide mx-auto max-w-4xl">
+            <div className="mb-10 text-center">
+              <SectionLabel>{t.downloads.section.label}</SectionLabel>
+              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+                {t.downloads.section.title}
+                <span className="text-gradient">{t.downloads.section.titleHighlight}</span>
+              </h2>
+              <p className="font-subhead mx-auto mt-4 max-w-2xl text-lg text-text-secondary">
+                {t.downloads.section.subtitle}
+              </p>
+            </div>
+            <DownloadCards />
           </div>
         </section>
 

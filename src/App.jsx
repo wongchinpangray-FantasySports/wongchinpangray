@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop'
+import { DownloadProvider } from './context/DownloadContext'
 import About from './pages/About'
 import ClubManagementDetail from './pages/ClubManagementDetail'
 import FplContentDetail from './pages/FplContentDetail'
@@ -10,8 +11,9 @@ import SternespielerDetail from './pages/SternespielerDetail'
 export default function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
+      <DownloadProvider>
+        <ScrollToTop />
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route
@@ -30,7 +32,8 @@ export default function App() {
           path="/projects/sternespieler-3d-mascot"
           element={<SternespielerDetail />}
         />
-      </Routes>
+        </Routes>
+      </DownloadProvider>
     </BrowserRouter>
   )
 }

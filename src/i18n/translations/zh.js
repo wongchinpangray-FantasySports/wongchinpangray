@@ -11,6 +11,7 @@ export const zh = {
     content: '内容创作',
     experience: '经历',
     skills: '技能',
+    downloads: '下载',
     contact: '联系',
     letsConnect: '联系我',
     toggleLabel: '切换语言',
@@ -34,6 +35,39 @@ export const zh = {
     wechatHint: 'wongchinpangray',
     mailSubject: '来自 {name} 的作品集咨询',
     profileAlt: 'Ray Wong 职业形象照',
+  },
+
+  downloads: {
+    modalLabel: '下载',
+    close: '关闭下载窗口',
+    emailLabel: '工作邮箱',
+    companyLabel: '公司名称',
+    companyPlaceholder: '您的公司或机构',
+    privacyNote: '提交后我们会记录您的邮箱与公司名称，方便 Ray 后续跟进。PDF 会在提交后立即下载。',
+    submitting: '正在准备下载…',
+    error: '暂时无法处理下载请求，请稍后重试。',
+    section: {
+      label: '资料下载',
+      title: '下载 ',
+      titleHighlight: 'PDF',
+      subtitle: '可下载简历或作品集案例 PDF。下载前请先填写工作邮箱与公司名称。',
+    },
+    resume: {
+      link: '简历 PDF',
+      cardTitle: '简历',
+      cardDescription: '一页式职业摘要，涵盖经历、技能与精选项目。',
+      title: '下载简历',
+      description: '填写工作邮箱与公司名称后，即可下载 Ray Wong 的简历 PDF。',
+      button: '下载简历 PDF',
+    },
+    portfolio: {
+      link: '作品集 PDF',
+      cardTitle: '作品集案例',
+      cardDescription: '项目深度介绍、产品模块、内容创作与企业背景。',
+      title: '下载作品集',
+      description: '填写工作邮箱与公司名称后，即可下载作品集案例 PDF。',
+      button: '下载作品集 PDF',
+    },
   },
 
   footer: {

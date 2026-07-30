@@ -1,4 +1,5 @@
 import { useI18n } from '../i18n/LanguageContext'
+import { DownloadLinks } from './DownloadCards'
 
 export default function SiteFooter() {
   const { t } = useI18n()
@@ -9,7 +10,10 @@ export default function SiteFooter() {
         <p className="text-sm text-text-muted">
           {t.footer.rights.replace('{year}', String(new Date().getFullYear()))}
         </p>
-        <p className="text-xs text-text-muted">{t.footer.tagline}</p>
+        <div className="flex flex-col items-center gap-3 sm:items-end">
+          <DownloadLinks />
+          <p className="text-xs text-text-muted">{t.footer.tagline}</p>
+        </div>
       </div>
     </footer>
   )

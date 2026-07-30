@@ -24,6 +24,7 @@ import {
 import { Link, useLocation } from 'react-router-dom'
 import { useI18n } from '../i18n/LanguageContext'
 import SectionLabel from '../components/SectionLabel'
+import DownloadCards from '../components/DownloadCards'
 import SiteFooter from '../components/SiteFooter'
 import SiteNav from '../components/SiteNav'
 import { faleagueImages } from '../lib/faleagueImages'
@@ -523,7 +524,24 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="section-padding bg-surface">
+        <section id="downloads" className="section-padding bg-surface">
+          <div className="container-wide">
+            <div className="mb-10 text-center sm:mb-12">
+              <SectionLabel>{t.downloads.section.label}</SectionLabel>
+              <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+                {t.downloads.section.title}
+                <span className="text-gradient">{t.downloads.section.titleHighlight}</span>
+              </h2>
+              <p className="font-subhead mx-auto mt-4 max-w-2xl text-lg text-text-secondary">
+                {t.downloads.section.subtitle}
+              </p>
+            </div>
+
+            <DownloadCards />
+          </div>
+        </section>
+
+        <section id="contact" className="section-padding bg-surface-overlay">
           <div className="container-wide">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
               <div>

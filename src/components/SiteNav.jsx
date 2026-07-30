@@ -13,6 +13,7 @@ export default function SiteNav() {
     { label: t.nav.content, href: '/#content' },
     { label: t.nav.experience, href: '/#experience' },
     { label: t.nav.skills, href: '/#skills' },
+    { label: t.nav.downloads, href: '/#downloads' },
     { label: t.nav.contact, href: '/#contact' },
   ]
 
