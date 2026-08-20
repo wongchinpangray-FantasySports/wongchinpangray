@@ -26,24 +26,27 @@ export default function SiteNav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-5">
-      <nav className="nav-pill mx-auto flex max-w-3xl items-center justify-between rounded-full border border-border bg-surface-raised px-4 py-2.5 sm:px-6 sm:py-3">
+      <nav className="nav-pill mx-auto flex max-w-6xl items-center gap-4 rounded-full border border-border bg-surface-raised px-5 py-2.5 sm:gap-6 sm:px-8 sm:py-3">
         <Link
           to="/"
-          className="font-display text-base font-semibold tracking-tight text-text-primary sm:text-lg"
+          className="shrink-0 font-display text-base font-semibold tracking-tight text-text-primary sm:text-lg"
         >
           Ray<span className="text-accent">.</span>
         </Link>
 
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden flex-1 items-center justify-center gap-5 md:flex lg:gap-7 xl:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               to={link.href}
-              className="text-sm font-medium text-text-secondary transition-colors duration-300 hover:text-text-primary"
+              className="whitespace-nowrap text-[13px] font-medium text-text-secondary transition-colors duration-300 hover:text-text-primary lg:text-sm"
             >
               {link.label}
             </Link>
           ))}
+        </div>
+
+        <div className="hidden shrink-0 items-center gap-3 md:flex lg:gap-4">
           <div
             className="flex items-center rounded-full border border-border-subtle bg-surface p-0.5 text-xs font-semibold"
             role="group"
@@ -74,7 +77,7 @@ export default function SiteNav() {
           </div>
           <Link
             to="/#contact"
-            className="rounded-full bg-text-primary px-5 py-2 text-sm font-semibold text-on-dark transition-all duration-300 hover:bg-accent"
+            className="whitespace-nowrap rounded-full bg-text-primary px-5 py-2 text-sm font-semibold text-on-dark transition-all duration-300 hover:bg-accent lg:px-6"
           >
             {t.nav.letsConnect}
           </Link>
@@ -82,7 +85,7 @@ export default function SiteNav() {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface hover:text-text-primary md:hidden"
+          className="ml-auto flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-surface hover:text-text-primary md:hidden"
           aria-label="Toggle menu"
         >
           {menuOpen ? <X size={18} /> : <Menu size={18} />}
