@@ -22,7 +22,7 @@ Self-hosted voice cloning app powered by [Coqui XTTS v2](https://github.com/idia
 ### 1. Clone this repository
 
 ```powershell
-git clone -b voice-over-studio https://github.com/wongchinpangray-fantasysports/wongchinpangray.git voice-over-studio
+git clone -b voice-over-studio https://github.com/wongchinpangray-FantasySports/wongchinpangray.git voice-over-studio
 cd voice-over-studio
 ```
 
