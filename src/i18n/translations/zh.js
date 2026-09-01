@@ -7,7 +7,6 @@ export const zh = {
 
   nav: {
     about: '关于',
-    voiceStudio: '语音工作室',
     projects: '项目',
     content: '内容创作',
     experience: '经历',
@@ -832,81 +831,6 @@ export const zh = {
 
     cta: {
       title: '为真实比赛日而打造',
-    },
-  },
-
-  voiceStudio: {
-    backHome: '返回首页',
-    hero: {
-      label: '自托管 AI 工具',
-      titleBefore: '语音',
-      titleHighlight: '工作室',
-      subtitle:
-        '录制你的声音，用 Coqui XTTS v2 克隆，输入脚本，下载 WAV — 全部在本地运行。',
-    },
-    steps: {
-      record: '录制',
-      clone: '克隆',
-      script: '脚本',
-      generate: '生成',
-    },
-    server: {
-      checking: '正在检查服务器…',
-      ready: '模型已就绪',
-      online: '服务器在线 — 模型未加载',
-      offline: '语音服务器离线',
-      error: '服务器错误',
-      device: '设备',
-      modelLoaded: '模型已加载',
-      loadModel: '加载模型',
-      warming: '加载中…',
-    },
-    recorder: {
-      title: '录制你的声音',
-      subtitle: '清晰说话 6–20 秒。XTTS v2 只需一段短参考音频即可克隆你的声音。',
-      startRecording: '开始录制',
-      stopRecording: '停止',
-      uploadWav: '上传 WAV',
-      preview: '参考音频预览',
-      cloneVoice: '克隆声音',
-      cloning: '克隆中…',
-      cloned: '声音已克隆 — 可以开始合成。',
-      tooShort: '录制太短，请至少录制 3 秒。',
-      durationHint: '继续录制 — 6 秒以上可获得最佳克隆效果。',
-      durationGood: '时长合适 — 可以随时停止。',
-      micError: '无法访问麦克风。',
-      cloneError: '克隆失败，请确认服务器是否运行。',
-    },
-    script: {
-      title: '编写脚本',
-      subtitle: '选择语言并输入希望克隆声音朗读的文本。',
-      language: '语言',
-      scriptLabel: '脚本',
-      placeholder: '输入要合成的文本…',
-      characters: '字符',
-      defaultScript:
-        '你好！这是通过 Coqui XTTS 第二代克隆的声音。我可以用十七种不同语言说话。',
-      needVoice: '请先录制并克隆声音。',
-      generate: '生成语音',
-      generating: '生成中…',
-      generateError: '合成失败，请检查服务器日志。',
-    },
-    audio: {
-      title: '生成的音频',
-      subtitle: '预览输出或下载 WAV 文件。',
-      empty: '合成完成后，生成的音频将显示在这里。',
-      play: '播放',
-      pause: '暂停',
-      download: '下载 WAV',
-    },
-    howItWorks: {
-      title: '使用说明',
-      steps: [
-        '1. 启动语音服务器：cd voice-server && uvicorn main:app --port 8765',
-        '2. 录制或上传短 WAV 参考音频（6–20 秒清晰语音）。',
-        '3. 点击「克隆声音」将参考音频注册到 XTTS v2 模型。',
-        '4. 输入脚本、选择语言并生成 — 然后下载 WAV。',
-      ],
     },
   },
 
