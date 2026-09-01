@@ -7,7 +7,6 @@ import FplContentDetail from './pages/FplContentDetail'
 import FplEngagementDetail from './pages/FplEngagementDetail'
 import Home from './pages/Home'
 import SternespielerDetail from './pages/SternespielerDetail'
-import VoiceStudio from './pages/VoiceStudio'
 
 export default function App() {
   return (
@@ -33,7 +32,6 @@ export default function App() {
           path="/projects/sternespieler-3d-mascot"
           element={<SternespielerDetail />}
         />
-        <Route path="/tools/voice-studio" element={<VoiceStudio />} />
         </Routes>
       </DownloadProvider>
     </BrowserRouter>
