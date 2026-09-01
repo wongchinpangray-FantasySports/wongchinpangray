@@ -7,6 +7,7 @@ export const en = {
 
   nav: {
     about: 'About',
+    voiceStudio: 'Voice Studio',
     projects: 'Projects',
     content: 'Content',
     experience: 'Experience',
@@ -791,6 +792,82 @@ export const en = {
 
     cta: {
       title: 'Built for real matchdays',
+    },
+  },
+
+  voiceStudio: {
+    backHome: 'Back to home',
+    hero: {
+      label: 'Self-Hosted AI Tool',
+      titleBefore: 'Voice ',
+      titleHighlight: 'Studio',
+      subtitle:
+        'Record your voice, clone it with Coqui XTTS v2, enter a script, and download a WAV — all running locally on your machine.',
+    },
+    steps: {
+      record: 'Record',
+      clone: 'Clone',
+      script: 'Script',
+      generate: 'Generate',
+    },
+    server: {
+      checking: 'Checking server…',
+      ready: 'Model ready',
+      online: 'Server online — model not loaded',
+      offline: 'Voice server offline',
+      error: 'Server error',
+      device: 'Device',
+      modelLoaded: 'model loaded',
+      loadModel: 'Load model',
+      warming: 'Loading…',
+    },
+    recorder: {
+      title: 'Record your voice',
+      subtitle:
+        'Speak clearly for 6–20 seconds. A short reference clip is all XTTS v2 needs to clone your voice.',
+      startRecording: 'Start recording',
+      stopRecording: 'Stop',
+      uploadWav: 'Upload WAV',
+      preview: 'Reference preview',
+      cloneVoice: 'Clone voice',
+      cloning: 'Cloning…',
+      cloned: 'Voice cloned — ready for synthesis.',
+      tooShort: 'Recording too short. Please record at least 3 seconds.',
+      durationHint: 'Keep going — 6+ seconds gives the best clone quality.',
+      durationGood: 'Great length — you can stop when ready.',
+      micError: 'Microphone access denied or unavailable.',
+      cloneError: 'Failed to clone voice. Is the server running?',
+    },
+    script: {
+      title: 'Write your script',
+      subtitle: 'Choose a language and enter the text you want your cloned voice to speak.',
+      language: 'Language',
+      scriptLabel: 'Script',
+      placeholder: 'Enter the text to synthesize…',
+      characters: 'characters',
+      defaultScript:
+        'Hello! This is my cloned voice speaking through Coqui XTTS version two. I can speak in seventeen different languages.',
+      needVoice: 'Record and clone a voice first.',
+      generate: 'Generate speech',
+      generating: 'Generating…',
+      generateError: 'Synthesis failed. Check the server logs.',
+    },
+    audio: {
+      title: 'Generated audio',
+      subtitle: 'Preview your output or download the WAV file.',
+      empty: 'Generated audio will appear here after synthesis.',
+      play: 'Play',
+      pause: 'Pause',
+      download: 'Download WAV',
+    },
+    howItWorks: {
+      title: 'How it works',
+      steps: [
+        '1. Start the voice server: cd voice-server && uvicorn main:app --port 8765',
+        '2. Record or upload a short WAV reference clip (6–20 seconds of clean speech).',
+        '3. Click "Clone voice" to register your reference with the XTTS v2 model.',
+        '4. Enter a script, pick a language, and generate — then download the WAV.',
+      ],
     },
   },
 
