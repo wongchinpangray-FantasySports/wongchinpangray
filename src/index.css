@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-surface: #f8f6ff;
+  --color-surface-raised: #ffffff;
+  --color-surface-overlay: #f0ecfa;
+  --color-border: #e4dff0;
+  --color-border-subtle: #ede9f5;
+
+  --color-accent: #6d28d9;
+  --color-accent-dim: #5b21b6;
+  --color-accent-glow: #6d28d933;
+  --color-accent-light: #ede9fe;
+
+  --color-text-primary: #0f0a1a;
+  --color-text-secondary: #5c5470;
+  --color-text-muted: #9b94a8;
+  --color-on-dark: #ffffff;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface font-sans text-text-primary antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-glow);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #9333ea 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-padding {
+    @apply px-5 py-12 sm:px-8 lg:px-12 lg:py-16;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .card-shadow {
+    box-shadow: 0 4px 24px -4px rgba(15, 10, 26, 0.08);
+  }
+}
