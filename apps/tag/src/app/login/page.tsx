@@ -60,6 +60,10 @@ export default function LoginPage() {
             <span className="pill">DAM attachments</span>
             <span className="pill">Local SQLite</span>
           </div>
+          <p className="mt-6 text-sm text-muted">
+            After sign-in, open <strong className="text-ink">Guide</strong> in the
+            sidebar for the full how-to.
+          </p>
         </section>
 
         <section className="animate-rise animate-rise-delay-1 panel rounded-[24px] p-6 shadow-[var(--shadow)]">

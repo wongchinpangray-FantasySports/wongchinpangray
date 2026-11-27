@@ -39,6 +39,7 @@ The SQLite database is created automatically at `data/tag.db` on first request a
 - **Notes** — create/edit/pin/delete, optional project link
 - **Assets (DAM)** — upload files/media, attach to project and/or task, preview images
 - **Team** — member list; admins can add users
+- **Guide** — in-app how-to (login, dashboard, projects, tasks, milestones, calendar, notes, DAM, team)
 
 ## Scripts
 

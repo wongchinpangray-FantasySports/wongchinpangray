@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  BookOpen,
   CalendarDays,
   FolderKanban,
   Images,
@@ -22,6 +23,7 @@ const NAV = [
   { href: "/notes", label: "Notes", icon: StickyNote },
   { href: "/assets", label: "Assets", icon: Images },
   { href: "/team", label: "Team", icon: Users },
+  { href: "/guide", label: "Guide", icon: BookOpen },
 ];
 
 export function AppShell({
