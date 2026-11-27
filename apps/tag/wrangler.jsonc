@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tag-ops",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "TAG_RUNTIME": "cloudflare"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "tag-ops"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "TAG_DB",
+      "database_name": "tag-ops-db",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations/d1"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "TAG_ASSETS",
+      "bucket_name": "tag-ops-assets"
+    },
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "tag-ops-next-cache"
+    }
+  ]
+}

@@ -5,9 +5,10 @@ Multi-person project management for day-to-day work: **projects**, **tasks**, **
 ## Stack
 
 - **Next.js** (App Router) + TypeScript + Tailwind CSS
-- **SQLite** via `better-sqlite3` + Drizzle ORM
+- **SQLite** via `better-sqlite3` locally, **Cloudflare D1** in production
 - Cookie sessions (simple local multi-user auth)
-- File uploads stored under `data/uploads/`
+- File uploads: local `data/uploads/` or **Cloudflare R2** (`TAG_ASSETS`)
+- Cloudflare deploy: OpenNext Workers — see [`DEPLOY-CLOUDFLARE.md`](./DEPLOY-CLOUDFLARE.md)
 
 ## Quick start
 
@@ -59,6 +60,7 @@ npm run lint     # eslint
 - Both are gitignored; recreate by starting the app (seed runs when the DB is empty)
 - Handbook PDF: `apps/tag/content/handbooks/Tag_HK_SAE_Menu_2026.pdf` (served via `/api/handbook` when signed in)
 - Handbook topics: `apps/tag/src/data/sae-menu-topics.json` (TOC + section jump pages extracted from the PDF)
+- Cloudflare: `wrangler.jsonc` + `DEPLOY-CLOUDFLARE.md` (Workers/OpenNext, D1 `TAG_DB`, R2 `TAG_ASSETS`)
 
 ## Design
 

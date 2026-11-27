@@ -1,6 +1,7 @@
 import { desc, eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
+import { dbAll, dbRun } from "@/db/query";
 import { milestones, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { getCpsTemplate } from "@/lib/cps";
@@ -12,29 +13,31 @@ export async function GET() {
   const me = await getCurrentUser();
   if (!me) return jsonError("Unauthorized", 401);
 
-  const rows = getDb()
-    .select({
-      id: projects.id,
-      name: projects.name,
-      description: projects.description,
-      status: projects.status,
-      color: projects.color,
-      ownerId: projects.ownerId,
-      ownerName: users.name,
-      cpsType: projects.cpsType,
-      briefDate: projects.briefDate,
-      startDate: projects.startDate,
-      dueDate: projects.dueDate,
-      createdAt: projects.createdAt,
-      updatedAt: projects.updatedAt,
-    })
-    .from(projects)
-    .leftJoin(users, eq(projects.ownerId, users.id))
-    .orderBy(desc(projects.updatedAt))
-    .all();
+  const db = await getDb();
+  const rows = await dbAll(
+    db
+      .select({
+        id: projects.id,
+        name: projects.name,
+        description: projects.description,
+        status: projects.status,
+        color: projects.color,
+        ownerId: projects.ownerId,
+        ownerName: users.name,
+        cpsType: projects.cpsType,
+        briefDate: projects.briefDate,
+        startDate: projects.startDate,
+        dueDate: projects.dueDate,
+        createdAt: projects.createdAt,
+        updatedAt: projects.updatedAt,
+      })
+      .from(projects)
+      .leftJoin(users, eq(projects.ownerId, users.id))
+      .orderBy(desc(projects.updatedAt)),
+  );
 
-  const allTasks = getDb().select().from(tasks).all();
-  const allMilestones = getDb().select().from(milestones).all();
+  const allTasks = await dbAll(db.select().from(tasks));
+  const allMilestones = await dbAll(db.select().from(milestones));
 
   const enriched = rows.map((p) => {
     const projectTasks = allTasks.filter((t) => t.projectId === p.id);
@@ -78,9 +81,9 @@ export async function POST(request: Request) {
     if (cpsType && !uploadedTemplate && !getCpsTemplate(cpsType)) {
       return jsonError("Unknown CPS type");
     }
-    const db = getDb();
+    const db = await getDb();
     try {
-      const { projectId, template } = seedCpsProject(db, {
+      const { projectId, template } = await seedCpsProject(db, {
         name,
         description: String(body?.description ?? ""),
         ownerId: String(body?.ownerId ?? me.id),
@@ -123,7 +126,7 @@ export async function POST(request: Request) {
     updatedAt: stamp,
   };
 
-  getDb().insert(projects).values(row).run();
+  await dbRun((await getDb()).insert(projects).values(row));
   return Response.json({
     project: {
       ...row,

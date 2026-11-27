@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
+import { dbGet } from "@/db/query";
 import { users } from "@/db/schema";
 import { createSession } from "@/lib/auth";
 import { jsonError } from "@/lib/utils";
@@ -11,7 +12,9 @@ export async function POST(request: Request) {
 
   if (!email || !password) return jsonError("Email and password required");
 
-  const user = getDb().select().from(users).where(eq(users.email, email)).get();
+  const user = await dbGet(
+    (await getDb()).select().from(users).where(eq(users.email, email)),
+  );
   if (!user || user.password !== password) {
     return jsonError("Invalid credentials", 401);
   }

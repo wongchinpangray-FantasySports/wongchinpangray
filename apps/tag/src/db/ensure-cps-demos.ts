@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
-import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import type { AppDb } from "./types";
 import * as schema from "./schema";
+import { dbAll, dbGet } from "./query";
 import { listCpsTemplates } from "@/lib/cps";
 import { seedCpsProject } from "@/lib/seed-cps-project";
 
@@ -32,26 +33,23 @@ const DEMOS = [
 ];
 
 /** Idempotent: seeds one demo project per CPS type if missing. */
-export function ensureCpsDemoProjects(
-  db: BetterSQLite3Database<typeof schema>,
-) {
+export async function ensureCpsDemoProjects(db: AppDb) {
   // Templates must load; no-op if JSON missing
   if (listCpsTemplates().length === 0) return;
 
   const owner =
-    db.select().from(schema.users).where(eq(schema.users.id, "user-alex")).get() ??
-    db.select().from(schema.users).all()[0];
+    (await dbGet(
+      db.select().from(schema.users).where(eq(schema.users.id, "user-alex")),
+    )) ?? (await dbAll(db.select().from(schema.users)))[0];
   if (!owner) return;
 
   for (const demo of DEMOS) {
-    const existing = db
-      .select()
-      .from(schema.projects)
-      .where(eq(schema.projects.id, demo.id))
-      .get();
+    const existing = await dbGet(
+      db.select().from(schema.projects).where(eq(schema.projects.id, demo.id)),
+    );
     if (existing) continue;
 
-    seedCpsProject(db, {
+    await seedCpsProject(db, {
       projectId: demo.id,
       name: demo.name,
       ownerId: owner.id,

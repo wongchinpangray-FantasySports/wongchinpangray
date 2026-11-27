@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
+import { dbGet, dbRun } from "@/db/query";
 import { sessions, users } from "@/db/schema";
 
 const SESSION_COOKIE = "tag_session";
@@ -16,14 +17,16 @@ export type AuthUser = {
 };
 
 export async function createSession(userId: string) {
-  const db = getDb();
+  const db = await getDb();
   const id = uuid();
   const createdAt = new Date().toISOString();
   const expires = new Date();
   expires.setDate(expires.getDate() + SESSION_DAYS);
   const expiresAt = expires.toISOString();
 
-  db.insert(sessions).values({ id, userId, expiresAt, createdAt }).run();
+  await dbRun(
+    db.insert(sessions).values({ id, userId, expiresAt, createdAt }),
+  );
 
   const jar = await cookies();
   jar.set(SESSION_COOKIE, id, {
@@ -40,7 +43,8 @@ export async function destroySession() {
   const jar = await cookies();
   const token = jar.get(SESSION_COOKIE)?.value;
   if (token) {
-    getDb().delete(sessions).where(eq(sessions.id, token)).run();
+    const db = await getDb();
+    await dbRun(db.delete(sessions).where(eq(sessions.id, token)));
     jar.delete(SESSION_COOKIE);
   }
 }
@@ -50,24 +54,25 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
   const token = jar.get(SESSION_COOKIE)?.value;
   if (!token) return null;
 
-  const db = getDb();
-  const row = db
-    .select({
-      id: users.id,
-      name: users.name,
-      email: users.email,
-      role: users.role,
-      avatarColor: users.avatarColor,
-      expiresAt: sessions.expiresAt,
-    })
-    .from(sessions)
-    .innerJoin(users, eq(sessions.userId, users.id))
-    .where(eq(sessions.id, token))
-    .get();
+  const db = await getDb();
+  const row = await dbGet(
+    db
+      .select({
+        id: users.id,
+        name: users.name,
+        email: users.email,
+        role: users.role,
+        avatarColor: users.avatarColor,
+        expiresAt: sessions.expiresAt,
+      })
+      .from(sessions)
+      .innerJoin(users, eq(sessions.userId, users.id))
+      .where(eq(sessions.id, token)),
+  );
 
   if (!row) return null;
   if (new Date(row.expiresAt) < new Date()) {
-    db.delete(sessions).where(eq(sessions.id, token)).run();
+    await dbRun(db.delete(sessions).where(eq(sessions.id, token)));
     return null;
   }
 

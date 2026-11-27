@@ -1,9 +1,9 @@
-import fs from "fs";
-import path from "path";
 import { eq } from "drizzle-orm";
-import { getDb, getUploadsDir } from "@/db";
+import { getDb } from "@/db";
+import { dbGet, dbRun } from "@/db/query";
 import { assets } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { deleteUploadObject } from "@/lib/storage";
 import { jsonError } from "@/lib/utils";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -15,7 +15,10 @@ export async function PATCH(request: Request, ctx: Ctx) {
   const body = await request.json().catch(() => null);
   if (!body) return jsonError("Invalid body");
 
-  const existing = getDb().select().from(assets).where(eq(assets.id, id)).get();
+  const db = await getDb();
+  const existing = await dbGet(
+    db.select().from(assets).where(eq(assets.id, id)),
+  );
   if (!existing) return jsonError("Not found", 404);
 
   const updated = {
@@ -33,7 +36,7 @@ export async function PATCH(request: Request, ctx: Ctx) {
         : existing.taskId,
   };
 
-  getDb().update(assets).set(updated).where(eq(assets.id, id)).run();
+  await dbRun(db.update(assets).set(updated).where(eq(assets.id, id)));
   return Response.json({ asset: { ...existing, ...updated } });
 }
 
@@ -42,11 +45,13 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   if (!me) return jsonError("Unauthorized", 401);
   const { id } = await ctx.params;
 
-  const existing = getDb().select().from(assets).where(eq(assets.id, id)).get();
+  const db = await getDb();
+  const existing = await dbGet(
+    db.select().from(assets).where(eq(assets.id, id)),
+  );
   if (!existing) return jsonError("Not found", 404);
 
-  const filePath = path.join(getUploadsDir(), existing.filename);
-  if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-  getDb().delete(assets).where(eq(assets.id, id)).run();
+  await deleteUploadObject(existing.filename);
+  await dbRun(db.delete(assets).where(eq(assets.id, id)));
   return Response.json({ ok: true });
 }

@@ -1,6 +1,7 @@
 import { count } from "drizzle-orm";
-import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
+import type { AppDb } from "./types";
 import * as schema from "./schema";
+import { dbAll, dbRun } from "./query";
 
 const now = () => new Date().toISOString();
 const daysFromNow = (n: number) => {
@@ -9,8 +10,8 @@ const daysFromNow = (n: number) => {
   return d.toISOString().slice(0, 10);
 };
 
-export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
-  const [{ value }] = db.select({ value: count() }).from(schema.users).all();
+export async function seedIfEmpty(db: AppDb) {
+  const [{ value }] = await dbAll(db.select({ value: count() }).from(schema.users));
   if (value > 0) return;
 
   const createdAt = now();
@@ -43,9 +44,9 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
     createdAt,
   };
 
-  db.insert(schema.users).values([alex, jordan, sam]).run();
+  await dbRun(db.insert(schema.users).values([alex, jordan, sam]));
 
-  db.insert(schema.projects)
+  await dbRun(db.insert(schema.projects)
     .values([
       {
         id: "proj-atlas",
@@ -84,9 +85,9 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
         updatedAt: createdAt,
       },
     ])
-    .run();
+    );
 
-  db.insert(schema.milestones)
+  await dbRun(db.insert(schema.milestones)
     .values([
       {
         id: "ms-alpha",
@@ -116,9 +117,9 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
         createdAt,
       },
     ])
-    .run();
+    );
 
-  db.insert(schema.tasks)
+  await dbRun(db.insert(schema.tasks)
     .values([
       {
         id: "task-1",
@@ -251,9 +252,9 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
         updatedAt: createdAt,
       },
     ])
-    .run();
+    );
 
-  db.insert(schema.notes)
+  await dbRun(db.insert(schema.notes)
     .values([
       {
         id: "note-1",
@@ -286,5 +287,5 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
         updatedAt: createdAt,
       },
     ])
-    .run();
+    );
 }

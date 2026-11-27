@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
+import { dbAll, dbGet, dbRun } from "@/db/query";
 import { milestones, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { getCpsTemplate } from "@/lib/cps";
@@ -17,56 +18,59 @@ export async function GET(_req: Request, ctx: Ctx) {
   const me = await getCurrentUser();
   if (!me) return jsonError("Unauthorized", 401);
   const { id } = await ctx.params;
+  const db = await getDb();
 
-  const project = getDb()
-    .select({
-      id: projects.id,
-      name: projects.name,
-      description: projects.description,
-      status: projects.status,
-      color: projects.color,
-      ownerId: projects.ownerId,
-      ownerName: users.name,
-      cpsType: projects.cpsType,
-      briefDate: projects.briefDate,
-      startDate: projects.startDate,
-      dueDate: projects.dueDate,
-      createdAt: projects.createdAt,
-      updatedAt: projects.updatedAt,
-    })
-    .from(projects)
-    .leftJoin(users, eq(projects.ownerId, users.id))
-    .where(eq(projects.id, id))
-    .get();
+  const project = await dbGet(
+    db
+      .select({
+        id: projects.id,
+        name: projects.name,
+        description: projects.description,
+        status: projects.status,
+        color: projects.color,
+        ownerId: projects.ownerId,
+        ownerName: users.name,
+        cpsType: projects.cpsType,
+        briefDate: projects.briefDate,
+        startDate: projects.startDate,
+        dueDate: projects.dueDate,
+        createdAt: projects.createdAt,
+        updatedAt: projects.updatedAt,
+      })
+      .from(projects)
+      .leftJoin(users, eq(projects.ownerId, users.id))
+      .where(eq(projects.id, id)),
+  );
 
   if (!project) return jsonError("Not found", 404);
 
-  const projectTasks = getDb()
-    .select({
-      id: tasks.id,
-      projectId: tasks.projectId,
-      milestoneId: tasks.milestoneId,
-      title: tasks.title,
-      description: tasks.description,
-      status: tasks.status,
-      priority: tasks.priority,
-      assigneeId: tasks.assigneeId,
-      assigneeName: users.name,
-      assigneeColor: users.avatarColor,
-      dueDate: tasks.dueDate,
-      createdAt: tasks.createdAt,
-      updatedAt: tasks.updatedAt,
-    })
-    .from(tasks)
-    .leftJoin(users, eq(tasks.assigneeId, users.id))
-    .where(eq(tasks.projectId, id))
-    .all();
+  const projectTasks = await dbAll(
+    db
+      .select({
+        id: tasks.id,
+        projectId: tasks.projectId,
+        milestoneId: tasks.milestoneId,
+        title: tasks.title,
+        description: tasks.description,
+        status: tasks.status,
+        priority: tasks.priority,
+        assigneeId: tasks.assigneeId,
+        assigneeName: users.name,
+        assigneeColor: users.avatarColor,
+        dueDate: tasks.dueDate,
+        createdAt: tasks.createdAt,
+        updatedAt: tasks.updatedAt,
+      })
+      .from(tasks)
+      .leftJoin(users, eq(tasks.assigneeId, users.id))
+      .where(eq(tasks.projectId, id)),
+  );
 
-  const projectMilestones = getDb()
-    .select()
-    .from(milestones)
-    .where(eq(milestones.projectId, id))
-    .all()
+  const rawMilestones = await dbAll(
+    db.select().from(milestones).where(eq(milestones.projectId, id)),
+  );
+
+  const projectMilestones = rawMilestones
     .map((m) => {
       const progress = milestoneProgress(m.id, projectTasks);
       const liveStatus = derivedMilestoneStatus(m, projectTasks);
@@ -128,7 +132,10 @@ export async function PATCH(request: Request, ctx: Ctx) {
   const body = await request.json().catch(() => null);
   if (!body) return jsonError("Invalid body");
 
-  const existing = getDb().select().from(projects).where(eq(projects.id, id)).get();
+  const db = await getDb();
+  const existing = await dbGet(
+    db.select().from(projects).where(eq(projects.id, id)),
+  );
   if (!existing) return jsonError("Not found", 404);
 
   const updated = {
@@ -156,7 +163,7 @@ export async function PATCH(request: Request, ctx: Ctx) {
     updatedAt: new Date().toISOString(),
   };
 
-  getDb().update(projects).set(updated).where(eq(projects.id, id)).run();
+  await dbRun(db.update(projects).set(updated).where(eq(projects.id, id)));
   return Response.json({ project: { ...existing, ...updated } });
 }
 
@@ -164,6 +171,6 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   const me = await getCurrentUser();
   if (!me) return jsonError("Unauthorized", 401);
   const { id } = await ctx.params;
-  getDb().delete(projects).where(eq(projects.id, id)).run();
+  await dbRun((await getDb()).delete(projects).where(eq(projects.id, id)));
   return Response.json({ ok: true });
 }

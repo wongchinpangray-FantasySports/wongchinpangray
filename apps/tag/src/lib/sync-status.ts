@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
+import { dbAll, dbGet, dbRun } from "@/db/query";
 import { milestones, projects, tasks } from "@/db/schema";
 import {
   derivedMilestoneStatus,
@@ -7,36 +8,35 @@ import {
 } from "@/lib/progress";
 
 /** After a task changes, refresh milestone live status and project rollup status. */
-export function syncAfterTaskChange(projectId: string, milestoneId: string | null) {
-  const db = getDb();
-  const projectTasks = db
-    .select()
-    .from(tasks)
-    .where(eq(tasks.projectId, projectId))
-    .all();
+export async function syncAfterTaskChange(
+  projectId: string,
+  milestoneId: string | null,
+) {
+  const db = await getDb();
+  const projectTasks = await dbAll(
+    db.select().from(tasks).where(eq(tasks.projectId, projectId)),
+  );
 
   if (milestoneId) {
-    const ms = db
-      .select()
-      .from(milestones)
-      .where(eq(milestones.id, milestoneId))
-      .get();
+    const ms = await dbGet(
+      db.select().from(milestones).where(eq(milestones.id, milestoneId)),
+    );
     if (ms) {
       const live = derivedMilestoneStatus(ms, projectTasks);
       if (live !== ms.status) {
-        db.update(milestones)
-          .set({ status: live })
-          .where(eq(milestones.id, milestoneId))
-          .run();
+        await dbRun(
+          db
+            .update(milestones)
+            .set({ status: live })
+            .where(eq(milestones.id, milestoneId)),
+        );
       }
     }
   }
 
-  const project = db
-    .select()
-    .from(projects)
-    .where(eq(projects.id, projectId))
-    .get();
+  const project = await dbGet(
+    db.select().from(projects).where(eq(projects.id, projectId)),
+  );
   if (!project) return;
 
   // Don't override archived / on_hold manually held states
@@ -50,9 +50,11 @@ export function syncAfterTaskChange(projectId: string, milestoneId: string | nul
       : project.status;
 
   if (nextStatus !== project.status) {
-    db.update(projects)
-      .set({ status: nextStatus, updatedAt: new Date().toISOString() })
-      .where(eq(projects.id, projectId))
-      .run();
+    await dbRun(
+      db
+        .update(projects)
+        .set({ status: nextStatus, updatedAt: new Date().toISOString() })
+        .where(eq(projects.id, projectId)),
+    );
   }
 }

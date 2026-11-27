@@ -1,10 +1,11 @@
-import fs from "fs";
 import path from "path";
 import { desc, eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
-import { getDb, getUploadsDir } from "@/db";
+import { getDb } from "@/db";
+import { dbAll, dbRun } from "@/db/query";
 import { assets, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { putUploadObject } from "@/lib/storage";
 import { jsonError } from "@/lib/utils";
 
 export async function GET(request: Request) {
@@ -15,27 +16,29 @@ export async function GET(request: Request) {
   const projectId = searchParams.get("projectId");
   const taskId = searchParams.get("taskId");
 
-  let rows = getDb()
-    .select({
-      id: assets.id,
-      filename: assets.filename,
-      originalName: assets.originalName,
-      mimeType: assets.mimeType,
-      size: assets.size,
-      projectId: assets.projectId,
-      projectName: projects.name,
-      taskId: assets.taskId,
-      taskTitle: tasks.title,
-      uploadedById: assets.uploadedById,
-      uploadedByName: users.name,
-      createdAt: assets.createdAt,
-    })
-    .from(assets)
-    .leftJoin(projects, eq(assets.projectId, projects.id))
-    .leftJoin(tasks, eq(assets.taskId, tasks.id))
-    .leftJoin(users, eq(assets.uploadedById, users.id))
-    .orderBy(desc(assets.createdAt))
-    .all();
+  const db = await getDb();
+  let rows = await dbAll(
+    db
+      .select({
+        id: assets.id,
+        filename: assets.filename,
+        originalName: assets.originalName,
+        mimeType: assets.mimeType,
+        size: assets.size,
+        projectId: assets.projectId,
+        projectName: projects.name,
+        taskId: assets.taskId,
+        taskTitle: tasks.title,
+        uploadedById: assets.uploadedById,
+        uploadedByName: users.name,
+        createdAt: assets.createdAt,
+      })
+      .from(assets)
+      .leftJoin(projects, eq(assets.projectId, projects.id))
+      .leftJoin(tasks, eq(assets.taskId, tasks.id))
+      .leftJoin(users, eq(assets.uploadedById, users.id))
+      .orderBy(desc(assets.createdAt)),
+  );
 
   if (projectId) rows = rows.filter((r) => r.projectId === projectId);
   if (taskId) rows = rows.filter((r) => r.taskId === taskId);
@@ -59,14 +62,14 @@ export async function POST(request: Request) {
   const ext = path.extname(file.name) || "";
   const filename = `${uuid()}${ext}`;
   const buffer = Buffer.from(await file.arrayBuffer());
-  const dest = path.join(getUploadsDir(), filename);
-  fs.writeFileSync(dest, buffer);
+  const mimeType = file.type || "application/octet-stream";
+  await putUploadObject(filename, buffer, mimeType);
 
   const row = {
     id: uuid(),
     filename,
     originalName: file.name,
-    mimeType: file.type || "application/octet-stream",
+    mimeType,
     size: buffer.length,
     projectId,
     taskId,
@@ -74,6 +77,6 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString(),
   };
 
-  getDb().insert(assets).values(row).run();
+  await dbRun((await getDb()).insert(assets).values(row));
   return Response.json({ asset: row });
 }

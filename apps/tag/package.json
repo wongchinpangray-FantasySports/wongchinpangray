@@ -6,9 +6,17 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start --port 3000",
-    "lint": "eslint"
+    "lint": "eslint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts",
+    "cf:d1:create": "wrangler d1 create tag-ops-db",
+    "cf:r2:create": "wrangler r2 bucket create tag-ops-assets && wrangler r2 bucket create tag-ops-next-cache",
+    "cf:d1:migrate": "wrangler d1 migrations apply tag-ops-db --remote",
+    "cf:handbook:upload": "wrangler r2 object put tag-ops-assets/handbooks/Tag_HK_SAE_Menu_2026.pdf --file=content/handbooks/Tag_HK_SAE_Menu_2026.pdf --content-type=application/pdf"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.19",
     "better-sqlite3": "^13.2.0",
     "date-fns": "^4.4.0",
     "drizzle-orm": "^0.45.4",
@@ -31,6 +39,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.169.0"
   }
 }

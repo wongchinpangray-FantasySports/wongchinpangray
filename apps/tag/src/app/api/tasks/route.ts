@@ -1,6 +1,7 @@
 import { desc, eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
+import { dbAll, dbGet, dbRun } from "@/db/query";
 import { projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { syncAfterTaskChange } from "@/lib/sync-status";
@@ -14,29 +15,30 @@ export async function GET(request: Request) {
   const projectId = searchParams.get("projectId");
   const assigneeId = searchParams.get("assigneeId");
 
-  let rows = getDb()
-    .select({
-      id: tasks.id,
-      projectId: tasks.projectId,
-      projectName: projects.name,
-      projectColor: projects.color,
-      milestoneId: tasks.milestoneId,
-      title: tasks.title,
-      description: tasks.description,
-      status: tasks.status,
-      priority: tasks.priority,
-      assigneeId: tasks.assigneeId,
-      assigneeName: users.name,
-      assigneeColor: users.avatarColor,
-      dueDate: tasks.dueDate,
-      createdAt: tasks.createdAt,
-      updatedAt: tasks.updatedAt,
-    })
-    .from(tasks)
-    .leftJoin(projects, eq(tasks.projectId, projects.id))
-    .leftJoin(users, eq(tasks.assigneeId, users.id))
-    .orderBy(desc(tasks.updatedAt))
-    .all();
+  let rows = await dbAll(
+    (await getDb())
+      .select({
+        id: tasks.id,
+        projectId: tasks.projectId,
+        projectName: projects.name,
+        projectColor: projects.color,
+        milestoneId: tasks.milestoneId,
+        title: tasks.title,
+        description: tasks.description,
+        status: tasks.status,
+        priority: tasks.priority,
+        assigneeId: tasks.assigneeId,
+        assigneeName: users.name,
+        assigneeColor: users.avatarColor,
+        dueDate: tasks.dueDate,
+        createdAt: tasks.createdAt,
+        updatedAt: tasks.updatedAt,
+      })
+      .from(tasks)
+      .leftJoin(projects, eq(tasks.projectId, projects.id))
+      .leftJoin(users, eq(tasks.assigneeId, users.id))
+      .orderBy(desc(tasks.updatedAt)),
+  );
 
   if (projectId) rows = rows.filter((r) => r.projectId === projectId);
   if (assigneeId) rows = rows.filter((r) => r.assigneeId === assigneeId);
@@ -68,7 +70,7 @@ export async function POST(request: Request) {
     updatedAt: stamp,
   };
 
-  getDb().insert(tasks).values(row).run();
-  syncAfterTaskChange(row.projectId, row.milestoneId);
+  await dbRun((await getDb()).insert(tasks).values(row));
+  await syncAfterTaskChange(row.projectId, row.milestoneId);
   return Response.json({ task: row });
 }

@@ -1,4 +1,5 @@
 import { getDb } from "@/db";
+import { dbAll, dbRun } from "@/db/query";
 import { users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { jsonError } from "@/lib/utils";
@@ -8,17 +9,18 @@ export async function GET() {
   const me = await getCurrentUser();
   if (!me) return jsonError("Unauthorized", 401);
 
-  const list = getDb()
-    .select({
-      id: users.id,
-      name: users.name,
-      email: users.email,
-      role: users.role,
-      avatarColor: users.avatarColor,
-      createdAt: users.createdAt,
-    })
-    .from(users)
-    .all();
+  const list = await dbAll(
+    (await getDb())
+      .select({
+        id: users.id,
+        name: users.name,
+        email: users.email,
+        role: users.role,
+        avatarColor: users.avatarColor,
+        createdAt: users.createdAt,
+      })
+      .from(users),
+  );
 
   return Response.json({ users: list });
 }
@@ -41,10 +43,11 @@ export async function POST(request: Request) {
   const createdAt = new Date().toISOString();
 
   try {
-    getDb()
-      .insert(users)
-      .values({ id, name, email, password, role, avatarColor, createdAt })
-      .run();
+    await dbRun(
+      (await getDb())
+        .insert(users)
+        .values({ id, name, email, password, role, avatarColor, createdAt }),
+    );
   } catch {
     return jsonError("Email already in use", 409);
   }

@@ -1,141 +1,102 @@
-import Database from "better-sqlite3";
-import { drizzle } from "drizzle-orm/better-sqlite3";
+import { drizzle as drizzleD1 } from "drizzle-orm/d1";
 import fs from "fs";
 import path from "path";
 import * as schema from "./schema";
+import { TAG_SCHEMA_SQL } from "./sql";
+import type { AppDb } from "./types";
 import { ensureCpsDemoProjects } from "./ensure-cps-demos";
 import { seedIfEmpty } from "./seed";
+import { getCloudflareEnv } from "@/lib/cf";
 
+export type { AppDb } from "./types";
 const dataDir = path.join(process.cwd(), "data");
 const uploadsDir = path.join(dataDir, "uploads");
 const dbPath = path.join(dataDir, "tag.db");
+
+const globalForDb = globalThis as unknown as {
+  __tagDb?: AppDb;
+  __tagDbReady?: Promise<AppDb>;
+  __tagBackend?: "local" | "d1";
+};
 
 function ensureDirs() {
   if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
   if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-function migrate(sqlite: Database.Database) {
-  sqlite.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      password TEXT NOT NULL,
-      role TEXT NOT NULL DEFAULT 'member',
-      avatar_color TEXT NOT NULL DEFAULT '#1B7A4E',
-      created_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS projects (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
-      description TEXT NOT NULL DEFAULT '',
-      status TEXT NOT NULL DEFAULT 'active',
-      color TEXT NOT NULL DEFAULT '#1B7A4E',
-      owner_id TEXT NOT NULL REFERENCES users(id),
-      start_date TEXT,
-      due_date TEXT,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS milestones (
-      id TEXT PRIMARY KEY,
-      project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
-      title TEXT NOT NULL,
-      description TEXT NOT NULL DEFAULT '',
-      due_date TEXT,
-      status TEXT NOT NULL DEFAULT 'upcoming',
-      created_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS tasks (
-      id TEXT PRIMARY KEY,
-      project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
-      milestone_id TEXT REFERENCES milestones(id) ON DELETE SET NULL,
-      title TEXT NOT NULL,
-      description TEXT NOT NULL DEFAULT '',
-      status TEXT NOT NULL DEFAULT 'todo',
-      priority TEXT NOT NULL DEFAULT 'medium',
-      assignee_id TEXT REFERENCES users(id) ON DELETE SET NULL,
-      due_date TEXT,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS notes (
-      id TEXT PRIMARY KEY,
-      title TEXT NOT NULL,
-      body TEXT NOT NULL DEFAULT '',
-      project_id TEXT REFERENCES projects(id) ON DELETE SET NULL,
-      author_id TEXT NOT NULL REFERENCES users(id),
-      pinned INTEGER NOT NULL DEFAULT 0,
-      created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS assets (
-      id TEXT PRIMARY KEY,
-      filename TEXT NOT NULL,
-      original_name TEXT NOT NULL,
-      mime_type TEXT NOT NULL,
-      size INTEGER NOT NULL,
-      project_id TEXT REFERENCES projects(id) ON DELETE SET NULL,
-      task_id TEXT REFERENCES tasks(id) ON DELETE SET NULL,
-      uploaded_by_id TEXT NOT NULL REFERENCES users(id),
-      created_at TEXT NOT NULL
-    );
-
-    CREATE TABLE IF NOT EXISTS sessions (
-      id TEXT PRIMARY KEY,
-      user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-      expires_at TEXT NOT NULL,
-      created_at TEXT NOT NULL
-    );
-  `);
-
-  const cols = sqlite
-    .prepare(`PRAGMA table_info(projects)`)
-    .all() as Array<{ name: string }>;
-  const names = new Set(cols.map((c) => c.name));
-  if (!names.has("cps_type")) {
-    sqlite.exec(`ALTER TABLE projects ADD COLUMN cps_type TEXT`);
-  }
-  if (!names.has("brief_date")) {
-    sqlite.exec(`ALTER TABLE projects ADD COLUMN brief_date TEXT`);
+async function migrateD1(d1: D1Database) {
+  // Apply statements one-by-one — safer across D1 / miniflare
+  const statements = TAG_SCHEMA_SQL.split(";")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  for (const sql of statements) {
+    await d1.prepare(sql).run();
   }
 }
 
-const globalForDb = globalThis as unknown as {
-  __tagDb?: ReturnType<typeof drizzle<typeof schema>>;
-  __tagSqlite?: Database.Database;
-};
-
-function createDb() {
+async function createLocalDb(): Promise<AppDb> {
+  const Database = (await import("better-sqlite3")).default;
+  const { drizzle } = await import("drizzle-orm/better-sqlite3");
   ensureDirs();
   const sqlite = new Database(dbPath);
   sqlite.pragma("journal_mode = WAL");
   sqlite.pragma("foreign_keys = ON");
-  migrate(sqlite);
-  const db = drizzle(sqlite, { schema });
-  seedIfEmpty(db);
-  ensureCpsDemoProjects(db);
-  return { db, sqlite };
-}
+  sqlite.exec(TAG_SCHEMA_SQL);
 
-export function getDb() {
-  if (!globalForDb.__tagDb) {
-    const { db, sqlite } = createDb();
-    globalForDb.__tagDb = db;
-    globalForDb.__tagSqlite = sqlite;
+  // Legacy column adds for older local DBs created before cps fields existed
+  const cols = sqlite.prepare(`PRAGMA table_info(projects)`).all() as Array<{
+    name: string;
+  }>;
+  const names = new Set(cols.map((c) => c.name));
+  if (!names.has("cps_type")) sqlite.exec(`ALTER TABLE projects ADD COLUMN cps_type TEXT`);
+  if (!names.has("brief_date")) {
+    sqlite.exec(`ALTER TABLE projects ADD COLUMN brief_date TEXT`);
   }
-  return globalForDb.__tagDb!;
+
+  const db = drizzle(sqlite, { schema });
+  await seedIfEmpty(db);
+  await ensureCpsDemoProjects(db);
+  return db;
 }
 
+async function createD1Db(d1: D1Database): Promise<AppDb> {
+  await migrateD1(d1);
+  const db = drizzleD1(d1, { schema });
+  await seedIfEmpty(db);
+  await ensureCpsDemoProjects(db);
+  return db;
+}
+
+async function resolveDb(): Promise<AppDb> {
+  const env = await getCloudflareEnv();
+  if (env?.TAG_DB) {
+    globalForDb.__tagBackend = "d1";
+    return createD1Db(env.TAG_DB);
+  }
+  globalForDb.__tagBackend = "local";
+  return createLocalDb();
+}
+
+/** Async DB accessor — local better-sqlite3 or Cloudflare D1. */
+export async function getDb(): Promise<AppDb> {
+  if (globalForDb.__tagDb) return globalForDb.__tagDb;
+  if (!globalForDb.__tagDbReady) {
+    globalForDb.__tagDbReady = resolveDb().then((db) => {
+      globalForDb.__tagDb = db;
+      return db;
+    });
+  }
+  return globalForDb.__tagDbReady;
+}
+
+/** @deprecated Prefer `@/lib/storage` — kept for local-only helpers. */
 export function getUploadsDir() {
   ensureDirs();
   return uploadsDir;
 }
 
-export type Db = ReturnType<typeof getDb>;
+export function getDbBackend() {
+  return globalForDb.__tagBackend ?? "local";
+}
+
+export type Db = AppDb;

@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
-import type { BetterSQLite3Database } from "drizzle-orm/better-sqlite3";
-import * as schema from "@/db/schema";
+import type { AppDb } from "@/db/types";
 import { milestones, projects, tasks } from "@/db/schema";
+import { dbRun } from "@/db/query";
 import {
   CPS_COLORS,
   getCpsTemplate,
@@ -9,8 +9,8 @@ import {
   type CpsTemplate,
 } from "@/lib/cps";
 
-export function seedCpsProject(
-  db: BetterSQLite3Database<typeof schema>,
+export async function seedCpsProject(
+  db: AppDb,
   opts: {
     name: string;
     description?: string;
@@ -37,7 +37,7 @@ export function seedCpsProject(
     }
   }
 
-  db.insert(projects)
+  await dbRun(db.insert(projects)
     .values({
       id: projectId,
       name: opts.name,
@@ -54,7 +54,7 @@ export function seedCpsProject(
       createdAt: stamp,
       updatedAt: stamp,
     })
-    .run();
+    );
 
   for (const m of template.milestones) {
     const msId = uuid();
@@ -65,7 +65,7 @@ export function seedCpsProject(
         )
       : opts.briefDate;
 
-    db.insert(milestones)
+    await dbRun(db.insert(milestones)
       .values({
         id: msId,
         projectId,
@@ -77,7 +77,7 @@ export function seedCpsProject(
         status: "upcoming",
         createdAt: stamp,
       })
-      .run();
+      );
 
     for (const s of m.steps) {
       const due = scheduleFromBrief(opts.briefDate, s.offsetDaysFromBrief);
@@ -87,7 +87,7 @@ export function seedCpsProject(
         s.notes || null,
       ].filter(Boolean);
 
-      db.insert(tasks)
+      await dbRun(db.insert(tasks)
         .values({
           id: uuid(),
           projectId,
@@ -105,7 +105,7 @@ export function seedCpsProject(
           createdAt: stamp,
           updatedAt: stamp,
         })
-        .run();
+        );
     }
   }
 

@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
+import { dbAll, dbGet, dbRun } from "@/db/query";
 import { tasks } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { syncAfterTaskChange } from "@/lib/sync-status";
@@ -14,7 +15,7 @@ export async function PATCH(request: Request, ctx: Ctx) {
   const body = await request.json().catch(() => null);
   if (!body) return jsonError("Invalid body");
 
-  const existing = getDb().select().from(tasks).where(eq(tasks.id, id)).get();
+  const existing = await dbGet((await getDb()).select().from(tasks).where(eq(tasks.id, id)));
   if (!existing) return jsonError("Not found", 404);
 
   const updated = {
@@ -51,16 +52,16 @@ export async function PATCH(request: Request, ctx: Ctx) {
     updatedAt: new Date().toISOString(),
   };
 
-  getDb().update(tasks).set(updated).where(eq(tasks.id, id)).run();
+  await dbRun((await getDb()).update(tasks).set(updated).where(eq(tasks.id, id)));
 
   const touchedMilestones = new Set(
     [existing.milestoneId, updated.milestoneId].filter(Boolean) as string[],
   );
   for (const mid of touchedMilestones) {
-    syncAfterTaskChange(updated.projectId, mid);
+    await syncAfterTaskChange(updated.projectId, mid);
   }
   if (touchedMilestones.size === 0) {
-    syncAfterTaskChange(updated.projectId, null);
+    await syncAfterTaskChange(updated.projectId, null);
   }
 
   return Response.json({ task: { ...existing, ...updated } });
@@ -70,10 +71,10 @@ export async function DELETE(_req: Request, ctx: Ctx) {
   const me = await getCurrentUser();
   if (!me) return jsonError("Unauthorized", 401);
   const { id } = await ctx.params;
-  const existing = getDb().select().from(tasks).where(eq(tasks.id, id)).get();
-  getDb().delete(tasks).where(eq(tasks.id, id)).run();
+  const existing = await dbGet((await getDb()).select().from(tasks).where(eq(tasks.id, id)));
+  await dbRun((await getDb()).delete(tasks).where(eq(tasks.id, id)));
   if (existing) {
-    syncAfterTaskChange(existing.projectId, existing.milestoneId);
+    await syncAfterTaskChange(existing.projectId, existing.milestoneId);
   }
   return Response.json({ ok: true });
 }

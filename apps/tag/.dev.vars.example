@@ -1,0 +1,2 @@
+NEXTJS_ENV=development
+# Do not set TAG_RUNTIME=cloudflare here for `next dev` — that forces D1/R2.
