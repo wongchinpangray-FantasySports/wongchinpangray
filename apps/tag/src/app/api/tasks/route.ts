@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
 import { projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { syncAfterTaskChange } from "@/lib/sync-status";
 import { jsonError } from "@/lib/utils";
 
 export async function GET(request: Request) {
@@ -68,5 +69,6 @@ export async function POST(request: Request) {
   };
 
   getDb().insert(tasks).values(row).run();
+  syncAfterTaskChange(row.projectId, row.milestoneId);
   return Response.json({ task: row });
 }

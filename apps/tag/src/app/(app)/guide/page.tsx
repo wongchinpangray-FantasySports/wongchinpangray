@@ -126,49 +126,47 @@ export default function GuidePage() {
           <p>
             Projects are the containers for work. Each has a name, description,
             status (active / on hold / done / archived), color, owner, and optional
-            due date.
+            due date. Cards show overall progress and the <strong className="text-ink">current milestone</strong>.
           </p>
           <ul className="list-disc space-y-1 pl-5">
             <li>
               <strong className="text-ink">New project</strong> opens a form for the basics.
             </li>
             <li>
-              Open a project card to see its tasks and milestones, and to add more
-              of either.
+              Open a project to work the milestone checklists — that’s where live
+              status updates as steps complete.
             </li>
           </ul>
         </Section>
 
         <Section id="tasks" title="Tasks & due dates" href="/tasks">
           <p>
-            Tasks live on a status board: To do → In progress → Blocked → Done.
-            Each task can have a priority, assignee, due date, and optional
-            milestone.
+            Tasks are checklist <strong className="text-ink">steps</strong> under milestones
+            (and can also sit unscoped). The Tasks board still shows them by status:
+            To do → In progress → Blocked → Done, with priority, assignee, and due date.
           </p>
           <ul className="list-disc space-y-1 pl-5">
+            <li>Filter by project or assignee at the top of the board.</li>
+            <li>Move work with the → status chips, or toggle done on a project checklist.</li>
             <li>
-              Filter by project or assignee at the top of the board.
-            </li>
-            <li>
-              Move work with the small → status chips on each card.
-            </li>
-            <li>
-              Due dates drive the Calendar and the Dashboard “due soon / overdue”
-              lists — keep them current.
+              Due dates drive Calendar and Dashboard “due soon / overdue” — keep them current.
             </li>
           </ul>
         </Section>
 
         <Section id="milestones" title="Milestones">
           <p>
-            Milestones mark project targets (walkthroughs, freezes, sign-offs).
-            Create them from a project’s detail page. Statuses: upcoming, reached,
-            missed.
+            Milestones are targets made of many steps. On a project page each milestone
+            shows a checklist, <strong className="text-ink">X/Y done</strong>, percent complete,
+            and live status (upcoming / reached / missed). The earliest incomplete
+            milestone is marked <strong className="text-ink">Current</strong>.
           </p>
           <ul className="list-disc space-y-1 pl-5">
-            <li>Link tasks to a milestone when they belong to that target.</li>
+            <li>Add steps with assignees and due dates under the milestone.</li>
+            <li>Checking steps off updates milestone progress and project progress.</li>
             <li>
-              Milestone due dates also appear on the Calendar (diamond-style markers).
+              When every step is done, the milestone becomes reached; when every project
+              task is done, project status rolls to done.
             </li>
           </ul>
           <p>
@@ -176,15 +174,17 @@ export default function GuidePage() {
             <Link href="/projects" className="font-semibold text-verdant-deep">
               Projects
             </Link>{" "}
-            and use <strong className="text-ink">Add milestone</strong>.
+            and use <strong className="text-ink">Add milestone</strong> /{" "}
+            <strong className="text-ink">Add step</strong>.
           </p>
         </Section>
 
         <Section id="calendar" title="Calendar" href="/calendar">
           <p>
-            Month view of task due dates and milestone dates. Click a day to see
-            that day’s detail in the side panel. Use Prev / Today / Next to move
-            months.
+            Month view of milestone due dates and checklist step due dates. The top strip
+            shows each project’s <strong className="text-ink">current milestone</strong> with
+            progress. Incomplete milestones are marked on the grid; day detail shows
+            progress bars and incomplete steps.
           </p>
         </Section>
 

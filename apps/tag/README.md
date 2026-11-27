@@ -32,10 +32,10 @@ The SQLite database is created automatically at `data/tag.db` on first request a
 ## Features (day one)
 
 - **Dashboard** — active work, due soon, overdue, blocked, team load, pinned notes
-- **Projects** — create/list/detail with owner, status, color, due date
-- **Tasks** — status board, assignees, priorities, due dates, filters
-- **Milestones** — per-project targets with due dates
-- **Calendar** — month view of task + milestone due dates
+- **Projects** — create/list/detail with owner, status, color, due date, live progress
+- **Tasks** — checklist steps under milestones (also status board), assignees, priorities, due dates
+- **Milestones** — nested step checklists with X/Y done, %, current milestone, live status
+- **Calendar** — month view with current milestones, incomplete state, step due dates
 - **Notes** — create/edit/pin/delete, optional project link
 - **Assets (DAM)** — upload files/media, attach to project and/or task, preview images
 - **Team** — member list; admins can add users

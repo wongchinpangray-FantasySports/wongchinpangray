@@ -1,8 +1,9 @@
 import { desc, eq } from "drizzle-orm";
 import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
-import { projects, users } from "@/db/schema";
+import { milestones, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { currentMilestone, projectProgress } from "@/lib/progress";
 import { jsonError } from "@/lib/utils";
 
 export async function GET() {
@@ -28,7 +29,29 @@ export async function GET() {
     .orderBy(desc(projects.updatedAt))
     .all();
 
-  return Response.json({ projects: rows });
+  const allTasks = getDb().select().from(tasks).all();
+  const allMilestones = getDb().select().from(milestones).all();
+
+  const enriched = rows.map((p) => {
+    const projectTasks = allTasks.filter((t) => t.projectId === p.id);
+    const projectMs = allMilestones.filter((m) => m.projectId === p.id);
+    const progress = projectProgress(projectTasks);
+    const current = currentMilestone(projectMs, projectTasks);
+    return {
+      ...p,
+      progress,
+      currentMilestone: current
+        ? {
+            id: current.id,
+            title: current.title,
+            percent: current.progress.percent,
+            overdue: current.overdue,
+          }
+        : null,
+    };
+  });
+
+  return Response.json({ projects: enriched });
 }
 
 export async function POST(request: Request) {
@@ -55,5 +78,5 @@ export async function POST(request: Request) {
   };
 
   getDb().insert(projects).values(row).run();
-  return Response.json({ project: row });
+  return Response.json({ project: { ...row, progress: { done: 0, total: 0, percent: 0, complete: false }, currentMilestone: null } });
 }
