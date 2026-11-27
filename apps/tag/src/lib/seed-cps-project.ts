@@ -6,6 +6,7 @@ import {
   CPS_COLORS,
   getCpsTemplate,
   scheduleFromBrief,
+  type CpsTemplate,
 } from "@/lib/cps";
 
 export function seedCpsProject(
@@ -14,15 +15,18 @@ export function seedCpsProject(
     name: string;
     description?: string;
     ownerId: string;
-    cpsType: string;
+    cpsType?: string;
+    template?: CpsTemplate;
     briefDate: string;
     color?: string;
     projectId?: string;
   },
 ) {
-  const template = getCpsTemplate(opts.cpsType);
-  if (!template) throw new Error(`Unknown CPS type: ${opts.cpsType}`);
+  const template =
+    opts.template ?? (opts.cpsType ? getCpsTemplate(opts.cpsType) : null);
+  if (!template) throw new Error("CPS template required");
 
+  const cpsType = opts.cpsType ?? template.id;
   const stamp = new Date().toISOString();
   const projectId = opts.projectId ?? uuid();
 
@@ -41,9 +45,9 @@ export function seedCpsProject(
         opts.description ??
         `CPS ${template.name} — seeded from workbook sheet "${template.sheetName.trim()}".`,
       status: "active",
-      color: opts.color ?? CPS_COLORS[opts.cpsType] ?? "#1B7A4E",
+      color: opts.color ?? CPS_COLORS[cpsType] ?? "#1B7A4E",
       ownerId: opts.ownerId,
-      cpsType: opts.cpsType,
+      cpsType,
       briefDate: opts.briefDate,
       startDate: opts.briefDate,
       dueDate: lastDue,

@@ -69,30 +69,41 @@ export async function POST(request: Request) {
   if (!name) return jsonError("Name required");
 
   const cpsType = body?.cpsType ? String(body.cpsType) : null;
+  const uploadedTemplate = body?.cpsTemplate ?? null;
   const briefDate = body?.briefDate
     ? String(body.briefDate)
     : new Date().toISOString().slice(0, 10);
 
-  if (cpsType) {
-    if (!getCpsTemplate(cpsType)) return jsonError("Unknown CPS type");
+  if (cpsType || uploadedTemplate) {
+    if (cpsType && !uploadedTemplate && !getCpsTemplate(cpsType)) {
+      return jsonError("Unknown CPS type");
+    }
     const db = getDb();
-    const { projectId, template } = seedCpsProject(db, {
-      name,
-      description: String(body?.description ?? ""),
-      ownerId: String(body?.ownerId ?? me.id),
-      cpsType,
-      briefDate,
-      color: body?.color ? String(body.color) : undefined,
-    });
-    return Response.json({
-      project: {
-        id: projectId,
+    try {
+      const { projectId, template } = seedCpsProject(db, {
         name,
-        cpsType,
+        description: String(body?.description ?? ""),
+        ownerId: String(body?.ownerId ?? me.id),
+        cpsType: cpsType || undefined,
+        template: uploadedTemplate || undefined,
         briefDate,
-        cpsName: template.name,
-      },
-    });
+        color: body?.color ? String(body.color) : undefined,
+      });
+      return Response.json({
+        project: {
+          id: projectId,
+          name,
+          cpsType: template.id,
+          briefDate,
+          cpsName: template.name,
+        },
+      });
+    } catch (err) {
+      return jsonError(
+        err instanceof Error ? err.message : "Failed to seed CPS project",
+        400,
+      );
+    }
   }
 
   const id = uuid();

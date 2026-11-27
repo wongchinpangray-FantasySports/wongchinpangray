@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
+import { Upload } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Modal } from "@/components/Modal";
 import { StatusPill } from "@/components/StatusPill";
@@ -30,7 +31,7 @@ type Project = {
 
 type User = { id: string; name: string };
 
-type CpsTemplate = {
+type CpsTemplateSummary = {
   id: string;
   name: string;
   sheetName: string;
@@ -38,11 +39,26 @@ type CpsTemplate = {
   stepCount: number;
 };
 
+type ParsedTemplate = CpsTemplateSummary & {
+  milestones: unknown[];
+  metaFields: Record<string, string | null>;
+  suggestedBriefDate?: string | null;
+  suggestedSosDate?: string | null;
+};
+
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [users, setUsers] = useState<User[]>([]);
-  const [templates, setTemplates] = useState<CpsTemplate[]>([]);
+  const [templates, setTemplates] = useState<CpsTemplateSummary[]>([]);
   const [open, setOpen] = useState(false);
+  const [uploadOpen, setUploadOpen] = useState(false);
+  const [parsing, setParsing] = useState(false);
+  const [parseError, setParseError] = useState("");
+  const [uploadedFileName, setUploadedFileName] = useState("");
+  const [parsedTemplates, setParsedTemplates] = useState<ParsedTemplate[]>([]);
+  const [selectedUpload, setSelectedUpload] = useState<ParsedTemplate | null>(
+    null,
+  );
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -56,7 +72,7 @@ export default function ProjectsPage() {
     const [p, u, t] = await Promise.all([
       api<{ projects: Project[] }>("/api/projects"),
       api<{ users: User[] }>("/api/users"),
-      api<{ templates: CpsTemplate[] }>("/api/cps/templates"),
+      api<{ templates: CpsTemplateSummary[] }>("/api/cps/templates"),
     ]);
     setProjects(p.projects);
     setUsers(u.users);
@@ -70,9 +86,9 @@ export default function ProjectsPage() {
     load().catch(console.error);
   }, []);
 
-  async function onCreate(e: FormEvent) {
+  async function onCreateBuiltIn(e: FormEvent) {
     e.preventDefault();
-    await api("/api/projects", {
+    const res = await api<{ project: { id: string } }>("/api/projects", {
       method: "POST",
       body: JSON.stringify(form),
     });
@@ -84,20 +100,90 @@ export default function ProjectsPage() {
       briefDate: new Date().toISOString().slice(0, 10),
     }));
     await load();
+    window.location.href = `/projects/${res.project.id}`;
   }
 
-  const selected = templates.find((t) => t.id === form.cpsType);
+  async function onParseFile(file: File | null) {
+    if (!file) return;
+    setParsing(true);
+    setParseError("");
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const res = await api<{
+        fileName: string;
+        templates: ParsedTemplate[];
+        skippedSheets: string[];
+      }>("/api/cps/parse", { method: "POST", body });
+      setUploadedFileName(res.fileName);
+      setParsedTemplates(res.templates);
+      const first = res.templates[0];
+      setSelectedUpload(first);
+      setForm((f) => ({
+        ...f,
+        name: f.name || `${first.name} — ${res.fileName.replace(/\.xlsx$/i, "")}`,
+        briefDate:
+          first.suggestedBriefDate ||
+          f.briefDate ||
+          new Date().toISOString().slice(0, 10),
+        cpsType: first.id,
+      }));
+    } catch (err) {
+      setParseError(err instanceof Error ? err.message : "Parse failed");
+      setParsedTemplates([]);
+      setSelectedUpload(null);
+    } finally {
+      setParsing(false);
+    }
+  }
+
+  async function onCreateFromUpload(e: FormEvent) {
+    e.preventDefault();
+    if (!selectedUpload) return;
+    const res = await api<{ project: { id: string } }>("/api/projects", {
+      method: "POST",
+      body: JSON.stringify({
+        name: form.name,
+        description: form.description,
+        ownerId: form.ownerId,
+        color: form.color,
+        briefDate: form.briefDate,
+        cpsType: selectedUpload.id,
+        cpsTemplate: selectedUpload,
+      }),
+    });
+    setUploadOpen(false);
+    setParsedTemplates([]);
+    setSelectedUpload(null);
+    setUploadedFileName("");
+    await load();
+    window.location.href = `/projects/${res.project.id}`;
+  }
+
+  const selectedBuiltIn = templates.find((t) => t.id === form.cpsType);
 
   return (
     <div>
       <PageHeader
         eyebrow="Portfolio"
         title="Projects"
-        description="Create CPS projects from Ray’s planning workbook — pick a type, set Brief in, track milestones."
+        description="Create CPS projects from the built-in workbook templates — or upload a CPS Excel file."
         actions={
-          <button className="btn btn-signal" onClick={() => setOpen(true)}>
-            New CPS project
-          </button>
+          <>
+            <button
+              className="btn btn-ghost"
+              onClick={() => {
+                setParseError("");
+                setUploadOpen(true);
+              }}
+            >
+              <Upload size={16} />
+              Upload CPS Excel
+            </button>
+            <button className="btn btn-signal" onClick={() => setOpen(true)}>
+              New CPS project
+            </button>
+          </>
         }
       />
 
@@ -117,7 +203,7 @@ export default function ProjectsPage() {
             }}
           >
             <div className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
-              CPS type
+              Built-in CPS
             </div>
             <div className="brand-mark mt-1 text-xl leading-none">{t.name}</div>
             <div className="mt-2 text-sm text-muted">
@@ -184,9 +270,9 @@ export default function ProjectsPage() {
       </div>
 
       <Modal open={open} title="New CPS project" onClose={() => setOpen(false)} wide>
-        <form className="space-y-3" onSubmit={onCreate}>
+        <form className="space-y-3" onSubmit={onCreateBuiltIn}>
           <div>
-            <label className="label">CPS type</label>
+            <label className="label">CPS type (built-in)</label>
             <select
               className="field"
               required
@@ -199,10 +285,20 @@ export default function ProjectsPage() {
                 </option>
               ))}
             </select>
-            {selected ? (
+            {selectedBuiltIn ? (
               <p className="mt-2 text-sm text-muted">
-                From workbook sheet <code>{selected.sheetName.trim()}</code>. Seeds
-                the full milestone checklist with lead-time dates from Brief in.
+                From workbook sheet <code>{selectedBuiltIn.sheetName.trim()}</code>.
+                Prefer a custom file?{" "}
+                <button
+                  type="button"
+                  className="font-semibold text-verdant-deep"
+                  onClick={() => {
+                    setOpen(false);
+                    setUploadOpen(true);
+                  }}
+                >
+                  Upload CPS Excel
+                </button>
               </p>
             ) : null}
           </div>
@@ -213,7 +309,6 @@ export default function ProjectsPage() {
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              placeholder="e.g. Olay Pack Box — Sale 7"
             />
           </div>
           <div>
@@ -250,18 +345,140 @@ export default function ProjectsPage() {
               </select>
             </div>
           </div>
-          <div>
-            <label className="label">Color</label>
-            <input
-              type="color"
-              className="field h-[44px] max-w-[120px] p-1"
-              value={form.color}
-              onChange={(e) => setForm({ ...form, color: e.target.value })}
-            />
-          </div>
           <button className="btn btn-primary w-full" type="submit">
             Create & seed CPS checklist
           </button>
+        </form>
+      </Modal>
+
+      <Modal
+        open={uploadOpen}
+        title="Upload CPS Excel"
+        onClose={() => setUploadOpen(false)}
+        wide
+      >
+        <form className="space-y-3" onSubmit={onCreateFromUpload}>
+          <div>
+            <label className="label">CPS workbook (.xlsx)</label>
+            <input
+              type="file"
+              accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              className="field"
+              onChange={(e) => onParseFile(e.target.files?.[0] ?? null)}
+            />
+            <p className="mt-2 text-sm text-muted">
+              Accepts full workbooks like <code>CPS_planning-v202609.xlsx</code> or
+              a single sheet with Step / Lead Time / End Date / Task Owner columns.
+            </p>
+            {parsing ? (
+              <p className="mt-2 text-sm font-semibold">Parsing workbook…</p>
+            ) : null}
+            {parseError ? (
+              <p className="mt-2 text-sm font-semibold text-amber">{parseError}</p>
+            ) : null}
+            {uploadedFileName ? (
+              <p className="mt-2 text-sm text-muted">
+                Parsed <code>{uploadedFileName}</code> — {parsedTemplates.length}{" "}
+                CPS sheet(s) found.
+              </p>
+            ) : null}
+          </div>
+
+          {parsedTemplates.length > 0 ? (
+            <>
+              <div>
+                <label className="label">CPS sheet / type</label>
+                <select
+                  className="field"
+                  value={selectedUpload?.id ?? ""}
+                  onChange={(e) => {
+                    const next =
+                      parsedTemplates.find((t) => t.id === e.target.value) ??
+                      null;
+                    setSelectedUpload(next);
+                    if (next) {
+                      setForm((f) => ({
+                        ...f,
+                        cpsType: next.id,
+                        briefDate:
+                          next.suggestedBriefDate ||
+                          f.briefDate ||
+                          new Date().toISOString().slice(0, 10),
+                      }));
+                    }
+                  }}
+                >
+                  {parsedTemplates.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.name} — {t.sheetName.trim()} ({t.milestoneCount}m /{" "}
+                      {t.stepCount}s)
+                    </option>
+                  ))}
+                </select>
+                {selectedUpload?.suggestedSosDate ? (
+                  <p className="mt-2 text-sm text-muted">
+                    Workbook Target SOS: {selectedUpload.suggestedSosDate}
+                  </p>
+                ) : null}
+              </div>
+              <div>
+                <label className="label">Project name</label>
+                <input
+                  className="field"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+              </div>
+              <div>
+                <label className="label">Description</label>
+                <textarea
+                  className="field min-h-[70px]"
+                  value={form.description}
+                  onChange={(e) =>
+                    setForm({ ...form, description: e.target.value })
+                  }
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="label">Brief in date</label>
+                  <input
+                    type="date"
+                    className="field"
+                    required
+                    value={form.briefDate}
+                    onChange={(e) =>
+                      setForm({ ...form, briefDate: e.target.value })
+                    }
+                  />
+                </div>
+                <div>
+                  <label className="label">Owner</label>
+                  <select
+                    className="field"
+                    value={form.ownerId}
+                    onChange={(e) =>
+                      setForm({ ...form, ownerId: e.target.value })
+                    }
+                  >
+                    {users.map((u) => (
+                      <option key={u.id} value={u.id}>
+                        {u.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <button
+                className="btn btn-primary w-full"
+                type="submit"
+                disabled={!selectedUpload}
+              >
+                Create project from upload
+              </button>
+            </>
+          ) : null}
         </form>
       </Modal>
     </div>

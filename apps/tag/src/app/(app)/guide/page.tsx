@@ -141,6 +141,14 @@ export default function GuidePage() {
             Owner roles from the sheet are stored on each step for assignment.
           </p>
           <p>
+            <strong className="text-ink">Upload CPS Excel</strong> on Projects
+            accepts a full workbook (e.g. <code>CPS_planning-v202609.xlsx</code>)
+            or a single sheet with Step / Lead Time / End Date / Task Owner
+            columns. After upload, pick which sheet/type to use, confirm Brief in,
+            and TAG seeds the project checklist. Built-in template cards remain as
+            a fallback when you don’t have a file handy.
+          </p>
+          <p>
             Track progress on the project page (current milestone, X/Y, %) and on
             Calendar — same checklist model as day-one milestones.
           </p>
