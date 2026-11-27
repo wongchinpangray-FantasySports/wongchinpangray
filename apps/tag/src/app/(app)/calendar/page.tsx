@@ -2,15 +2,19 @@
 
 import {
   addMonths,
+  addWeeks,
   eachDayOfInterval,
   endOfMonth,
   endOfWeek,
   format,
   isSameDay,
   isSameMonth,
+  isWithinInterval,
+  parseISO,
   startOfMonth,
   startOfWeek,
   subMonths,
+  subWeeks,
 } from "date-fns";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -51,6 +55,17 @@ type Project = {
   status: string;
 };
 
+type CalView = "month" | "week" | "agenda";
+
+const VIEW_KEY = "tag.calendar.view";
+
+function readStoredView(): CalView {
+  if (typeof window === "undefined") return "month";
+  const v = window.localStorage.getItem(VIEW_KEY);
+  if (v === "month" || v === "week" || v === "agenda") return v;
+  return "month";
+}
+
 export default function CalendarPage() {
   const [cursor, setCursor] = useState(new Date());
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -58,6 +73,17 @@ export default function CalendarPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selected, setSelected] = useState<Date>(new Date());
   const [filterProject, setFilterProject] = useState("");
+  const [view, setView] = useState<CalView>("month");
+
+  useEffect(() => {
+    setView(readStoredView());
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(VIEW_KEY, view);
+    }
+  }, [view]);
 
   useEffect(() => {
     Promise.all([
@@ -86,9 +112,15 @@ export default function CalendarPage() {
     [milestones, filterProject],
   );
 
-  const days = useMemo(() => {
+  const monthDays = useMemo(() => {
     const start = startOfWeek(startOfMonth(cursor));
     const end = endOfWeek(endOfMonth(cursor));
+    return eachDayOfInterval({ start, end });
+  }, [cursor]);
+
+  const weekDays = useMemo(() => {
+    const start = startOfWeek(cursor);
+    const end = endOfWeek(cursor);
     return eachDayOfInterval({ start, end });
   }, [cursor]);
 
@@ -123,41 +155,227 @@ export default function CalendarPage() {
   const selectedTasks = filteredTasks.filter((t) => t.dueDate === selectedKey);
   const selectedMs = enrichedMilestones.filter((m) => m.dueDate === selectedKey);
 
+  const agendaItems = useMemo(() => {
+    const rangeStart =
+      view === "week" ? startOfWeek(cursor) : startOfMonth(cursor);
+    const rangeEnd = view === "week" ? endOfWeek(cursor) : endOfMonth(cursor);
+    // Agenda always shows from today-ish within a wider window: current month + next
+    const agendaStart = view === "agenda" ? startOfMonth(cursor) : rangeStart;
+    const agendaEnd =
+      view === "agenda" ? endOfMonth(addMonths(cursor, 1)) : rangeEnd;
+
+    type Item = {
+      date: string;
+      kind: "milestone" | "task";
+      title: string;
+      projectId: string;
+      projectName: string | null;
+      projectColor: string | null;
+      status: string;
+      incomplete: boolean;
+      href: string;
+    };
+
+    const items: Item[] = [];
+    for (const m of enrichedMilestones) {
+      if (!m.dueDate) continue;
+      const d = parseISO(m.dueDate);
+      if (!isWithinInterval(d, { start: agendaStart, end: agendaEnd })) continue;
+      items.push({
+        date: m.dueDate,
+        kind: "milestone",
+        title: m.title,
+        projectId: m.projectId,
+        projectName: m.projectName,
+        projectColor: m.projectColor,
+        status: m.progress.complete ? "reached" : "upcoming",
+        incomplete: !m.progress.complete,
+        href: `/projects/${m.projectId}`,
+      });
+    }
+    for (const t of filteredTasks) {
+      if (!t.dueDate) continue;
+      const d = parseISO(t.dueDate);
+      if (!isWithinInterval(d, { start: agendaStart, end: agendaEnd })) continue;
+      items.push({
+        date: t.dueDate,
+        kind: "task",
+        title: t.title,
+        projectId: t.projectId,
+        projectName: t.projectName,
+        projectColor: t.projectColor,
+        status: t.status,
+        incomplete: t.status !== "done",
+        href: `/projects/${t.projectId}`,
+      });
+    }
+    items.sort((a, b) => a.date.localeCompare(b.date) || a.title.localeCompare(b.title));
+    return items;
+  }, [view, cursor, enrichedMilestones, filteredTasks]);
+
+  function goPrev() {
+    if (view === "week") setCursor(subWeeks(cursor, 1));
+    else setCursor(subMonths(cursor, 1));
+  }
+  function goNext() {
+    if (view === "week") setCursor(addWeeks(cursor, 1));
+    else setCursor(addMonths(cursor, 1));
+  }
+
+  const titleLabel =
+    view === "week"
+      ? `${format(startOfWeek(cursor), "MMM d")} – ${format(endOfWeek(cursor), "MMM d, yyyy")}`
+      : view === "agenda"
+        ? `${format(cursor, "MMMM yyyy")} agenda`
+        : format(cursor, "MMMM yyyy");
+
+  function renderDayGrid(days: Date[], weekMode: boolean) {
+    return (
+      <section className="panel overflow-hidden rounded-[22px]">
+        <div className="grid grid-cols-7 border-b border-[var(--line)] bg-white/40 text-center text-xs font-bold uppercase tracking-[0.12em] text-muted">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+            <div key={d} className="px-2 py-3">
+              {d}
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-7">
+          {days.map((day) => {
+            const { dayTasks, dayMs } = itemsFor(day);
+            const inMonth = weekMode || isSameMonth(day, cursor);
+            const active = isSameDay(day, selected);
+            const today = isSameDay(day, new Date());
+            return (
+              <button
+                key={day.toISOString()}
+                onClick={() => setSelected(day)}
+                className={`${weekMode ? "min-h-[140px]" : "min-h-[96px]"} border-b border-r border-[var(--line)] p-2 text-left transition hover:bg-white/50 ${
+                  inMonth ? "" : "opacity-40"
+                } ${active ? "bg-[rgba(184,240,0,0.22)]" : ""}`}
+              >
+                <div
+                  className={`mb-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold ${
+                    today ? "bg-ink text-paper" : ""
+                  }`}
+                >
+                  {format(day, "d")}
+                </div>
+                <div className="space-y-1">
+                  {dayMs.slice(0, weekMode ? 3 : 1).map((m) => {
+                    const isCurrent =
+                      currentByProject.get(m.projectId)?.id === m.id;
+                    const incomplete = !m.progress.complete;
+                    return (
+                      <div
+                        key={m.id}
+                        className={`truncate rounded-md px-1.5 py-0.5 text-[10px] font-bold text-white ${
+                          incomplete ? "ring-1 ring-[rgba(194,65,12,0.5)]" : ""
+                        }`}
+                        style={{ background: m.projectColor ?? "#0C4A6E" }}
+                      >
+                        ◆ {isCurrent ? "● " : ""}
+                        {m.title}
+                        {incomplete ? ` ${m.progress.percent}%` : " ✓"}
+                      </div>
+                    );
+                  })}
+                  {dayTasks.slice(0, weekMode ? 4 : 2).map((t) => (
+                    <div
+                      key={t.id}
+                      className={`truncate rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
+                        t.status === "done" ? "line-through opacity-60" : ""
+                      }`}
+                      style={{
+                        background: `${t.projectColor ?? "#1B7A4E"}22`,
+                        color: t.projectColor ?? "#1B7A4E",
+                      }}
+                    >
+                      {t.status === "done" ? "✓ " : ""}
+                      {t.title}
+                    </div>
+                  ))}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <div>
       <PageHeader
         eyebrow="Schedule"
         title="Calendar"
-        description="Milestones and checklist steps by due date — current milestone and incomplete work stay visible."
+        description="Milestones and checklist steps by due date — switch month, week, or agenda."
         actions={
           <div className="flex flex-wrap gap-2">
-            <button className="btn btn-ghost" onClick={() => setCursor(subMonths(cursor, 1))}>
+            <button className="btn btn-ghost" onClick={goPrev}>
               Prev
             </button>
-            <button className="btn btn-ghost" onClick={() => setCursor(new Date())}>
+            <button
+              className="btn btn-ghost"
+              onClick={() => {
+                const today = new Date();
+                setCursor(today);
+                setSelected(today);
+              }}
+            >
               Today
             </button>
-            <button className="btn btn-ghost" onClick={() => setCursor(addMonths(cursor, 1))}>
+            <button className="btn btn-ghost" onClick={goNext}>
               Next
             </button>
           </div>
         }
       />
 
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div className="brand-mark text-3xl">{format(cursor, "MMMM yyyy")}</div>
-        <select
-          className="field max-w-[240px]"
-          value={filterProject}
-          onChange={(e) => setFilterProject(e.target.value)}
+      <div className="panel mb-5 flex flex-col gap-3 rounded-[22px] p-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+        <div
+          className="inline-flex rounded-full border border-[var(--line)] bg-white/50 p-1"
+          role="tablist"
+          aria-label="Calendar view"
         >
-          <option value="">All projects</option>
-          {projects.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
-            </option>
+          {(
+            [
+              ["month", "Month"],
+              ["week", "Week"],
+              ["agenda", "Agenda"],
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              role="tab"
+              aria-selected={view === id}
+              data-testid={`cal-view-${id}`}
+              className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+                view === id
+                  ? "bg-ink text-paper"
+                  : "text-muted hover:text-ink"
+              }`}
+              onClick={() => setView(id)}
+            >
+              {label}
+            </button>
           ))}
-        </select>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="brand-mark text-2xl sm:text-3xl">{titleLabel}</div>
+          <select
+            className="field max-w-[240px]"
+            value={filterProject}
+            onChange={(e) => setFilterProject(e.target.value)}
+          >
+            <option value="">All projects</option>
+            {projects.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <section className="panel mb-5 rounded-[22px] p-4">
@@ -207,157 +425,121 @@ export default function CalendarPage() {
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[1.4fr_0.8fr]">
-        <section className="panel overflow-hidden rounded-[22px]">
-          <div className="grid grid-cols-7 border-b border-[var(--line)] bg-white/40 text-center text-xs font-bold uppercase tracking-[0.12em] text-muted">
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-              <div key={d} className="px-2 py-3">
-                {d}
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-7">
-            {days.map((day) => {
-              const { dayTasks, dayMs } = itemsFor(day);
-              const inMonth = isSameMonth(day, cursor);
-              const active = isSameDay(day, selected);
-              const today = isSameDay(day, new Date());
-              return (
-                <button
-                  key={day.toISOString()}
-                  onClick={() => setSelected(day)}
-                  className={`min-h-[96px] border-b border-r border-[var(--line)] p-2 text-left transition hover:bg-white/50 ${
-                    inMonth ? "" : "opacity-40"
-                  } ${active ? "bg-[rgba(184,240,0,0.22)]" : ""}`}
+      {view === "agenda" ? (
+        <section className="panel rounded-[22px] p-5">
+          <h2 className="brand-mark mb-4 text-2xl">Agenda</h2>
+          {agendaItems.length === 0 ? (
+            <p className="text-muted">Nothing due in this range.</p>
+          ) : (
+            <div className="space-y-2">
+              {agendaItems.map((item) => (
+                <Link
+                  key={`${item.kind}-${item.title}-${item.date}-${item.projectId}`}
+                  href={item.href}
+                  className="surface flex flex-wrap items-center justify-between gap-3 rounded-xl px-3 py-3"
                 >
-                  <div
-                    className={`mb-1 inline-flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold ${
-                      today ? "bg-ink text-paper" : ""
-                    }`}
-                  >
-                    {format(day, "d")}
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold uppercase tracking-[0.12em] text-muted">
+                      {item.date} · {item.kind}
+                    </div>
+                    <div
+                      className={`font-semibold ${item.status === "done" ? "line-through opacity-70" : ""}`}
+                    >
+                      {item.kind === "milestone" ? "◆ " : ""}
+                      {item.title}
+                    </div>
+                    <div className="mt-1 flex items-center gap-2 text-sm text-muted">
+                      <span
+                        className="h-2 w-2 rounded-full"
+                        style={{ background: item.projectColor ?? "#1B7A4E" }}
+                      />
+                      {item.projectName}
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    {dayMs.slice(0, 1).map((m) => {
-                      const isCurrent =
-                        currentByProject.get(m.projectId)?.id === m.id;
-                      const incomplete = !m.progress.complete;
-                      return (
-                        <div
-                          key={m.id}
-                          className={`truncate rounded-md px-1.5 py-0.5 text-[10px] font-bold text-white ${
-                            incomplete ? "ring-1 ring-[rgba(194,65,12,0.5)]" : ""
-                          }`}
-                          style={{ background: m.projectColor ?? "#0C4A6E" }}
-                          title={`${m.title}${isCurrent ? " (current)" : ""}${incomplete ? " · incomplete" : ""}`}
-                        >
-                          ◆ {isCurrent ? "● " : ""}
-                          {m.title}
-                          {incomplete ? ` ${m.progress.percent}%` : " ✓"}
-                        </div>
-                      );
-                    })}
-                    {dayTasks.slice(0, 2).map((t) => (
+                  <div className="flex gap-2">
+                    {item.incomplete ? (
+                      <span className="pill text-amber">Incomplete</span>
+                    ) : null}
+                    <StatusPill value={item.status} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+      ) : (
+        <div className="grid gap-5 xl:grid-cols-[1.4fr_0.8fr]">
+          {view === "week"
+            ? renderDayGrid(weekDays, true)
+            : renderDayGrid(monthDays, false)}
+
+          <section className="panel rounded-[22px] p-5">
+            <h2 className="brand-mark mb-1 text-2xl">
+              {format(selected, "EEE, MMM d")}
+            </h2>
+            <p className="mb-4 text-sm text-muted">Selected day detail</p>
+
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-muted">
+              Milestones
+            </h3>
+            <div className="mb-5 space-y-2">
+              {selectedMs.length === 0 ? (
+                <p className="text-sm text-muted">None</p>
+              ) : (
+                selectedMs.map((m) => {
+                  const isCurrent =
+                    currentByProject.get(m.projectId)?.id === m.id;
+                  return (
+                    <Link
+                      key={m.id}
+                      href={`/projects/${m.projectId}`}
+                      className="surface block rounded-xl px-3 py-2"
+                    >
+                      <div className="flex flex-wrap items-center gap-2">
+                        <div className="font-semibold">{m.title}</div>
+                        {isCurrent ? (
+                          <span className="pill bg-[rgba(184,240,0,0.28)]">
+                            Current
+                          </span>
+                        ) : null}
+                        {!m.progress.complete ? (
+                          <span className="pill text-amber">Incomplete</span>
+                        ) : (
+                          <StatusPill value="reached" />
+                        )}
+                      </div>
+                      <div className="mt-1 text-sm text-muted">{m.projectName}</div>
+                    </Link>
+                  );
+                })
+              )}
+            </div>
+
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-muted">
+              Checklist steps
+            </h3>
+            <div className="space-y-2">
+              {selectedTasks.length === 0 ? (
+                <p className="text-sm text-muted">None</p>
+              ) : (
+                selectedTasks.map((t) => (
+                  <div key={t.id} className="surface rounded-xl px-3 py-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <div
-                        key={t.id}
-                        className={`truncate rounded-md px-1.5 py-0.5 text-[10px] font-semibold ${
-                          t.status === "done" ? "line-through opacity-60" : ""
-                        }`}
-                        style={{
-                          background: `${t.projectColor ?? "#1B7A4E"}22`,
-                          color: t.projectColor ?? "#1B7A4E",
-                        }}
+                        className={`font-semibold ${t.status === "done" ? "line-through opacity-70" : ""}`}
                       >
-                        {t.status === "done" ? "✓ " : ""}
                         {t.title}
                       </div>
-                    ))}
-                    {dayTasks.length + dayMs.length > 3 ? (
-                      <div className="text-[10px] text-muted">
-                        +{dayTasks.length + dayMs.length - 3} more
-                      </div>
-                    ) : null}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="panel rounded-[22px] p-5">
-          <h2 className="brand-mark mb-1 text-2xl">
-            {format(selected, "EEE, MMM d")}
-          </h2>
-          <p className="mb-4 text-sm text-muted">Selected day detail</p>
-
-          <h3 className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-muted">
-            Milestones
-          </h3>
-          <div className="mb-5 space-y-2">
-            {selectedMs.length === 0 ? (
-              <p className="text-sm text-muted">None</p>
-            ) : (
-              selectedMs.map((m) => {
-                const isCurrent = currentByProject.get(m.projectId)?.id === m.id;
-                return (
-                  <Link
-                    key={m.id}
-                    href={`/projects/${m.projectId}`}
-                    className="surface block rounded-xl px-3 py-2"
-                  >
-                    <div className="flex flex-wrap items-center gap-2">
-                      <div className="font-semibold">{m.title}</div>
-                      {isCurrent ? (
-                        <span className="pill bg-[rgba(184,240,0,0.28)]">Current</span>
-                      ) : null}
-                      {!m.progress.complete ? (
-                        <span className="pill text-amber">Incomplete</span>
-                      ) : (
-                        <StatusPill value="reached" />
-                      )}
+                      <StatusPill value={t.status} />
                     </div>
-                    <div className="mt-1 text-sm text-muted">{m.projectName}</div>
-                    <div className="mt-2">
-                      <ProgressBar
-                        compact
-                        done={m.progress.done}
-                        total={m.progress.total}
-                        percent={m.progress.percent}
-                      />
-                    </div>
-                  </Link>
-                );
-              })
-            )}
-          </div>
-
-          <h3 className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-muted">
-            Checklist steps
-          </h3>
-          <div className="space-y-2">
-            {selectedTasks.length === 0 ? (
-              <p className="text-sm text-muted">None</p>
-            ) : (
-              selectedTasks.map((t) => (
-                <div key={t.id} className="surface rounded-xl px-3 py-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <div
-                      className={`font-semibold ${t.status === "done" ? "line-through opacity-70" : ""}`}
-                    >
-                      {t.title}
-                    </div>
-                    <StatusPill value={t.status} />
+                    <div className="text-sm text-muted">{t.projectName}</div>
                   </div>
-                  <div className="text-sm text-muted">
-                    {t.projectName}
-                    {t.status !== "done" ? " · incomplete" : ""}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        </section>
-      </div>
+                ))
+              )}
+            </div>
+          </section>
+        </div>
+      )}
     </div>
   );
 }

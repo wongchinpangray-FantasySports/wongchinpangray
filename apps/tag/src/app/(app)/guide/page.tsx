@@ -223,10 +223,11 @@ export default function GuidePage() {
 
         <Section id="calendar" title="Calendar" href="/calendar">
           <p>
-            Month view of milestone due dates and checklist step due dates. The top strip
-            shows each project’s <strong className="text-ink">current milestone</strong> with
-            progress. Incomplete milestones are marked on the grid; day detail shows
-            progress bars and incomplete steps.
+            Use the <strong className="text-ink">Month / Week / Agenda</strong> toggle
+            (saved in your browser) to switch views. The top strip shows each project’s{" "}
+            <strong className="text-ink">current milestone</strong> with progress.
+            Incomplete milestones are marked on the grid; day detail and agenda list
+            incomplete steps.
           </p>
         </Section>
 

@@ -167,27 +167,63 @@ export default function ProjectsPage() {
       <PageHeader
         eyebrow="Portfolio"
         title="Projects"
-        description="Create CPS projects from the built-in workbook templates — or upload a CPS Excel file."
-        actions={
-          <>
-            <button
-              className="btn btn-ghost"
-              onClick={() => {
-                setParseError("");
-                setUploadOpen(true);
-              }}
-            >
-              <Upload size={16} />
-              Upload CPS Excel
-            </button>
-            <button className="btn btn-signal" onClick={() => setOpen(true)}>
-              New CPS project
-            </button>
-          </>
-        }
+        description="Create CPS projects from built-in templates or upload a CPS Excel workbook."
       />
 
-      <div className="mb-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="panel mb-5 flex flex-col gap-3 rounded-[22px] p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+        <div>
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
+            Create project
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            Upload your CPS .xlsx, or start from a built-in type below.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            className="btn btn-signal"
+            data-testid="upload-cps-excel"
+            onClick={() => {
+              setParseError("");
+              setUploadOpen(true);
+            }}
+          >
+            <Upload size={16} />
+            Upload CPS Excel
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-testid="new-cps-project"
+            onClick={() => setOpen(true)}
+          >
+            New CPS project
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        <button
+          type="button"
+          className="panel rounded-2xl border-2 border-dashed border-[rgba(27,122,78,0.35)] bg-[rgba(184,240,0,0.12)] p-4 text-left transition hover:-translate-y-0.5"
+          data-testid="upload-cps-card"
+          onClick={() => {
+            setParseError("");
+            setUploadOpen(true);
+          }}
+        >
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-verdant-deep">
+            Upload
+          </div>
+          <div className="brand-mark mt-1 flex items-center gap-2 text-xl leading-none">
+            <Upload size={20} />
+            CPS Excel
+          </div>
+          <div className="mt-2 text-sm text-muted">
+            Drop in a workbook like CPS_planning-v202609.xlsx
+          </div>
+        </button>
         {templates.map((t) => (
           <button
             key={t.id}
