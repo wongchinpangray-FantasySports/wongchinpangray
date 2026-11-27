@@ -14,7 +14,7 @@ const TOC = [
 ];
 
 const DEMOS = [
-  { name: "Alex Chen", email: "alex@tag.local", role: "Admin" },
+  { name: "Ray", email: "alex@tag.local", role: "Admin" },
   { name: "Jordan Lee", email: "jordan@tag.local", role: "Member" },
   { name: "Sam Rivera", email: "sam@tag.local", role: "Member" },
 ];
@@ -226,7 +226,7 @@ export default function GuidePage() {
             tasks and as owners on projects.
           </p>
           <ul className="list-disc space-y-1 pl-5">
-            <li>Alex (admin) can use <strong className="text-ink">Add member</strong>.</li>
+            <li>Ray (admin) can use <strong className="text-ink">Add member</strong>.</li>
             <li>
               Dashboard <em>Team load</em> counts open tasks per person so you can
               balance work.

@@ -23,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Name         | Email             | Password | Role   |
 |--------------|-------------------|----------|--------|
-| Alex Chen    | alex@tag.local    | tagdemo  | admin  |
+| Ray          | alex@tag.local    | tagdemo  | admin  |
 | Jordan Lee   | jordan@tag.local  | tagdemo  | member |
 | Sam Rivera   | sam@tag.local     | tagdemo  | member |
 

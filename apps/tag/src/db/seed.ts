@@ -17,7 +17,7 @@ export function seedIfEmpty(db: BetterSQLite3Database<typeof schema>) {
 
   const alex = {
     id: "user-alex",
-    name: "Alex Chen",
+    name: "Ray",
     email: "alex@tag.local",
     password: "tagdemo",
     role: "admin",

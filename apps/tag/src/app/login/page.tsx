@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const DEMOS = [
-  { email: "alex@tag.local", name: "Alex Chen", role: "Admin" },
+  { email: "alex@tag.local", name: "Ray", role: "Admin" },
   { email: "jordan@tag.local", name: "Jordan Lee", role: "Member" },
   { email: "sam@tag.local", name: "Sam Rivera", role: "Member" },
 ];
