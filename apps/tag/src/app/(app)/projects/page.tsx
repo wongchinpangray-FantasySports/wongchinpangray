@@ -206,7 +206,7 @@ export default function ProjectsPage() {
       <div className="mb-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
         <button
           type="button"
-          className="panel rounded-2xl border-2 border-dashed border-[rgba(27,122,78,0.35)] bg-[rgba(184,240,0,0.12)] p-4 text-left transition hover:-translate-y-0.5"
+          className="upload-cps-card rounded-2xl p-4 text-left transition hover:-translate-y-0.5"
           data-testid="upload-cps-card"
           onClick={() => {
             setParseError("");

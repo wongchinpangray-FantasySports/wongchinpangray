@@ -97,6 +97,13 @@ textarea {
   backdrop-filter: blur(10px);
 }
 
+.upload-cps-card {
+  background: rgba(184, 240, 0, 0.14);
+  border: 2px dashed rgba(27, 122, 78, 0.45);
+  backdrop-filter: blur(10px);
+  box-shadow: none;
+}
+
 .surface {
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid var(--line);

@@ -165,6 +165,7 @@ export default function CalendarPage() {
       view === "agenda" ? endOfMonth(addMonths(cursor, 1)) : rangeEnd;
 
     type Item = {
+      id: string;
       date: string;
       kind: "milestone" | "task";
       title: string;
@@ -182,6 +183,7 @@ export default function CalendarPage() {
       const d = parseISO(m.dueDate);
       if (!isWithinInterval(d, { start: agendaStart, end: agendaEnd })) continue;
       items.push({
+        id: m.id,
         date: m.dueDate,
         kind: "milestone",
         title: m.title,
@@ -198,6 +200,7 @@ export default function CalendarPage() {
       const d = parseISO(t.dueDate);
       if (!isWithinInterval(d, { start: agendaStart, end: agendaEnd })) continue;
       items.push({
+        id: t.id,
         date: t.dueDate,
         kind: "task",
         title: t.title,
@@ -434,7 +437,7 @@ export default function CalendarPage() {
             <div className="space-y-2">
               {agendaItems.map((item) => (
                 <Link
-                  key={`${item.kind}-${item.title}-${item.date}-${item.projectId}`}
+                  key={`${item.kind}-${item.id}`}
                   href={item.href}
                   className="surface flex flex-wrap items-center justify-between gap-3 rounded-xl px-3 py-3"
                 >
