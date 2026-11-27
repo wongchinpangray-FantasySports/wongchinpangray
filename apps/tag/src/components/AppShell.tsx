@@ -85,7 +85,7 @@ export function AppShell({
             </div>
           </div>
           <button
-            className="btn btn-ghost w-full border-white/20 text-[#f4f8fb]"
+            className="btn w-full border border-white/25 bg-white/10 text-[#f4f8fb] hover:bg-white/18"
             onClick={logout}
           >
             <LogOut size={16} />
