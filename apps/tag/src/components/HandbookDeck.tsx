@@ -23,6 +23,30 @@ const MIN_SCALE = 0.6;
 const MAX_SCALE = 2.4;
 const SCALE_STEP = 0.15;
 
+/** Compact page chips for long decks (keeps first/last + window around current). */
+function pageStrip(current: number, total: number): Array<number | "…"> {
+  if (total <= 18) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  const window = 2;
+  const want = new Set<number>([1, total, current]);
+  for (let i = current - window; i <= current + window; i++) {
+    if (i >= 1 && i <= total) want.add(i);
+  }
+  for (let i = 2; i <= Math.min(3, total); i++) want.add(i);
+  for (let i = Math.max(1, total - 2); i < total; i++) want.add(i);
+
+  const sorted = [...want].sort((a, b) => a - b);
+  const out: Array<number | "…"> = [];
+  let prev = 0;
+  for (const n of sorted) {
+    if (prev && n - prev > 1) out.push("…");
+    out.push(n);
+    prev = n;
+  }
+  return out;
+}
+
 export function HandbookDeck() {
   const [numPages, setNumPages] = useState(0);
   const [page, setPage] = useState(1);
@@ -187,23 +211,29 @@ export function HandbookDeck() {
       </div>
 
       {numPages > 0 ? (
-        <div className="flex gap-2 overflow-x-auto border-t border-[var(--line)] bg-white/50 px-3 py-2.5">
-          {Array.from({ length: numPages }, (_, i) => i + 1).map((n) => (
-            <button
-              key={n}
-              type="button"
-              onClick={() => go(n)}
-              className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-bold tabular-nums transition ${
-                n === page
-                  ? "bg-[var(--ink)] text-[#f4f8fb]"
-                  : "bg-white/80 text-ink-soft hover:bg-white"
-              }`}
-              aria-label={`Go to page ${n}`}
-              aria-current={n === page ? "page" : undefined}
-            >
-              {n}
-            </button>
-          ))}
+        <div className="flex items-center gap-2 overflow-x-auto border-t border-[var(--line)] bg-white/50 px-3 py-2.5">
+          {pageStrip(page, numPages).map((n, i) =>
+            n === "…" ? (
+              <span key={`gap-${i}`} className="px-1 text-xs text-muted">
+                …
+              </span>
+            ) : (
+              <button
+                key={n}
+                type="button"
+                onClick={() => go(n)}
+                className={`shrink-0 rounded-lg px-2.5 py-1 text-xs font-bold tabular-nums transition ${
+                  n === page
+                    ? "bg-[var(--ink)] text-[#f4f8fb]"
+                    : "bg-white/80 text-ink-soft hover:bg-white"
+                }`}
+                aria-label={`Go to page ${n}`}
+                aria-current={n === page ? "page" : undefined}
+              >
+                {n}
+              </button>
+            ),
+          )}
         </div>
       ) : null}
     </div>
