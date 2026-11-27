@@ -281,9 +281,14 @@ export default function GuidePage() {
         <Section id="handbook" title="SAE Menu handbook" href="/handbook">
           <p>
             Open <strong className="text-ink">SAE Menu</strong> in the sidebar for the
-            Tag HK SAE Menu 2026 AM/AE handbook as an in-app deck — page flip, zoom,
-            wide view, and PDF download. Content comes from the official workbook PDF
-            (not rewritten in TAG).
+            Tag HK SAE Menu 2026 AM/AE handbook. Use{" "}
+            <strong className="text-ink">Topics</strong> to browse the Content list
+            (Tag. P&G. Brands, Operation Standard &amp; Compliance, RFQ, Display [POSM],
+            Customization, Premium, About trade channels, User Reference / Key Contact,
+            Acronyms), then jump into the page deck — or switch to{" "}
+            <strong className="text-ink">Deck</strong> for page flip, zoom, wide view,
+            and PDF download. Topics and jump pages come from the official PDF (not
+            rewritten in TAG).
           </p>
         </Section>
       </div>

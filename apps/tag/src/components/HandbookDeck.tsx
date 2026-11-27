@@ -47,9 +47,14 @@ function pageStrip(current: number, total: number): Array<number | "…"> {
   return out;
 }
 
-export function HandbookDeck() {
+export function HandbookDeck({
+  page,
+  onPageChange,
+}: {
+  page: number;
+  onPageChange: (page: number) => void;
+}) {
   const [numPages, setNumPages] = useState(0);
-  const [page, setPage] = useState(1);
   const [scale, setScale] = useState(1.1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -57,10 +62,10 @@ export function HandbookDeck() {
 
   const go = useCallback(
     (next: number) => {
-      if (!numPages) return;
-      setPage(Math.min(numPages, Math.max(1, next)));
+      const max = numPages || 131;
+      onPageChange(Math.min(max, Math.max(1, next)));
     },
-    [numPages],
+    [numPages, onPageChange],
   );
 
   useEffect(() => {

@@ -14,6 +14,12 @@ const HandbookDeck = dynamic(
   },
 );
 
-export function HandbookDeckLazy() {
-  return <HandbookDeck />;
+export function HandbookDeckLazy({
+  page,
+  onPageChange,
+}: {
+  page: number;
+  onPageChange: (page: number) => void;
+}) {
+  return <HandbookDeck page={page} onPageChange={onPageChange} />;
 }

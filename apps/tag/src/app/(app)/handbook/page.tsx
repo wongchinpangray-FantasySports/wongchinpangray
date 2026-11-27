@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import { HandbookDeckLazy } from "@/components/HandbookDeckLazy";
+import { HandbookWorkspace } from "@/components/HandbookWorkspace";
 import { HANDBOOK } from "@/lib/handbook";
 
 export default function HandbookPage() {
@@ -8,11 +9,20 @@ export default function HandbookPage() {
       <PageHeader
         eyebrow="Reference"
         title="SAE Menu"
-        description={`${HANDBOOK.title} — ${HANDBOOK.subtitle}. Flip page by page, zoom, or download the original PDF.`}
+        description={`${HANDBOOK.title} — ${HANDBOOK.subtitle}. Browse Topics from the Content list, then jump into the page deck.`}
       />
-      <HandbookDeckLazy />
+      <Suspense
+        fallback={
+          <div className="panel flex min-h-[320px] items-center justify-center rounded-[22px] text-ink-soft">
+            Loading handbook…
+          </div>
+        }
+      >
+        <HandbookWorkspace />
+      </Suspense>
       <p className="mt-3 text-sm text-muted">
-        Tip: use ← → or Page Up / Page Down to move between pages; + / − to zoom.
+        Tip: Topics come from the PDF Content page. In Deck view use ← → or Page
+        Up / Page Down; + / − to zoom.
       </p>
     </div>
   );
