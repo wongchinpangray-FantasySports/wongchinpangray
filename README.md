@@ -39,3 +39,15 @@ npm run preview
 - Edit content in `src/App.jsx`
 - Adjust colors in `src/index.css` (`@theme` block)
 - Update contact links (LinkedIn, email) in the Contact section
+
+## TAG — Daily Ops app
+
+Multi-person project management lives in [`apps/tag`](./apps/tag) (Next.js + SQLite). It does not replace this portfolio.
+
+```bash
+cd apps/tag
+npm install
+npm run dev
+```
+
+See [`apps/tag/README.md`](./apps/tag/README.md) for demo users and feature scope.
