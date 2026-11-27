@@ -3,7 +3,9 @@ import { v4 as uuid } from "uuid";
 import { getDb } from "@/db";
 import { milestones, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { getCpsTemplate } from "@/lib/cps";
 import { currentMilestone, projectProgress } from "@/lib/progress";
+import { seedCpsProject } from "@/lib/seed-cps-project";
 import { jsonError } from "@/lib/utils";
 
 export async function GET() {
@@ -19,6 +21,8 @@ export async function GET() {
       color: projects.color,
       ownerId: projects.ownerId,
       ownerName: users.name,
+      cpsType: projects.cpsType,
+      briefDate: projects.briefDate,
       startDate: projects.startDate,
       dueDate: projects.dueDate,
       createdAt: projects.createdAt,
@@ -37,8 +41,10 @@ export async function GET() {
     const projectMs = allMilestones.filter((m) => m.projectId === p.id);
     const progress = projectProgress(projectTasks);
     const current = currentMilestone(projectMs, projectTasks);
+    const template = p.cpsType ? getCpsTemplate(p.cpsType) : null;
     return {
       ...p,
+      cpsName: template?.name ?? null,
       progress,
       currentMilestone: current
         ? {
@@ -62,6 +68,33 @@ export async function POST(request: Request) {
   const name = String(body?.name ?? "").trim();
   if (!name) return jsonError("Name required");
 
+  const cpsType = body?.cpsType ? String(body.cpsType) : null;
+  const briefDate = body?.briefDate
+    ? String(body.briefDate)
+    : new Date().toISOString().slice(0, 10);
+
+  if (cpsType) {
+    if (!getCpsTemplate(cpsType)) return jsonError("Unknown CPS type");
+    const db = getDb();
+    const { projectId, template } = seedCpsProject(db, {
+      name,
+      description: String(body?.description ?? ""),
+      ownerId: String(body?.ownerId ?? me.id),
+      cpsType,
+      briefDate,
+      color: body?.color ? String(body.color) : undefined,
+    });
+    return Response.json({
+      project: {
+        id: projectId,
+        name,
+        cpsType,
+        briefDate,
+        cpsName: template.name,
+      },
+    });
+  }
+
   const id = uuid();
   const stamp = new Date().toISOString();
   const row = {
@@ -71,6 +104,8 @@ export async function POST(request: Request) {
     status: String(body?.status ?? "active"),
     color: String(body?.color ?? "#1B7A4E"),
     ownerId: String(body?.ownerId ?? me.id),
+    cpsType: null,
+    briefDate: null,
     startDate: body?.startDate ? String(body.startDate) : null,
     dueDate: body?.dueDate ? String(body.dueDate) : null,
     createdAt: stamp,
@@ -78,5 +113,11 @@ export async function POST(request: Request) {
   };
 
   getDb().insert(projects).values(row).run();
-  return Response.json({ project: { ...row, progress: { done: 0, total: 0, percent: 0, complete: false }, currentMilestone: null } });
+  return Response.json({
+    project: {
+      ...row,
+      progress: { done: 0, total: 0, percent: 0, complete: false },
+      currentMilestone: null,
+    },
+  });
 }

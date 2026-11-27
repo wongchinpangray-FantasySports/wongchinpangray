@@ -48,6 +48,10 @@ type Detail = {
     color: string;
     ownerName: string | null;
     dueDate: string | null;
+    cpsType: string | null;
+    cpsName: string | null;
+    cpsSheet: string | null;
+    briefDate: string | null;
   };
   tasks: Task[];
   milestones: Milestone[];
@@ -203,7 +207,15 @@ export default function ProjectDetailPage() {
           style={{ background: project.color }}
         />
         <StatusPill value={project.status} />
+        {project.cpsName ? (
+          <span className="pill bg-[rgba(184,240,0,0.28)] text-ink">
+            {project.cpsName}
+          </span>
+        ) : null}
         <span className="text-sm text-muted">Owner: {project.ownerName}</span>
+        {project.briefDate ? (
+          <span className="text-sm text-muted">Brief: {project.briefDate}</span>
+        ) : null}
         <span className="text-sm text-muted">Due: {project.dueDate ?? "—"}</span>
       </div>
 

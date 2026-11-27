@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 const TOC = [
   { id: "login", label: "Sign in & demo users" },
+  { id: "cps", label: "CPS types & seeding" },
   { id: "dashboard", label: "Dashboard" },
   { id: "projects", label: "Projects" },
   { id: "tasks", label: "Tasks & due dates" },
@@ -108,6 +109,43 @@ export default function GuidePage() {
           </p>
         </Section>
 
+        <Section id="cps" title="CPS types & seeding" href="/projects">
+          <p>
+            TAG embeds Ray’s CPS planning workbook (
+            <code>CPS_planning-v202609.xlsx</code>). When you create a project,
+            pick one of the four CPS types — milestones and checklist steps are
+            seeded from that sheet (not invented):
+          </p>
+          <ul className="list-disc space-y-1 pl-5">
+            <li>
+              <strong className="text-ink">CTMZ (Normal)</strong> — sheet{" "}
+              <code>CTMZ (Normal)</code>, grouped by week markers (W-14 → W-3)
+            </li>
+            <li>
+              <strong className="text-ink">CTMZ (Special)</strong> — sheet{" "}
+              <code>CTMZ (Special)</code>, week markers (W-10.1 → W-2.1)
+            </li>
+            <li>
+              <strong className="text-ink">POSM (Mock up needed)</strong> — sheet{" "}
+              <code>POSM(Mock up needed)</code>
+            </li>
+            <li>
+              <strong className="text-ink">POSM (No Mock up)</strong> — sheet{" "}
+              <code>POSM(No Mock up)</code>
+            </li>
+          </ul>
+          <p>
+            Set the <strong className="text-ink">Brief in</strong> date on create.
+            Step due dates are scheduled forward using each step’s lead time
+            (working days, skipping weekends and HK holidays from the workbook).
+            Owner roles from the sheet are stored on each step for assignment.
+          </p>
+          <p>
+            Track progress on the project page (current milestone, X/Y, %) and on
+            Calendar — same checklist model as day-one milestones.
+          </p>
+        </Section>
+
         <Section id="dashboard" title="Dashboard" href="/dashboard">
           <p>
             The ops board is your morning snapshot: active projects, open tasks,
@@ -124,18 +162,14 @@ export default function GuidePage() {
 
         <Section id="projects" title="Projects" href="/projects">
           <p>
-            Projects are the containers for work. Each has a name, description,
-            status (active / on hold / done / archived), color, owner, and optional
-            due date. Cards show overall progress and the <strong className="text-ink">current milestone</strong>.
+            Use <strong className="text-ink">New CPS project</strong> (or the four
+            type cards) to pick a CPS template, name the job, and set Brief in.
+            Cards show CPS type, overall progress, and the{" "}
+            <strong className="text-ink">current milestone</strong>.
           </p>
           <ul className="list-disc space-y-1 pl-5">
-            <li>
-              <strong className="text-ink">New project</strong> opens a form for the basics.
-            </li>
-            <li>
-              Open a project to work the milestone checklists — that’s where live
-              status updates as steps complete.
-            </li>
+            <li>Open a project to work the seeded CPS checklist.</li>
+            <li>Assign people to steps — roles from the workbook are in the step notes.</li>
           </ul>
         </Section>
 

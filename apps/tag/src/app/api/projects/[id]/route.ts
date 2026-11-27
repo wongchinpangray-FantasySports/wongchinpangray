@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
 import { milestones, projects, tasks, users } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
+import { getCpsTemplate } from "@/lib/cps";
 import {
   currentMilestone,
   derivedMilestoneStatus,
@@ -26,6 +27,8 @@ export async function GET(_req: Request, ctx: Ctx) {
       color: projects.color,
       ownerId: projects.ownerId,
       ownerName: users.name,
+      cpsType: projects.cpsType,
+      briefDate: projects.briefDate,
       startDate: projects.startDate,
       dueDate: projects.dueDate,
       createdAt: projects.createdAt,
@@ -90,8 +93,14 @@ export async function GET(_req: Request, ctx: Ctx) {
     projectTasks,
   );
 
+  const cps = project.cpsType ? getCpsTemplate(project.cpsType) : null;
+
   return Response.json({
-    project,
+    project: {
+      ...project,
+      cpsName: cps?.name ?? null,
+      cpsSheet: cps?.sheetName ?? null,
+    },
     tasks: projectTasks,
     milestones: projectMilestones,
     progress,

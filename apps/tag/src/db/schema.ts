@@ -19,6 +19,8 @@ export const projects = sqliteTable("projects", {
   ownerId: text("owner_id")
     .notNull()
     .references(() => users.id),
+  cpsType: text("cps_type"), // ctmz-normal | ctmz-special | posm-mockup | posm-no-mockup
+  briefDate: text("brief_date"),
   startDate: text("start_date"),
   dueDate: text("due_date"),
   createdAt: text("created_at").notNull(),

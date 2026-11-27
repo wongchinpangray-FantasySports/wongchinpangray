@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/better-sqlite3";
 import fs from "fs";
 import path from "path";
 import * as schema from "./schema";
+import { ensureCpsDemoProjects } from "./ensure-cps-demos";
 import { seedIfEmpty } from "./seed";
 
 const dataDir = path.join(process.cwd(), "data");
@@ -93,6 +94,17 @@ function migrate(sqlite: Database.Database) {
       created_at TEXT NOT NULL
     );
   `);
+
+  const cols = sqlite
+    .prepare(`PRAGMA table_info(projects)`)
+    .all() as Array<{ name: string }>;
+  const names = new Set(cols.map((c) => c.name));
+  if (!names.has("cps_type")) {
+    sqlite.exec(`ALTER TABLE projects ADD COLUMN cps_type TEXT`);
+  }
+  if (!names.has("brief_date")) {
+    sqlite.exec(`ALTER TABLE projects ADD COLUMN brief_date TEXT`);
+  }
 }
 
 const globalForDb = globalThis as unknown as {
@@ -108,6 +120,7 @@ function createDb() {
   migrate(sqlite);
   const db = drizzle(sqlite, { schema });
   seedIfEmpty(db);
+  ensureCpsDemoProjects(db);
   return { db, sqlite };
 }
 
