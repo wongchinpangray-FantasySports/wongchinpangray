@@ -230,6 +230,14 @@ textarea {
   animation: pulse-signal 2.2s ease-in-out infinite;
 }
 
+.app-sidebar {
+  color: #f4f8fb;
+  background:
+    radial-gradient(420px 240px at 20% 0%, rgba(184, 240, 0, 0.16), transparent 60%),
+    linear-gradient(165deg, #0c1b2a 0%, #16324a 55%, #0c4a6e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .nav-link {
   position: relative;
   display: flex;
@@ -237,14 +245,14 @@ textarea {
   gap: 0.65rem;
   padding: 0.7rem 0.9rem;
   border-radius: 12px;
-  color: rgba(244, 248, 251, 0.72);
+  color: rgba(244, 248, 251, 0.78);
   font-weight: 600;
   transition: background 160ms ease, color 160ms ease;
 }
 
 .nav-link:hover,
 .nav-link[data-active="true"] {
-  background: rgba(184, 240, 0, 0.12);
+  background: rgba(184, 240, 0, 0.16);
   color: #fff;
 }
 

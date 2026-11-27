@@ -48,13 +48,13 @@ export function AppShell({
 
   return (
     <div className="app-shell mx-auto grid min-h-screen max-w-[1440px] grid-cols-[260px_1fr] gap-0 md:gap-5 md:p-5">
-      <aside className="app-sidebar panel flex h-[calc(100vh-2.5rem)] min-h-[640px] flex-col overflow-hidden rounded-[22px] bg-[linear-gradient(165deg,#0c1b2a_0%,#16324a_55%,#0c4a6e_100%)] p-4 text-paper shadow-[var(--shadow)]">
+      <aside className="app-sidebar flex h-[calc(100vh-2.5rem)] min-h-[640px] flex-col overflow-hidden rounded-[22px] p-4 shadow-[var(--shadow)]">
         <div className="mb-6 px-2 pt-2">
           <div className="mb-1 flex items-center gap-2">
             <span className="signal-dot" />
-            <span className="brand-mark text-4xl text-white">TAG</span>
+            <span className="brand-mark text-4xl text-[#f4f8fb]">TAG</span>
           </div>
-          <p className="text-sm text-white/65">Daily ops for multi-person work.</p>
+          <p className="text-sm text-[#f4f8fb]/70">Daily ops for multi-person work.</p>
         </div>
 
         <nav className="app-nav flex flex-1 flex-col gap-1">
@@ -76,15 +76,18 @@ export function AppShell({
           })}
         </nav>
 
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-3">
+        <div className="mt-4 rounded-2xl border border-white/15 bg-white/8 p-3">
           <div className="mb-3 flex items-center gap-3">
             <Avatar name={user.name} color={user.avatarColor} size={40} />
             <div className="min-w-0">
-              <div className="truncate font-semibold text-white">{user.name}</div>
-              <div className="truncate text-xs text-white/55">{user.role}</div>
+              <div className="truncate font-semibold text-[#f4f8fb]">{user.name}</div>
+              <div className="truncate text-xs capitalize text-[#f4f8fb]/60">{user.role}</div>
             </div>
           </div>
-          <button className="btn btn-ghost w-full border-white/15 text-white" onClick={logout}>
+          <button
+            className="btn btn-ghost w-full border-white/20 text-[#f4f8fb]"
+            onClick={logout}
+          >
             <LogOut size={16} />
             Sign out
           </button>
