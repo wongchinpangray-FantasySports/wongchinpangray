@@ -12,6 +12,7 @@ const TOC = [
   { id: "notes", label: "Notes" },
   { id: "dam", label: "Assets (DAM)" },
   { id: "team", label: "Team & assignees" },
+  { id: "handbook", label: "SAE Menu handbook" },
 ];
 
 const DEMOS = [
@@ -275,6 +276,15 @@ export default function GuidePage() {
               balance work.
             </li>
           </ul>
+        </Section>
+
+        <Section id="handbook" title="SAE Menu handbook" href="/handbook">
+          <p>
+            Open <strong className="text-ink">SAE Menu</strong> in the sidebar for the
+            Tag HK SAE Menu 2026 AM/AE handbook as an in-app deck — page flip, zoom,
+            wide view, and PDF download. Content comes from the official workbook PDF
+            (not rewritten in TAG).
+          </p>
         </Section>
       </div>
 

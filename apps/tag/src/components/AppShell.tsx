@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  BookMarked,
   BookOpen,
   CalendarDays,
   FolderKanban,
@@ -23,6 +24,7 @@ const NAV = [
   { href: "/notes", label: "Notes", icon: StickyNote },
   { href: "/assets", label: "Assets", icon: Images },
   { href: "/team", label: "Team", icon: Users },
+  { href: "/handbook", label: "SAE Menu", icon: BookMarked },
   { href: "/guide", label: "Guide", icon: BookOpen },
 ];
 

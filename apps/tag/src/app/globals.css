@@ -274,6 +274,21 @@ textarea {
   background: var(--signal);
 }
 
+.handbook-page {
+  display: block;
+}
+
+.handbook-page canvas {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+}
+
+.handbook-deck .react-pdf__Page__textContent,
+.handbook-deck .react-pdf__Page__annotations {
+  max-width: 100%;
+}
+
 @media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr !important;

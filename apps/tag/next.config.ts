@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ["better-sqlite3"],
+  transpilePackages: ["react-pdf", "pdfjs-dist"],
   turbopack: {
     root: __dirname,
     rules: {

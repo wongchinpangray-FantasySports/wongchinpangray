@@ -39,7 +39,8 @@ The SQLite database is created automatically at `data/tag.db` on first request a
 - **Notes** — create/edit/pin/delete, optional project link
 - **Assets (DAM)** — upload files/media, attach to project and/or task, preview images
 - **Team** — member list; admins can add users
-- **Guide** — in-app how-to (login, CPS types, dashboard, projects, tasks, milestones, calendar, notes, DAM, team)
+- **Guide** — in-app how-to (login, CPS types, dashboard, projects, tasks, milestones, calendar, notes, DAM, team, SAE Menu)
+- **SAE Menu** — in-app page deck for `Tag_HK_SAE_Menu_2026.pdf` (AM/AE handbook) with zoom / prev-next
 - **CPS** — four workbook templates (CTMZ Normal/Special, POSM Mock up / No Mock up) seed project milestone checklists from `CPS_planning-v202609.xlsx`
 
 ## Scripts
@@ -56,6 +57,7 @@ npm run lint     # eslint
 - DB: `apps/tag/data/tag.db`
 - Uploads: `apps/tag/data/uploads/`
 - Both are gitignored; recreate by starting the app (seed runs when the DB is empty)
+- Handbook PDF: `apps/tag/content/handbooks/Tag_HK_SAE_Menu_2026.pdf` (served via `/api/handbook` when signed in)
 
 ## Design
 
