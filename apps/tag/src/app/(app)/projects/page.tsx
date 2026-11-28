@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { Upload } from "lucide-react";
+import { Sparkles, Upload } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Modal } from "@/components/Modal";
 import { StatusPill } from "@/components/StatusPill";
@@ -176,13 +176,22 @@ export default function ProjectsPage() {
             Create project
           </div>
           <p className="mt-1 text-sm text-muted">
-            Upload your CPS .xlsx, or start from a built-in type below.
+            Upload your CPS .xlsx, generate a tentative CPS from SOS, or start
+            from a built-in type below.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <Link
+            href="/cps/generate"
+            className="btn btn-signal"
+            data-testid="generate-tentative-cps"
+          >
+            <Sparkles size={16} />
+            Generate tentative CPS
+          </Link>
           <button
             type="button"
-            className="btn btn-signal"
+            className="btn border border-[var(--line)] bg-white/70"
             data-testid="upload-cps-excel"
             onClick={() => {
               setParseError("");

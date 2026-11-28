@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 const TOC = [
   { id: "login", label: "Sign in & demo users" },
   { id: "cps", label: "CPS types & seeding" },
+  { id: "tentative", label: "Generate tentative CPS" },
   { id: "dashboard", label: "Dashboard" },
   { id: "projects", label: "Projects" },
   { id: "tasks", label: "Tasks & due dates" },
@@ -152,6 +153,24 @@ export default function GuidePage() {
           <p>
             Track progress on the project page (current milestone, X/Y, %) and on
             Calendar — same checklist model as day-one milestones.
+          </p>
+        </Section>
+
+        <Section
+          id="tentative"
+          title="Generate tentative CPS"
+          href="/cps/generate"
+        >
+          <p>
+            From Projects, open <strong className="text-ink">Generate tentative CPS</strong>.
+            Choose a CPS type, enter the <strong className="text-ink">SOS date</strong>, and
+            pick <strong className="text-ink">Standard</strong> or{" "}
+            <strong className="text-ink">Accelerated</strong> pace. TAG back-calculates
+            step end dates from SOS using lead times from{" "}
+            <code>CPS_planning-v202609-for-cursor.xlsx</code> (Accelerated uses CTMZ
+            Special / Design Leadtime Urgent values where the workbook defines them).
+            Edit steps, leads, owners, and notes in the preview, then download an Excel
+            CPS.
           </p>
         </Section>
 

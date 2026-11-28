@@ -52,17 +52,44 @@ function formatYmd(d: Date) {
   return d.toISOString().slice(0, 10);
 }
 
+function isWorkday(ymd: string, d: Date, holidays: Set<string>) {
+  const day = d.getUTCDay(); // 0 Sun .. 6 Sat
+  if (day === 0 || day === 6) return false;
+  if (holidays.has(ymd)) return false;
+  return true;
+}
+
 /** Add N working days (Mon–Fri), skipping holidays from the CPS workbook. */
-export function addWorkdays(startYmd: string, workdays: number) {
+export function addWorkdays(
+  startYmd: string,
+  workdays: number,
+  holidays: Set<string> = CPS_HOLIDAYS,
+) {
   if (workdays <= 0) return startYmd;
   const d = parseYmd(startYmd);
   let left = workdays;
   while (left > 0) {
     d.setUTCDate(d.getUTCDate() + 1);
-    const day = d.getUTCDay(); // 0 Sun .. 6 Sat
     const ymd = formatYmd(d);
-    if (day === 0 || day === 6) continue;
-    if (CPS_HOLIDAYS.has(ymd)) continue;
+    if (!isWorkday(ymd, d, holidays)) continue;
+    left -= 1;
+  }
+  return formatYmd(d);
+}
+
+/** Subtract N working days (Mon–Fri), skipping holidays. */
+export function subtractWorkdays(
+  startYmd: string,
+  workdays: number,
+  holidays: Set<string> = CPS_HOLIDAYS,
+) {
+  if (workdays <= 0) return startYmd;
+  const d = parseYmd(startYmd);
+  let left = workdays;
+  while (left > 0) {
+    d.setUTCDate(d.getUTCDate() - 1);
+    const ymd = formatYmd(d);
+    if (!isWorkday(ymd, d, holidays)) continue;
     left -= 1;
   }
   return formatYmd(d);

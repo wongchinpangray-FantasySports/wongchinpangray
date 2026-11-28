@@ -43,6 +43,7 @@ The SQLite database is created automatically at `data/tag.db` on first request a
 - **Guide** — in-app how-to (login, CPS types, dashboard, projects, tasks, milestones, calendar, notes, DAM, team, SAE Menu)
 - **SAE Menu** — Topics (from PDF Content) + in-app page deck for `Tag_HK_SAE_Menu_2026.pdf` with jump-to-page, zoom / prev-next
 - **CPS** — four workbook templates (CTMZ Normal/Special, POSM Mock up / No Mock up) seed project milestone checklists from `CPS_planning-v202609.xlsx`
+- **Generate tentative CPS** — SOS + Standard/Accelerated lead times from `CPS_planning-v202609-for-cursor.xlsx`, editable preview, Excel download
 
 ## Scripts
 
