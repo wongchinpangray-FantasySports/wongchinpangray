@@ -1,0 +1,1373 @@
+{
+  "source": "CPS_planning-v202609.xlsx",
+  "templates": [
+    {
+      "id": "ctmz-normal",
+      "name": "CTMZ (Normal)",
+      "sheetName": "CTMZ (Normal) ",
+      "metaFields": {
+        "Olay Pack Box": null,
+        "Target SOS date": "2027-02-18",
+        "Target AW Output Release Date": "2026-12-24",
+        "Scope of Work": "Creative Design",
+        "Technical Drawing Required?": "Yes"
+      },
+      "milestones": [
+        {
+          "title": "W-14 — Brief in",
+          "weekLabel": "W-14",
+          "steps": [
+            {
+              "title": "Brief in",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-11-12",
+              "ownerRole": "ABM",
+              "notes": "W-14 Brief in (PM type, actual component or artwork to measure the PM sizing, placement of PM)",
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Gcas code ready (for PMP code application)",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-11-12",
+              "ownerRole": "ABM",
+              "notes": "Deadline before RTA kicks start.  Gcas /PMP code creation lead time is 1 day respectivley",
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Brief consolidation and send RFQ",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-11-16",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 2
+            },
+            {
+              "title": "Design Quotation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-11-17",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 3
+            },
+            {
+              "title": "Client Quote Approval and PO received",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-11-18",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "Design PM Setup & Briefing",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-11-18",
+              "ownerRole": "Tag PM",
+              "notes": "Design takes 28 days, around 4-5 rounds revision",
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "Technical Drawing Creation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-11-19",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "1st Layout submission",
+              "leadTimeDays": 4,
+              "endDateSample": "2026-11-25",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 9
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-11-26",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 10
+            },
+            {
+              "title": "2nd Layout submission",
+              "leadTimeDays": 3,
+              "endDateSample": "2026-12-01",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 13
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-12-02",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 14
+            },
+            {
+              "title": "3rd Layout submission",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-12-04",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-12-07",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "4th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "5th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "6th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "ABM confirm output for Color proof",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "Color proof (GMG Proof) (Tag Inhouse)",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design & Brand Team",
+              "notes": "Alternaive for mock up (2D items only)",
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "Client Review and design approved",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-12-08",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "Client confirm on Technical drawing (TD ready)",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-12-08",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 18
+            }
+          ]
+        },
+        {
+          "title": "W-10 — Kick off PM AW (RTA)",
+          "weekLabel": "W-10",
+          "steps": [
+            {
+              "title": "Kick off PM AW (RTA)",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-12-10",
+              "ownerRole": "TA submit",
+              "notes": null,
+              "offsetDaysFromBrief": 20
+            }
+          ]
+        },
+        {
+          "title": "W-8 — PM AW release (RTA)",
+          "weekLabel": "W-8",
+          "steps": [
+            {
+              "title": "PM AW release (RTA)",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-12-24",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 30
+            },
+            {
+              "title": "File Output & Starts production",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-12-24",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 30
+            }
+          ]
+        },
+        {
+          "title": "W-7 — Component ready date",
+          "weekLabel": "W-7",
+          "steps": [
+            {
+              "title": "Component ready date",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-12-31",
+              "ownerRole": null,
+              "notes": "2 week before mock up submission for test report",
+              "offsetDaysFromBrief": 30
+            }
+          ]
+        },
+        {
+          "title": "W-6 — White mock up (for Shipper measurement) or",
+          "weekLabel": "W-6",
+          "steps": [
+            {
+              "title": "White mock up (for Shipper measurement) or",
+              "leadTimeDays": 0,
+              "endDateSample": "2027-01-07",
+              "ownerRole": null,
+              "notes": "1 week before mock up submission for shipper measurement",
+              "offsetDaysFromBrief": 30
+            },
+            {
+              "title": "Shipper Photo",
+              "leadTimeDays": 0,
+              "endDateSample": "2027-01-13",
+              "ownerRole": null,
+              "notes": "1 day before mock up submission",
+              "offsetDaysFromBrief": 30
+            },
+            {
+              "title": "Test report (Sticker)",
+              "leadTimeDays": 0,
+              "endDateSample": "2027-01-07",
+              "ownerRole": null,
+              "notes": "1 week before mock up submission to proceed overlabel approval",
+              "offsetDaysFromBrief": 30
+            },
+            {
+              "title": "Overlabel approval (Sticker)",
+              "leadTimeDays": 3,
+              "endDateSample": "2027-01-13",
+              "ownerRole": "ABM",
+              "notes": "1 day before mock up submission",
+              "offsetDaysFromBrief": 33
+            }
+          ]
+        },
+        {
+          "title": "W-5 — Mock-up sign off and submission",
+          "weekLabel": "W-5",
+          "steps": [
+            {
+              "title": "Mock-up sign off and submission",
+              "leadTimeDays": 15,
+              "endDateSample": "2027-01-14",
+              "ownerRole": "ABM / Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 48
+            }
+          ]
+        },
+        {
+          "title": "W-3 — PM ready",
+          "weekLabel": "W-3",
+          "steps": [
+            {
+              "title": "PM ready",
+              "leadTimeDays": 10,
+              "endDateSample": "2027-01-28",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 58
+            },
+            {
+              "title": "SOS Date",
+              "leadTimeDays": 1,
+              "endDateSample": "2027-02-18",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 59
+            }
+          ]
+        }
+      ],
+      "stepCount": 33,
+      "milestoneCount": 7
+    },
+    {
+      "id": "ctmz-special",
+      "name": "CTMZ (Special)",
+      "sheetName": "CTMZ (Special)",
+      "metaFields": {
+        "Pampers LE sticker": null,
+        "Target SOS date": "2026-12-10",
+        "Target AW Output Release Date": "2026-10-28",
+        "Scope of Work": "Creative Design",
+        "Technical Drawing Required?": "Yes"
+      },
+      "milestones": [
+        {
+          "title": "W-10.1 — Brief in",
+          "weekLabel": "W-10.1",
+          "steps": [
+            {
+              "title": "Brief in",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-09-30",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Gcas code ready (for PMP code application)",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-09-30",
+              "ownerRole": "ABM",
+              "notes": "Deadline before RTA kicks start",
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Brief consolidation and send RFQ",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-10-02",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Design Quotation",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-02",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Client Quote Approval and PO received",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-02",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Design PM Setup & Briefing",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-02",
+              "ownerRole": "Tag PM",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Technical Drawing Creation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-10-05",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 2
+            },
+            {
+              "title": "1st Layout submission",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-10-07",
+              "ownerRole": "Tag Design",
+              "notes": "LE sticker",
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-07",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "2nd Layout submission",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-10-08",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-08",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "3rd Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "4th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "5th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "6th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "ABM confirm output for Color proof",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Color proof (GMG Proof) (Tag Inhouse)",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design & Brand Team",
+              "notes": "Alternaive for mock up (2D items only)",
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client Review and design approved",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-08",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 5
+            },
+            {
+              "title": "Client confirm on Technical drawing (TD ready)",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-10-09",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 6
+            }
+          ]
+        },
+        {
+          "title": "W-8.2 — Kick off PM AW (RTA)",
+          "weekLabel": "W-8.2",
+          "steps": [
+            {
+              "title": "Kick off PM AW (RTA)",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-10-13",
+              "ownerRole": "TA submit",
+              "notes": null,
+              "offsetDaysFromBrief": 8
+            }
+          ]
+        },
+        {
+          "title": "W-6.1 — PM AW release (RTA)",
+          "weekLabel": "W-6.1",
+          "steps": [
+            {
+              "title": "PM AW release (RTA)",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-10-28",
+              "ownerRole": "Tag Design",
+              "notes": "assume 2 weeks to peroceed RTA (final TBA by E&TS)",
+              "offsetDaysFromBrief": 18
+            },
+            {
+              "title": "File Output & Starts production",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-10-28",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 18
+            }
+          ]
+        },
+        {
+          "title": "W-4.1 — Mock-up ready",
+          "weekLabel": "W-4.1",
+          "steps": [
+            {
+              "title": "Mock-up ready",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-11-11",
+              "ownerRole": null,
+              "notes": "While mock up date less is than W-5, pls send out alert email",
+              "offsetDaysFromBrief": 28
+            }
+          ]
+        },
+        {
+          "title": "W-2.1 — PM ready",
+          "weekLabel": "W-2.1",
+          "steps": [
+            {
+              "title": "PM ready",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-11-25",
+              "ownerRole": null,
+              "notes": "While PM delivery date is less than W-3, pls send out alert email",
+              "offsetDaysFromBrief": 38
+            },
+            {
+              "title": "SOS Date",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-12-10",
+              "ownerRole": null,
+              "notes": "This is target SOS date request by ABM, this date TBC by CP&E",
+              "offsetDaysFromBrief": 39
+            },
+            {
+              "title": "As this is not a normal SOS date, the SOS date will be advised by CP&E. ABM may seek support from E&TS regarding OT costs to help shorten the RTA process, enabling earlier mock-up and PM delivery.",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": null,
+              "notes": null,
+              "offsetDaysFromBrief": 39
+            }
+          ]
+        }
+      ],
+      "stepCount": 29,
+      "milestoneCount": 5
+    },
+    {
+      "id": "posm-mockup",
+      "name": "POSM (Mock up needed)",
+      "sheetName": "POSM(Mock up needed)",
+      "metaFields": {
+        "OB MAN Half GE": null,
+        "Channel": "MAN",
+        "Target Sales Period": "Sale 6",
+        "Target SOS date": "2026-06-05",
+        "Delivery / Installation needed": "installation",
+        "Design Type": "Simple Adapt",
+        "Target AW Output Release Date": "2026-04-28"
+      },
+      "milestones": [
+        {
+          "title": "Brief in",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Brief in",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-03-06",
+              "ownerRole": "ABM",
+              "notes": "M-3 Brief",
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Brief consolidation and send RFQ",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-03-09",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Design Quotation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-03-10",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 2
+            },
+            {
+              "title": "Client Quote Approval and PO received",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-03-12",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 4
+            }
+          ]
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Design PM Setup & Briefing",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-03-12",
+              "ownerRole": "Tag PM",
+              "notes": "Design takes 28 days, around 4-5 rounds revision",
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "Technical Drawing Creation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-03-13",
+              "ownerRole": "Tag Design",
+              "notes": "for 3D POSM",
+              "offsetDaysFromBrief": 5
+            }
+          ]
+        },
+        {
+          "title": "1st Layout submission",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "1st Layout submission",
+              "leadTimeDays": 4,
+              "endDateSample": "2026-03-19",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 9
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-03-23",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 11
+            },
+            {
+              "title": "2nd Layout submission",
+              "leadTimeDays": 4,
+              "endDateSample": "2026-03-27",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 15
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-03-30",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "3rd Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-03-30",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-03-30",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "4th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-03-30",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "5th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            },
+            {
+              "title": "6th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 16
+            }
+          ]
+        },
+        {
+          "title": "Client confirm output for Mock up",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Client confirm output for Mock up",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-03-31",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 17
+            },
+            {
+              "title": "File Output file",
+              "leadTimeDays": 3,
+              "endDateSample": "2026-04-08",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 20
+            },
+            {
+              "title": "Mock up ready date",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-04-22",
+              "ownerRole": "Suppliers",
+              "notes": null,
+              "offsetDaysFromBrief": 30
+            },
+            {
+              "title": "Mock up review and feedback",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-04-23",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "7th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-23",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            }
+          ]
+        },
+        {
+          "title": "Client confirm output for Mock up (2nd round)",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Client confirm output for Mock up (2nd round)",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "File Output file",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "Mock up ready date",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Suppliers",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "Mock up review and feedback",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "8th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            }
+          ]
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "ABM confirm output for Color proof",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "Color proof (GMG Proof) (Tag Inhouse)",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design & Brand Team",
+              "notes": "Alternaive for mock up (2D items only)",
+              "offsetDaysFromBrief": 31
+            },
+            {
+              "title": "Client Review and design approved",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-04-24",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 32
+            }
+          ]
+        },
+        {
+          "title": "Send to KA for approval",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Send to KA for approval",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-10",
+              "ownerRole": null,
+              "notes": "If time to rush, Tag can align with ABM and MSP team send out to get KA approval in parallel while design is 90% confirm (all element and claims are finalized, only font size/element position varies)",
+              "offsetDaysFromBrief": 32
+            },
+            {
+              "title": "KA Approval",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-04-24",
+              "ownerRole": "Tag Design",
+              "notes": "KA confirmation takes ~10 days, in which 3WDs x 2 rounds (total 6WDs approval) lead time for retailer approval,and 1-2 WDs x 2 rounds revisions",
+              "offsetDaysFromBrief": 42
+            }
+          ]
+        },
+        {
+          "title": "File Output & Starts production",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "File Output & Starts production",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-04-28",
+              "ownerRole": "Tag Design",
+              "notes": "2D item 1-3 days depends on number of items. 3D item 3days/item, multiple versions take up to 7 days to 2 weeks. Better check on production time to set piority.",
+              "offsetDaysFromBrief": 44
+            },
+            {
+              "title": "Production",
+              "leadTimeDays": 13,
+              "endDateSample": "2026-05-18",
+              "ownerRole": "Suppliers",
+              "notes": "2D item 7-10 days, 3D item 2 wks - 3 wks.",
+              "offsetDaysFromBrief": 57
+            }
+          ]
+        },
+        {
+          "title": "Delivery to Warehouse",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Delivery to Warehouse",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-05-18",
+              "ownerRole": "Suppliers",
+              "notes": "For Delivery, normally D-4 to D-5 delivery to KE / MAN/ WAT warehouse",
+              "offsetDaysFromBrief": 57
+            },
+            {
+              "title": "Installation",
+              "leadTimeDays": 3,
+              "endDateSample": "2026-05-21",
+              "ownerRole": "Suppliers",
+              "notes": "Installation  takes 3 days - 2 wks base on complexity and no. of stores",
+              "offsetDaysFromBrief": 60
+            }
+          ]
+        },
+        {
+          "title": "SOS Date",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "SOS Date",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-05-22",
+              "ownerRole": "Production",
+              "notes": null,
+              "offsetDaysFromBrief": 61
+            }
+          ]
+        }
+      ],
+      "stepCount": 37,
+      "milestoneCount": 10
+    },
+    {
+      "id": "posm-no-mockup",
+      "name": "POSM (No Mock up)",
+      "sheetName": "POSM(No Mock up)",
+      "metaFields": {
+        "OB WAT Hanger": null,
+        "Channel": "WAT",
+        "Target Sales Period": "Sale 6",
+        "Target SOS date": "2026-06-03",
+        "Delivery / Installation needed": "Delivery",
+        "Design Type": "Complex Adapt",
+        "Target AW Output Release Date": "2026-05-12"
+      },
+      "milestones": [
+        {
+          "title": "Brief in",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Brief in",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-03",
+              "ownerRole": "ABM",
+              "notes": "Normally M-2 to M-3 Brief in",
+              "offsetDaysFromBrief": 0
+            },
+            {
+              "title": "Brief consolidation and send RFQ",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-04-08",
+              "ownerRole": "Tag",
+              "notes": null,
+              "offsetDaysFromBrief": 1
+            },
+            {
+              "title": "Design Quotation",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-04-09",
+              "ownerRole": "Tag Design / Design Agency",
+              "notes": null,
+              "offsetDaysFromBrief": 2
+            },
+            {
+              "title": "Client Quote Approval and PO received",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-04-13",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 4
+            }
+          ]
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Design PM Setup & Briefing",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-13",
+              "ownerRole": "Tag PM",
+              "notes": "Design takes 28 days, around 4-5 rounds revision",
+              "offsetDaysFromBrief": 4
+            },
+            {
+              "title": "Technical Drawing Creation",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-13",
+              "ownerRole": "Tag Design",
+              "notes": "for 3D POSM",
+              "offsetDaysFromBrief": 4
+            }
+          ]
+        },
+        {
+          "title": "1st Layout submission",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "1st Layout submission",
+              "leadTimeDays": 4,
+              "endDateSample": "2026-04-17",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 8
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-04-21",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 10
+            },
+            {
+              "title": "2nd Layout submission",
+              "leadTimeDays": 4,
+              "endDateSample": "2026-04-27",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 14
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-04-28",
+              "ownerRole": "ABM",
+              "notes": "ABM need to lock design and send to KA in parallel",
+              "offsetDaysFromBrief": 15
+            },
+            {
+              "title": "3rd Layout submission",
+              "leadTimeDays": 3,
+              "endDateSample": "2026-05-04",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 18
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-05-05",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 19
+            },
+            {
+              "title": "4th Layout submission",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-05-07",
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            },
+            {
+              "title": "5th Layout submission",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            },
+            {
+              "title": "Client Review",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            },
+            {
+              "title": "6th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            }
+          ]
+        },
+        {
+          "title": "Client confirm Structure for White mock up",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Client confirm Structure for White mock up",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-23",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 21
+            },
+            {
+              "title": "Mock up ready date (White Mock up)",
+              "leadTimeDays": 5,
+              "endDateSample": "2026-04-30",
+              "ownerRole": "Suppliers",
+              "notes": null,
+              "offsetDaysFromBrief": 26
+            },
+            {
+              "title": "Mock up review and confirm",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-05-04",
+              "ownerRole": "ABM",
+              "notes": "White mock up confirmaiton deadline is the date before KA confirmation",
+              "offsetDaysFromBrief": 27
+            }
+          ]
+        },
+        {
+          "title": "Client confirm output for Mock up",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Client confirm output for Mock up",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "File Output file",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "Mock up ready date",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Suppliers",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "Mock up review and feedback",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "8th Revision",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            }
+          ]
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "ABM confirm output for Color proof",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "Color proof (GMG Proof) (Tag Inhouse)",
+              "leadTimeDays": 0,
+              "endDateSample": null,
+              "ownerRole": "Tag Design & Brand Team",
+              "notes": "Alternaive for mock up (2D items only)",
+              "offsetDaysFromBrief": 27
+            },
+            {
+              "title": "Client Review and design approved",
+              "leadTimeDays": 1,
+              "endDateSample": "2026-05-08",
+              "ownerRole": "ABM",
+              "notes": null,
+              "offsetDaysFromBrief": 28
+            }
+          ]
+        },
+        {
+          "title": "Send to KA for approval",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Send to KA for approval",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-04-23",
+              "ownerRole": null,
+              "notes": "If time to rush, Tag can align with ABM and MSP team send out to get KA approval in parallel while design is 90% confirm (all element and claims are finalized, only font size/element position varies)",
+              "offsetDaysFromBrief": 28
+            },
+            {
+              "title": "KA Approval",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-05-08",
+              "ownerRole": "Tag Design",
+              "notes": "KA confirmation takes ~10 days, in which 3WDs x 2 rounds (total 6WDs approval) lead time for retailer approval,and 1-2 WDs x 2 rounds revisions",
+              "offsetDaysFromBrief": 38
+            }
+          ]
+        },
+        {
+          "title": "File Output & Starts production",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "File Output & Starts production",
+              "leadTimeDays": 2,
+              "endDateSample": "2026-05-12",
+              "ownerRole": "Tag Design",
+              "notes": "2D item 1-3 days depends on number of items. 3D item 3days/item, multiple versions take up to 7 days to 2 weeks. Better check on production time to set piority.",
+              "offsetDaysFromBrief": 40
+            },
+            {
+              "title": "Production",
+              "leadTimeDays": 10,
+              "endDateSample": "2026-05-27",
+              "ownerRole": "Suppliers",
+              "notes": "2D item 7-10 days, 3D item 2 wks - 3 wks.",
+              "offsetDaysFromBrief": 50
+            }
+          ]
+        },
+        {
+          "title": "Delivery to Warehouse",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "Delivery to Warehouse",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-05-27",
+              "ownerRole": "Suppliers",
+              "notes": "For Delivery, normally D-4 to D-5 delivery to KE / MAN/ WAT warehouse",
+              "offsetDaysFromBrief": 50
+            },
+            {
+              "title": "Installation",
+              "leadTimeDays": 0,
+              "endDateSample": "2026-05-27",
+              "ownerRole": "Suppliers",
+              "notes": "Installation  takes 3 days - 2 wks base on complexity and no. of stores",
+              "offsetDaysFromBrief": 50
+            }
+          ]
+        },
+        {
+          "title": "SOS Date",
+          "weekLabel": null,
+          "steps": [
+            {
+              "title": "SOS Date",
+              "leadTimeDays": 5,
+              "endDateSample": "2026-06-03",
+              "ownerRole": "Production",
+              "notes": null,
+              "offsetDaysFromBrief": 55
+            }
+          ]
+        }
+      ],
+      "stepCount": 35,
+      "milestoneCount": 10
+    }
+  ],
+  "holidays": [
+    "2026-01-01",
+    "2026-02-17",
+    "2026-02-18",
+    "2026-02-19",
+    "2026-04-03",
+    "2026-04-04",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-05-01",
+    "2026-05-25",
+    "2026-06-19",
+    "2026-07-01",
+    "2026-09-26",
+    "2026-10-01",
+    "2026-10-19",
+    "2026-12-25",
+    "2026-12-26",
+    "2027-01-01",
+    "2027-02-06",
+    "2027-02-08",
+    "2027-02-09",
+    "2027-03-26",
+    "2027-03-27",
+    "2027-03-29",
+    "2027-04-05",
+    "2027-05-01",
+    "2027-05-13",
+    "2027-06-09",
+    "2027-07-01",
+    "2027-09-16",
+    "2027-10-01",
+    "2027-10-08",
+    "2027-12-25",
+    "2027-12-27"
+  ]
+}

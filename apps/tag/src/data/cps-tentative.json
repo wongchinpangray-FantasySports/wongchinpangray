@@ -1,0 +1,1955 @@
+{
+  "sourceFile": "CPS_planning-v202609-for-cursor.xlsx",
+  "extractedFrom": "CPS type sheets (Lead Time column) + Design/Production Leadtime Normal vs Urgent",
+  "acceleration": {
+    "description": "Accelerated CPS uses shorter timings defined in the workbook: for CTMZ (Normal), matching step titles take CTMZ (Special) lead times; design layout/revision/FA steps can use Design Leadtime Urgent (Minimax). Unmatched steps keep their sheet lead time (or 0 if adjustable).",
+    "ctmzSpecialByTitle": {
+      "Brief in": 0,
+      "Gcas code ready (for PMP code application)": 0,
+      "Brief consolidation and send RFQ": 1,
+      "Design Quotation": 0,
+      "Client Quote Approval and PO received": 0,
+      "Design PM Setup & Briefing": 0,
+      "Technical Drawing Creation": 1,
+      "1st Layout submission": 2,
+      "Client Review": 0,
+      "2nd Layout submission": 1,
+      "3rd Layout submission": 0,
+      "4th Layout submission": 0,
+      "5th Layout submission": 0,
+      "6th Revision": 0,
+      "Client confirm on Technical drawing (TD ready)": 1,
+      "Kick off PM AW (RTA)": 2,
+      "PM AW release (RTA)": 10,
+      "File Output & Starts production": 0,
+      "Mock-up ready": 10,
+      "PM ready": 10,
+      "SOS Date": 1
+    },
+    "designUrgent": {
+      "firstLayout": 2,
+      "revision": 1,
+      "fa": 1
+    }
+  },
+  "designLeadtimes": [
+    {
+      "company": "Minimax Design Ltd (迷你麥斯企業有限公司)",
+      "itemType": "POSM Design - V1 proposal",
+      "normal": "4 days",
+      "urgent": "2~3 days"
+    },
+    {
+      "company": null,
+      "itemType": "POSM revision",
+      "normal": "2~3 days",
+      "urgent": "1~2 days"
+    },
+    {
+      "company": null,
+      "itemType": "POSM FA",
+      "normal": "2 days",
+      "urgent": "1 day"
+    },
+    {
+      "company": "Paradise Design Ltd (沛綠地設計有限公司)",
+      "itemType": "Items",
+      "normal": "Sketch OR\r\nCreative proposals\r\n(at least/ working days)",
+      "urgent": "Proposal\r\n(at least/ working days)"
+    },
+    {
+      "company": null,
+      "itemType": "KV",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "Sticker",
+      "normal": "4",
+      "urgent": "2"
+    },
+    {
+      "company": null,
+      "itemType": "Pack & box",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "2D Poster & banner & OOH",
+      "normal": "5",
+      "urgent": "2"
+    },
+    {
+      "company": null,
+      "itemType": "3D POSM (bigger, Full body)",
+      "normal": "6",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "3D POSM (smaller, on shelf)",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "SBD (Insert shelf unit)",
+      "normal": "5",
+      "urgent": "4"
+    },
+    {
+      "company": null,
+      "itemType": "BBU (Stand-alone unit)",
+      "normal": "7",
+      "urgent": "5"
+    },
+    {
+      "company": "Tag CP team",
+      "itemType": "Items",
+      "normal": "First Layout",
+      "urgent": "Each Revision"
+    },
+    {
+      "company": null,
+      "itemType": "Simple Adapt",
+      "normal": "1",
+      "urgent": "1"
+    },
+    {
+      "company": null,
+      "itemType": "Creative Design",
+      "normal": "4",
+      "urgent": "2"
+    },
+    {
+      "company": null,
+      "itemType": "Complex Design Adapt",
+      "normal": "2",
+      "urgent": "1"
+    },
+    {
+      "company": null,
+      "itemType": "3D POSM",
+      "normal": "4",
+      "urgent": "2"
+    }
+  ],
+  "productionLeadtimes": [
+    {
+      "company": "Minimax Design Ltd (迷你麥斯企業有限公司)",
+      "itemType": "POSM Design - V1 proposal",
+      "normal": "4 days",
+      "urgent": "2~3 days"
+    },
+    {
+      "company": null,
+      "itemType": "POSM revision",
+      "normal": "2~3 days",
+      "urgent": "1~2 days"
+    },
+    {
+      "company": null,
+      "itemType": "POSM FA",
+      "normal": "2 days",
+      "urgent": "1 day"
+    },
+    {
+      "company": "CHAMPION DESIGN AND PRODUCTION COMPANY LIMITED",
+      "itemType": "Item Type",
+      "normal": "Normal lead time",
+      "urgent": "Urgent lead time"
+    },
+    {
+      "company": null,
+      "itemType": "Leaflet (offset)",
+      "normal": "10 workding days",
+      "urgent": "6 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Tentcard/Poster (digital)",
+      "normal": "10 workding days",
+      "urgent": "6 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Brochure/booklet",
+      "normal": "14~21 working days",
+      "urgent": "7~10 workding days"
+    },
+    {
+      "company": null,
+      "itemType": "Customization",
+      "normal": "14~21 working days",
+      "urgent": "7~10 workding days"
+    },
+    {
+      "company": null,
+      "itemType": "Gift Box/ Shopping Bag",
+      "normal": "21~28 working days",
+      "urgent": "14~18 working days"
+    },
+    {
+      "company": "Paradise Design Ltd (沛綠地設計有限公司)",
+      "itemType": "Items",
+      "normal": "Sketch OR\r\nCreative proposals\r\n(at least/ working days)",
+      "urgent": "Proposal\r\n(at least/ working days)"
+    },
+    {
+      "company": null,
+      "itemType": "KV",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "Sticker",
+      "normal": "4",
+      "urgent": "2"
+    },
+    {
+      "company": null,
+      "itemType": "Pack & box",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "2D Poster & banner & OOH",
+      "normal": "5",
+      "urgent": "2"
+    },
+    {
+      "company": null,
+      "itemType": "3D POSM (bigger, Full body)",
+      "normal": "6",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "3D POSM (smaller, on shelf)",
+      "normal": "5",
+      "urgent": "3"
+    },
+    {
+      "company": null,
+      "itemType": "SBD (Insert shelf unit)",
+      "normal": "5",
+      "urgent": "4"
+    },
+    {
+      "company": null,
+      "itemType": "BBU (Stand-alone unit)",
+      "normal": "7",
+      "urgent": "5"
+    },
+    {
+      "company": "Keenmates Limited",
+      "itemType": "Item",
+      "normal": "Quantity",
+      "urgent": "Mock Up lead-time\r\n( Monday - Friday)"
+    },
+    {
+      "company": null,
+      "itemType": "wobbler",
+      "normal": "below 5000pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": null,
+      "itemType": "cashier back",
+      "normal": "below 50pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Eclipse tray",
+      "normal": "below 100pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Eclipse tray with egg tray",
+      "normal": "below 100pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "tentcard",
+      "normal": "below 500pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": null,
+      "itemType": "SS",
+      "normal": "below 5000pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": null,
+      "itemType": "poster",
+      "normal": "below 5000pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Catalogue",
+      "normal": "below 5000pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "PVC Hanger",
+      "normal": "below 500pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Paper Hanger",
+      "normal": "below 200pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Half GE",
+      "normal": "below 120pcs",
+      "urgent": "10 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Full GE",
+      "normal": "below 50pcs",
+      "urgent": "14 working days"
+    },
+    {
+      "company": null,
+      "itemType": "shelving tray",
+      "normal": "below 1000pcs",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Half deco tray",
+      "normal": "below 120pcs",
+      "urgent": "10 working days"
+    },
+    {
+      "company": null,
+      "itemType": "PDQ cutcase",
+      "normal": "below 1000pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Cutcase",
+      "normal": "below 1000pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "A4 Brochure",
+      "normal": "below 2000pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Dumpbin",
+      "normal": "below 200pcs",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Mega display",
+      "normal": "below 50pcs",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "WAT topshelf",
+      "normal": "below 500pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "MAN topshelf",
+      "normal": "below 300pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "PNS Square display",
+      "normal": "below 300pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "WEL DR1 display",
+      "normal": "below 300pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Pricing mobile",
+      "normal": "below 1000pcs",
+      "urgent": "3 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Window sticker",
+      "normal": "below 50pcs",
+      "urgent": "2 working days"
+    },
+    {
+      "company": "Sunny Printing(Hong Kong) Company Limited",
+      "itemType": "Item Type",
+      "normal": "Normal lead time",
+      "urgent": "Urgent lead time"
+    },
+    {
+      "company": null,
+      "itemType": "Insert",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Wobbler",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Header",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "Side Strip",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "HD+SS",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": null,
+      "itemType": "talker",
+      "normal": "7 working days",
+      "urgent": "5 working days"
+    },
+    {
+      "company": "Artsline Workshop Limited",
+      "itemType": "Item Type",
+      "normal": "Normal lead time",
+      "urgent": "Urgent lead time"
+    },
+    {
+      "company": null,
+      "itemType": "Shelving tray",
+      "normal": "3 weeks",
+      "urgent": "2 weeks"
+    },
+    {
+      "company": null,
+      "itemType": "Half GN/Dumpbin/perm rack",
+      "normal": "3 weeks",
+      "urgent": "2 weeks"
+    },
+    {
+      "company": null,
+      "itemType": "Full GN/OCC",
+      "normal": "3-4 weeks",
+      "urgent": "2 weeks"
+    },
+    {
+      "company": "ZRP Printing Group Co., Ltd",
+      "itemType": "Item Type",
+      "normal": "Normal lead time",
+      "urgent": "Urgent lead time"
+    },
+    {
+      "company": null,
+      "itemType": "Sticker - marketing",
+      "normal": "10",
+      "urgent": "7"
+    },
+    {
+      "company": null,
+      "itemType": "Sticker - bar code / blank",
+      "normal": "10",
+      "urgent": "7"
+    },
+    {
+      "company": null,
+      "itemType": "Pack box",
+      "normal": "10",
+      "urgent": "7"
+    },
+    {
+      "company": null,
+      "itemType": "Blister",
+      "normal": "10",
+      "urgent": "7"
+    },
+    {
+      "company": null,
+      "itemType": "RTD",
+      "normal": "10",
+      "urgent": "7"
+    },
+    {
+      "company": "Chung Tai Smart Labelling Co., Ltd./中大標籤科技有限公司",
+      "itemType": "Item Type",
+      "normal": "Normal lead time",
+      "urgent": "Urgent lead time"
+    },
+    {
+      "company": null,
+      "itemType": "sticker",
+      "normal": "約2星期, QHW約3星期",
+      "urgent": "(看情況是否有存貨 , 如有存貨約1至2星期)"
+    }
+  ],
+  "templates": [
+    {
+      "id": "ctmz-normal",
+      "name": "CTMZ (Normal)",
+      "sheetName": "CTMZ (Normal) ",
+      "meta": {
+        "Olay Pack Box": null,
+        "Target SOS date": "2027-02-18",
+        "Target AW Output Release Date": "2026-12-24",
+        "Scope of Work": "Creative Design",
+        "Technical Drawing Required?": "Yes"
+      },
+      "steps": [
+        {
+          "title": "Brief in",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": "W-14 Brief in (PM type, actual component or artwork to measure the PM sizing, placement of PM)",
+          "weekLabel": "W-14"
+        },
+        {
+          "title": "Gcas code ready (for PMP code application)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": "Deadline before RTA kicks start.  Gcas /PMP code creation lead time is 1 day respectivley",
+          "weekLabel": null
+        },
+        {
+          "title": "Brief consolidation and send RFQ",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design Quotation",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Quote Approval and PO received",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag PM",
+          "notes": "Design takes 28 days, around 4-5 rounds revision",
+          "weekLabel": null
+        },
+        {
+          "title": "Technical Drawing Creation",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "1st Layout submission",
+          "leadTimeDays": 4,
+          "leadTimeRaw": "4",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "2nd Layout submission",
+          "leadTimeDays": 3,
+          "leadTimeRaw": "3",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "3rd Layout submission",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "4th Layout submission",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "5th Layout submission",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "6th Revision",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Color proof (GMG Proof) (Tag Inhouse)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design & Brand Team",
+          "notes": "Alternaive for mock up (2D items only)",
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review and design approved",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm on Technical drawing (TD ready)",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Kick off PM AW (RTA)",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "TA submit",
+          "notes": null,
+          "weekLabel": "W-10"
+        },
+        {
+          "title": "PM AW release (RTA)",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": "W-8"
+        },
+        {
+          "title": "File Output & Starts production",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Component ready date",
+          "leadTimeDays": null,
+          "leadTimeRaw": "2 week before mock up submission for test report",
+          "adjustable": true,
+          "ownerRole": null,
+          "notes": "2 week before mock up submission for test report",
+          "weekLabel": "W-7"
+        },
+        {
+          "title": "White mock up (for Shipper measurement) or",
+          "leadTimeDays": null,
+          "leadTimeRaw": "1 week before mock up submission for shipper measurement",
+          "adjustable": true,
+          "ownerRole": null,
+          "notes": "1 week before mock up submission for shipper measurement",
+          "weekLabel": "W-6"
+        },
+        {
+          "title": "Shipper Photo",
+          "leadTimeDays": null,
+          "leadTimeRaw": "1 day before mock up submission",
+          "adjustable": true,
+          "ownerRole": null,
+          "notes": "1 day before mock up submission",
+          "weekLabel": null
+        },
+        {
+          "title": "Test report (Sticker)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "1 week before mock up submission to proceed overlabel approval",
+          "adjustable": true,
+          "ownerRole": null,
+          "notes": "1 week before mock up submission to proceed overlabel approval",
+          "weekLabel": null
+        },
+        {
+          "title": "Overlabel approval (Sticker)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "1 day before mock up submission",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": "1 day before mock up submission",
+          "weekLabel": null
+        },
+        {
+          "title": "Mock-up sign off and submission",
+          "leadTimeDays": 15,
+          "leadTimeRaw": "15",
+          "adjustable": false,
+          "ownerRole": "ABM / Tag",
+          "notes": null,
+          "weekLabel": "W-5"
+        },
+        {
+          "title": "PM ready",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": "W-3"
+        },
+        {
+          "title": "SOS Date",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": null
+        }
+      ],
+      "holidays": [
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2027-01-01",
+        "2027-02-06",
+        "2027-02-08",
+        "2027-02-09",
+        "2027-03-26",
+        "2027-03-27",
+        "2027-03-29",
+        "2027-04-05",
+        "2027-05-01",
+        "2027-05-13",
+        "2027-06-09",
+        "2027-07-01",
+        "2027-09-16",
+        "2027-10-01",
+        "2027-10-08",
+        "2027-12-25",
+        "2027-12-27",
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ]
+    },
+    {
+      "id": "ctmz-special",
+      "name": "CTMZ (Special)",
+      "sheetName": "CTMZ (Special)",
+      "meta": {
+        "Pampers LE sticker": null,
+        "Target SOS date": "2026-12-10",
+        "Target AW Output Release Date": "2026-10-28",
+        "Scope of Work": "Creative Design",
+        "Technical Drawing Required?": "Yes"
+      },
+      "steps": [
+        {
+          "title": "Brief in",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": "W-10.1"
+        },
+        {
+          "title": "Gcas code ready (for PMP code application)",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": "Deadline before RTA kicks start",
+          "weekLabel": null
+        },
+        {
+          "title": "Brief consolidation and send RFQ",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design Quotation",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Quote Approval and PO received",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag PM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Technical Drawing Creation",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "1st Layout submission",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "LE sticker",
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "2nd Layout submission",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "3rd Layout submission",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "4th Layout submission",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "5th Layout submission",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "6th Revision",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Color proof (GMG Proof) (Tag Inhouse)",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "Tag Design & Brand Team",
+          "notes": "Alternaive for mock up (2D items only)",
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review and design approved",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm on Technical drawing (TD ready)",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Kick off PM AW (RTA)",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "TA submit",
+          "notes": null,
+          "weekLabel": "W-8.2"
+        },
+        {
+          "title": "PM AW release (RTA)",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "assume 2 weeks to peroceed RTA (final TBA by E&TS)",
+          "weekLabel": "W-6.1"
+        },
+        {
+          "title": "File Output & Starts production",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock-up ready",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": null,
+          "notes": "While mock up date less is than W-5, pls send out alert email",
+          "weekLabel": "W-4.1"
+        },
+        {
+          "title": "PM ready",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": null,
+          "notes": "While PM delivery date is less than W-3, pls send out alert email",
+          "weekLabel": "W-2.1"
+        },
+        {
+          "title": "SOS Date",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": null,
+          "notes": "This is target SOS date request by ABM, this date TBC by CP&E",
+          "weekLabel": null
+        }
+      ],
+      "holidays": [
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ]
+    },
+    {
+      "id": "posm-mockup",
+      "name": "POSM (Mock up needed)",
+      "sheetName": "POSM(Mock up needed)",
+      "meta": {
+        "OB MAN Half GE": null,
+        "Channel": "MAN",
+        "Target Sales Period": "Sale 6",
+        "Target SOS date": "2026-06-05",
+        "Delivery / Installation needed": "installation",
+        "Design Type": "Simple Adapt",
+        "Target AW Output Release Date": null
+      },
+      "steps": [
+        {
+          "title": "Brief in",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": "M-3 Brief",
+          "weekLabel": null
+        },
+        {
+          "title": "Brief consolidation and send RFQ",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design Quotation",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Quote Approval and PO received",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag PM",
+          "notes": "Design takes 28 days, around 4-5 rounds revision",
+          "weekLabel": null
+        },
+        {
+          "title": "Technical Drawing Creation",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "for 3D POSM",
+          "weekLabel": null
+        },
+        {
+          "title": "1st Layout submission",
+          "leadTimeDays": 5,
+          "leadTimeRaw": "5",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "2nd Layout submission",
+          "leadTimeDays": 4,
+          "leadTimeRaw": "4",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "3rd Layout submission",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "4th Layout submission",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "5th Layout submission",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "6th Revision",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm output for Mock up",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "File Output file",
+          "leadTimeDays": 3,
+          "leadTimeRaw": "3",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up ready date",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up review and feedback",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "7th Revision",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm output for Mock up (2nd round)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "File Output file",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up ready date",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Suppliers",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up review and feedback",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "8th Revision",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Color proof (GMG Proof) (Tag Inhouse)",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Tag Design & Brand Team",
+          "notes": "Alternaive for mock up (2D items only)",
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review and design approved",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Send to KA for approval",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": null,
+          "notes": "If time to rush, Tag can align with ABM and MSP team send out to get KA approval in parallel while design is 90% confirm (all element and claims are finalized, only font size/element position varies)",
+          "weekLabel": null
+        },
+        {
+          "title": "KA Approval",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "KA confirmation takes ~10 days, in which 3WDs x 2 rounds (total 6WDs approval) lead time for retailer approval,and 1-2 WDs x 2 rounds revisions",
+          "weekLabel": null
+        },
+        {
+          "title": "File Output & Starts production",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "2D item 1-3 days depends on number of items. 3D item 3days/item, multiple versions take up to 7 days to 2 weeks. Better check on production time to set piority.",
+          "weekLabel": null
+        },
+        {
+          "title": "Production",
+          "leadTimeDays": 20,
+          "leadTimeRaw": "20",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": "2D item 7-10 days, 3D item 2 wks - 3 wks.",
+          "weekLabel": null
+        },
+        {
+          "title": "Delivery to Warehouse",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Suppliers",
+          "notes": "For Delivery, normally D-4 to D-5 delivery to KE / MAN/ WAT warehouse",
+          "weekLabel": null
+        },
+        {
+          "title": "Installation",
+          "leadTimeDays": null,
+          "leadTimeRaw": "can adjust",
+          "adjustable": true,
+          "ownerRole": "Suppliers",
+          "notes": "Installation  takes 3 days - 2 wks base on complexity and no. of stores",
+          "weekLabel": null
+        },
+        {
+          "title": "SOS Date",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Production",
+          "notes": null,
+          "weekLabel": null
+        }
+      ],
+      "holidays": [
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ]
+    },
+    {
+      "id": "posm-no-mockup",
+      "name": "POSM (No Mock up)",
+      "sheetName": "POSM(No Mock up)",
+      "meta": {
+        "OB WAT Hanger": null,
+        "Channel": "WAT",
+        "Target Sales Period": "Sale 6",
+        "Target SOS date": "2026-06-03",
+        "Delivery / Installation needed": "Delivery",
+        "Design Type": "Complex Adapt",
+        "Target AW Output Release Date": "2026-05-12"
+      },
+      "steps": [
+        {
+          "title": "Brief in",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": "Normally M-2 to M-3 Brief in",
+          "weekLabel": null
+        },
+        {
+          "title": "Brief consolidation and send RFQ",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design Quotation",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "Tag Design / Design Agency",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Quote Approval and PO received",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Design PM Setup & Briefing",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag PM",
+          "notes": "Design takes 28 days, around 4-5 rounds revision",
+          "weekLabel": null
+        },
+        {
+          "title": "Technical Drawing Creation",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "for 3D POSM",
+          "weekLabel": null
+        },
+        {
+          "title": "1st Layout submission",
+          "leadTimeDays": 4,
+          "leadTimeRaw": "4",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "2nd Layout submission",
+          "leadTimeDays": 4,
+          "leadTimeRaw": "4",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": "ABM need to lock design and send to KA in parallel",
+          "weekLabel": null
+        },
+        {
+          "title": "3rd Layout submission",
+          "leadTimeDays": 3,
+          "leadTimeRaw": "3",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "4th Layout submission",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "5th Layout submission",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "6th Revision",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm Structure for White mock up",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up ready date (White Mock up)",
+          "leadTimeDays": 5,
+          "leadTimeRaw": "5",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up review and confirm",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": "White mock up confirmaiton deadline is the date before KA confirmation",
+          "weekLabel": null
+        },
+        {
+          "title": "Client confirm output for Mock up",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "File Output file",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up ready date",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "Suppliers",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Mock up review and feedback",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "8th Revision",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "Tag Design",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "ABM confirm output for Color proof",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Color proof (GMG Proof) (Tag Inhouse)",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": "Tag Design & Brand Team",
+          "notes": "Alternaive for mock up (2D items only)",
+          "weekLabel": null
+        },
+        {
+          "title": "Client Review and design approved",
+          "leadTimeDays": 1,
+          "leadTimeRaw": "1",
+          "adjustable": false,
+          "ownerRole": "ABM",
+          "notes": null,
+          "weekLabel": null
+        },
+        {
+          "title": "Send to KA for approval",
+          "leadTimeDays": null,
+          "leadTimeRaw": null,
+          "adjustable": true,
+          "ownerRole": null,
+          "notes": "If time to rush, Tag can align with ABM and MSP team send out to get KA approval in parallel while design is 90% confirm (all element and claims are finalized, only font size/element position varies)",
+          "weekLabel": null
+        },
+        {
+          "title": "KA Approval",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "KA confirmation takes ~10 days, in which 3WDs x 2 rounds (total 6WDs approval) lead time for retailer approval,and 1-2 WDs x 2 rounds revisions",
+          "weekLabel": null
+        },
+        {
+          "title": "File Output & Starts production",
+          "leadTimeDays": 2,
+          "leadTimeRaw": "2",
+          "adjustable": false,
+          "ownerRole": "Tag Design",
+          "notes": "2D item 1-3 days depends on number of items. 3D item 3days/item, multiple versions take up to 7 days to 2 weeks. Better check on production time to set piority.",
+          "weekLabel": null
+        },
+        {
+          "title": "Production",
+          "leadTimeDays": 10,
+          "leadTimeRaw": "10",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": "2D item 7-10 days, 3D item 2 wks - 3 wks.",
+          "weekLabel": null
+        },
+        {
+          "title": "Delivery to Warehouse",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": "For Delivery, normally D-4 to D-5 delivery to KE / MAN/ WAT warehouse",
+          "weekLabel": null
+        },
+        {
+          "title": "Installation",
+          "leadTimeDays": 0,
+          "leadTimeRaw": "0",
+          "adjustable": false,
+          "ownerRole": "Suppliers",
+          "notes": "Installation  takes 3 days - 2 wks base on complexity and no. of stores",
+          "weekLabel": null
+        },
+        {
+          "title": "SOS Date",
+          "leadTimeDays": 5,
+          "leadTimeRaw": "5",
+          "adjustable": false,
+          "ownerRole": "Production",
+          "notes": null,
+          "weekLabel": null
+        }
+      ],
+      "holidays": [
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-01-01",
+        "2026-02-17",
+        "2026-02-18",
+        "2026-02-19",
+        "2026-04-03",
+        "2026-04-04",
+        "2026-04-06",
+        "2026-04-07",
+        "2026-05-01",
+        "2026-05-25",
+        "2026-06-19",
+        "2026-07-01",
+        "2026-09-26",
+        "2026-10-01",
+        "2026-10-19",
+        "2026-12-25",
+        "2026-12-26",
+        "2026-10-02",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ]
+    }
+  ]
+}
