@@ -169,8 +169,9 @@ export default function GuidePage() {
             step end dates from SOS using lead times from{" "}
             <code>CPS_planning-v202609-for-cursor.xlsx</code> (Accelerated uses CTMZ
             Special / Design Leadtime Urgent values where the workbook defines them).
-            Edit steps, leads, owners, and notes in the preview, then download an Excel
-            CPS.
+            Edit steps, leads, owners, and notes in the preview — or{" "}
+            <strong className="text-ink">Remove</strong> steps that should not be on
+            the CPS — then download an Excel that matches the remaining steps.
           </p>
         </Section>
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { Download, Sparkles } from "lucide-react";
+import { Download, Sparkles, Trash2 } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { api } from "@/lib/api-client";
 import type { TentativePlan, TentativeStep } from "@/lib/cps-tentative";
@@ -61,6 +61,13 @@ export default function GenerateTentativeCpsPage() {
     setSteps((prev) =>
       prev.map((s) => (s.id === id ? { ...s, ...patch } : s)),
     );
+  }
+
+  function removeStep(id: string) {
+    setSteps((prev) => {
+      if (prev.length <= 1) return prev;
+      return prev.filter((s) => s.id !== id);
+    });
   }
 
   async function onReschedule() {
@@ -268,20 +275,30 @@ export default function GenerateTentativeCpsPage() {
 
           {dirty ? (
             <p className="mb-3 text-sm text-amber-800">
-              Leads/owners/notes edited — use Recalc dates from leads before
-              download if end dates should follow the new leads.
+              Steps edited or removed — use Recalc dates from leads before
+              download if end dates should follow the remaining leads. Removed
+              steps stay out of the Excel download.
             </p>
           ) : null}
 
+          <p className="mb-3 text-sm text-muted">
+            {steps.length} step{steps.length === 1 ? "" : "s"} in this CPS
+            {plan.steps.length !== steps.length
+              ? ` (${plan.steps.length - steps.length} removed)`
+              : ""}
+            .
+          </p>
+
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+            <table className="w-full min-w-[780px] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-[var(--line)] text-xs uppercase tracking-[0.12em] text-muted">
                   <th className="py-2 pr-2">Step</th>
                   <th className="py-2 pr-2">Lead (WD)</th>
                   <th className="py-2 pr-2">End date</th>
                   <th className="py-2 pr-2">Owner</th>
-                  <th className="py-2">Notes</th>
+                  <th className="py-2 pr-2">Notes</th>
+                  <th className="py-2 text-right"> </th>
                 </tr>
               </thead>
               <tbody>
@@ -333,7 +350,7 @@ export default function GenerateTentativeCpsPage() {
                         }
                       />
                     </td>
-                    <td className="py-2">
+                    <td className="py-2 pr-2">
                       <input
                         className="w-full min-w-[12rem] rounded-lg border border-[var(--line)] bg-white px-2 py-1"
                         value={s.notes ?? ""}
@@ -341,6 +358,24 @@ export default function GenerateTentativeCpsPage() {
                           updateStep(s.id, { notes: e.target.value || null })
                         }
                       />
+                    </td>
+                    <td className="py-2 text-right">
+                      <button
+                        type="button"
+                        className="btn border border-[var(--line)] bg-white/70 px-2 py-1 text-xs"
+                        onClick={() => removeStep(s.id)}
+                        disabled={busy || steps.length <= 1}
+                        data-testid={`tentative-remove-${s.id}`}
+                        aria-label={`Remove step ${s.title}`}
+                        title={
+                          steps.length <= 1
+                            ? "Keep at least one step"
+                            : "Remove from CPS"
+                        }
+                      >
+                        <Trash2 size={14} />
+                        Remove
+                      </button>
                     </td>
                   </tr>
                 ))}
